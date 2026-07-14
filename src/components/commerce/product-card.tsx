@@ -171,24 +171,24 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   return (
-    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full", className)}>
-      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden">
-        {/* Badges */}
-        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full min-w-0 w-full", className)}>
+      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden shrink-0">
+        {/* Badges - Hidden/Simplified on Mobile */}
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
           {product.newArrival && (
-            <Badge className="bg-brand-primary border-transparent">
-              <Sparkles className="h-3 w-3 mr-1 fill-current" />
+            <Badge className="bg-brand-primary border-transparent text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2">
+              <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1 fill-current" />
               NEW
             </Badge>
           )}
           {product.trending && (
-            <Badge variant="accent">
+            <Badge variant="accent" className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 hidden sm:inline-flex">
               <Flame className="h-3 w-3 mr-1 fill-current" />
               TRENDING
             </Badge>
           )}
           {product.comboEligible && (
-            <Badge variant="success" className="text-[10px] py-0.5">
+            <Badge variant="success" className="text-[8px] sm:text-[10px] py-0.5 px-1.5 sm:px-2 hidden md:inline-flex">
               COMBO ELIGIBLE
             </Badge>
           )}
@@ -198,15 +198,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <button
           onClick={handleWishlist}
           className={cn(
-            "absolute top-3 right-3 z-10 p-2 rounded-full shadow-sm bg-white/80 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light",
+            "absolute top-2 right-2 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 rounded-full shadow-sm bg-white/80 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light",
             isWishlisted ? "text-red-500 fill-current" : "text-text-secondary hover:text-red-500"
           )}
           aria-label="Toggle Wishlist"
         >
-          <Heart className="h-4.5 w-4.5" />
+          <Heart className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
         </button>
 
-        {/* Front image — visible by default, fades on hover for pointer devices */}
+        {/* Front image */}
         <Image
           src={displayFront}
           alt={product.name}
@@ -216,7 +216,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           onError={() => setFrontError(true)}
           unoptimized={frontImage?.startsWith("data:") || false}
         />
-        {/* Back image — appears on hover */}
+        {/* Back image */}
         <Image
           src={displayBack}
           alt={`${product.name} alternate view`}
@@ -227,39 +227,39 @@ export function ProductCard({ product, className }: ProductCardProps) {
           unoptimized={backImage?.startsWith("data:") || false}
         />
 
-        {/* Video available indicator */}
+        {/* Video indicator */}
         {hasVideo && (
-          <div className="absolute bottom-3 right-3 bg-black/60 text-white rounded-full p-1.5 flex items-center justify-center pointer-events-none">
-            <Video className="h-3.5 w-3.5" />
+          <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-black/60 text-white rounded-full p-1 sm:p-1.5 flex items-center justify-center pointer-events-none">
+            <Video className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
           </div>
         )}
       </Link>
 
       {/* Info & CTA details */}
-      <div className="p-4 space-y-3 flex flex-col justify-between flex-1">
-        <div className="space-y-1">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-text-muted tracking-wider">
+      <div className="p-2 sm:p-4 flex flex-col justify-between flex-1 min-w-0 w-full">
+        <div className="space-y-1 min-w-0">
+          <div className="flex items-center justify-between text-[9px] sm:text-xs">
+            <span className="uppercase font-bold text-text-muted tracking-wider truncate max-w-[70%] hidden sm:inline-block">
               {product.subcategory}
             </span>
-            <span className="text-xs text-text-secondary flex items-center gap-0.5 font-semibold">
+            <span className="text-text-secondary flex items-center gap-0.5 font-semibold sm:ml-auto shrink-0">
               ★ {product.rating}
             </span>
           </div>
           <Link href={`/products/${product.slug}`} className="block hover:text-brand-primary">
-            <h3 className="font-heading font-semibold text-sm text-text-primary line-clamp-1">
+            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2rem] sm:min-h-0 sm:truncate">
               {product.name}
             </h3>
           </Link>
         </div>
 
-        {/* Colors & Sizes count */}
-        <div className="flex items-center justify-between text-xs text-text-secondary">
+        {/* Colors & Sizes count - Hidden/Simplified on Mobile */}
+        <div className="hidden sm:flex items-center justify-between text-xs text-text-secondary mt-1">
           <div className="flex gap-1.5 items-center">
             {colors.slice(0, 3).map((col) => (
               <span
                 key={col.name}
-                className={cn("h-3 w-3 rounded-full border border-border-medium block", {
+                className={cn("h-3 w-3 rounded-full border border-border-medium block cursor-pointer", {
                   "ring-1 ring-brand-primary": selectedColor === col.name,
                 })}
                 style={{ backgroundColor: col.hex }}
@@ -274,14 +274,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
               <span className="text-[9px] text-text-muted font-bold">+{colors.length - 3}</span>
             )}
           </div>
-          <span className="text-[10px] text-text-muted">
+          <span className="text-[10px] text-text-muted shrink-0">
             {availableSizes.length} sizes available
           </span>
         </div>
 
+        {/* Mobile size/color line */}
+        <div className="sm:hidden text-[10px] text-text-muted mt-1 leading-tight font-medium">
+          {availableSizes.length} sizes · {colors.length} colors
+        </div>
+
         {/* Pricing / Action */}
-        <div className="flex items-center justify-between pt-2.5 border-t border-border-light">
-          <div className="flex flex-col">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 mt-2 border-t border-border-light gap-2 shrink-0">
+          <div className="flex flex-col hidden sm:flex">
             <span className="text-[9px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
               ₹999 COMBO
             </span>
@@ -289,19 +294,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
               Eligible Style
             </span>
           </div>
-          <div className="flex gap-1.5">
-            <Button size="sm" variant="outline" className="h-8 px-2.5 cursor-pointer" onClick={() => setQuickViewOpen(true)}>
-              <Eye className="h-4 w-4" />
+          <div className="flex gap-1.5 w-full sm:w-auto">
+            <Button size="sm" variant="outline" className="h-7 sm:h-8 px-2 cursor-pointer flex-1 sm:flex-none justify-center" onClick={() => setQuickViewOpen(true)}>
+              <Eye className="h-3.5 w-3.5" />
             </Button>
-            <Button size="sm" className="h-8 gap-1 cursor-pointer font-bold uppercase tracking-wider text-[10px]" onClick={handleAddAction}>
-              <Plus className="h-3.5 w-3.5" />
+            <Button size="sm" className="h-7 sm:h-8 px-3 gap-1 cursor-pointer font-bold uppercase tracking-wider text-[10px] flex-grow sm:flex-none justify-center" onClick={handleAddAction}>
+              <Plus className="h-3 w-3" />
               <span>Add</span>
             </Button>
           </div>
         </div>
       </div>
 
-      {/* ====================================================
+    {/* ====================================================
           1. MODAL: COMBO TIER SELECTION (If no active combo)
           ==================================================== */}
       <Dialog open={comboSelectOpen} onOpenChange={setComboSelectOpen}>
