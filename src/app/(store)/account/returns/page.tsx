@@ -27,9 +27,9 @@ export default function AccountReturnsPage() {
           </p>
         </div>
 
-        <Link href="/account/returns/new" passHref legacyBehavior>
-          <Button size="sm" className="h-9 cursor-pointer">File New Claim</Button>
-        </Link>
+        <Button size="sm" asChild className="h-9 cursor-pointer">
+          <Link href="/account/returns/new">File New Claim</Link>
+        </Button>
       </div>
 
       {claims.length > 0 ? (
@@ -77,9 +77,9 @@ export default function AccountReturnsPage() {
           <p className="text-xs text-text-secondary leading-relaxed">
             Did you receive a damaged package? File a transit damage claim here with unboxing video evidence.
           </p>
-          <Link href="/account/returns/new" passHref legacyBehavior>
-            <Button className="w-full cursor-pointer">File Damage Claim</Button>
-          </Link>
+          <Button asChild className="w-full cursor-pointer">
+            <Link href="/account/returns/new">File Damage Claim</Link>
+          </Button>
         </div>
       )}
     </div>

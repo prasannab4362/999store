@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -220,11 +220,7 @@ export default function HomePage() {
               <h3 className="font-heading font-extrabold text-xl text-white">MEN'S COMBOS</h3>
               <p className="text-xs text-gray-300 max-w-sm">Explore shirts, polos, chinos, and wedding vesti sets.</p>
               <div className="flex gap-3">
-                <Link href="/men" passHref legacyBehavior>
-                  <Button size="sm" asChild>
-                    <a>Explore Men's</a>
-                  </Button>
-                </Link>
+                <Button size="sm" asChild><Link href="/men">Explore Men's</Link></Button>
                 <Button size="sm" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white" onClick={() => router.push("/combo/5-items")}>
                   Build Men Combo
                 </Button>
@@ -250,11 +246,7 @@ export default function HomePage() {
               <h3 className="font-heading font-extrabold text-xl text-white">WOMEN'S COMBOS</h3>
               <p className="text-xs text-gray-300 max-w-sm">Explore tops, crop tees, ethnic cotton sets, and lehengas.</p>
               <div className="flex gap-3">
-                <Link href="/women" passHref legacyBehavior>
-                  <Button size="sm" asChild>
-                    <a>Explore Women's</a>
-                  </Button>
-                </Link>
+                <Button size="sm" asChild><Link href="/women">Explore Women's</Link></Button>
                 <Button size="sm" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white" onClick={() => router.push("/combo/5-items")}>
                   Build Women Combo
                 </Button>

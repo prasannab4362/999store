@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -35,11 +35,7 @@ export default function CollectionsPage() {
               <h3 className="font-heading font-extrabold text-xl text-white uppercase">{coll.name}</h3>
               <p className="text-xs text-gray-300 line-clamp-2">{coll.description}</p>
               <div className="pt-2">
-                <Link href={`/collections/${coll.id}`} passHref legacyBehavior>
-                  <Button size="sm" asChild>
-                    <a>View Styles</a>
-                  </Button>
-                </Link>
+                <Button size="sm" asChild><Link href={`/collections/${coll.id}`}>View Styles</Link></Button>
               </div>
             </div>
           </div>

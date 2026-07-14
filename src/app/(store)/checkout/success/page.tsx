@@ -149,18 +149,18 @@ function SuccessContent() {
 
       {/* 3. Action Navigation CTAs */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <Link href={`/track-order?orderId=${order.id}&phone=${order.customer.phone}`} passHref legacyBehavior>
-          <Button size="lg" className="flex-grow gap-2 cursor-pointer">
+        <Button size="lg" asChild className="flex-grow gap-2 cursor-pointer">
+          <Link href={`/track-order?orderId=${order.id}&phone=${order.customer.phone}`}>
             <Truck className="h-4.5 w-4.5" />
             <span>Track Order</span>
-          </Button>
-        </Link>
-        <Link href="/" passHref legacyBehavior>
-          <Button size="lg" variant="outline" className="flex-grow gap-2 cursor-pointer">
+          </Link>
+        </Button>
+        <Button size="lg" variant="outline" asChild className="flex-grow gap-2 cursor-pointer">
+          <Link href="/">
             <span>Continue Shopping</span>
             <ArrowRight className="h-4.5 w-4.5" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

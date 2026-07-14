@@ -109,12 +109,12 @@ export default function AccountOverviewPage() {
               <span className="font-bold text-text-primary">{formatCurrency(recentOrder.grandTotalMinor)}</span>
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <Link href={`/track-order?orderId=${recentOrder.id}&phone=${recentOrder.customer.phone}`} passHref legacyBehavior>
-                <Button size="sm" variant="outline" className="h-8">Track Details</Button>
-              </Link>
-              <Link href={`/account/orders/${recentOrder.id}`} passHref legacyBehavior>
-                <Button size="sm" className="h-8">View Details</Button>
-              </Link>
+              <Button size="sm" variant="outline" asChild className="h-8">
+                <Link href={`/track-order?orderId=${recentOrder.id}&phone=${recentOrder.customer.phone}`}>Track Details</Link>
+              </Button>
+              <Button size="sm" asChild className="h-8">
+                <Link href={`/account/orders/${recentOrder.id}`}>View Details</Link>
+              </Button>
             </div>
           </div>
         ) : (

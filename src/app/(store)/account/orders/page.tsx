@@ -57,12 +57,12 @@ export default function AccountOrdersPage() {
                   </span>
                 </div>
                 <div className="flex gap-2">
-                  <Link href={`/track-order?orderId=${order.id}&phone=${order.customer.phone}`} passHref legacyBehavior>
-                    <Button size="sm" variant="outline" className="h-8">Track</Button>
-                  </Link>
-                  <Link href={`/account/orders/${order.id}`} passHref legacyBehavior>
-                    <Button size="sm" className="h-8">Details</Button>
-                  </Link>
+                  <Button size="sm" variant="outline" asChild className="h-8">
+                    <Link href={`/track-order?orderId=${order.id}&phone=${order.customer.phone}`}>Track</Link>
+                  </Button>
+                  <Button size="sm" asChild className="h-8">
+                    <Link href={`/account/orders/${order.id}`}>Details</Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@ export default function AccountOrdersPage() {
           <p className="text-xs text-text-secondary leading-relaxed">
             Ready to find your look? Pick a combo size and start adding styles to get began.
           </p>
-          <Link href="/combo" passHref legacyBehavior>
-            <Button className="w-full cursor-pointer">Build Your Combo</Button>
-          </Link>
+          <Button asChild className="w-full cursor-pointer">
+            <Link href="/combo">Build Your Combo</Link>
+          </Button>
         </div>
       )}
     </div>

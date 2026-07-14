@@ -50,12 +50,12 @@ export default function OrderDetailPage() {
         </div>
 
         {/* Damage claim CTA */}
-        <Link href={`/account/returns/new?orderId=${order.id}`} passHref legacyBehavior>
-          <Button size="sm" variant="outline" className="text-xs border-red-200 text-red-700 hover:bg-red-50 cursor-pointer flex items-center gap-1.5 font-semibold">
+        <Button size="sm" variant="outline" asChild className="text-xs border-red-200 text-red-700 hover:bg-red-50 cursor-pointer flex items-center gap-1.5 font-semibold">
+          <Link href={`/account/returns/new?orderId=${order.id}`}>
             <BadgeAlert className="h-4 w-4" />
             <span>File Damage Claim</span>
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       {/* Items list */}

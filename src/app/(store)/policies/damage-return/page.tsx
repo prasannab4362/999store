@@ -60,11 +60,11 @@ export default function DamageReturnPolicyPage() {
         </div>
 
         <div className="flex justify-start pt-4">
-          <Link href="/account/returns/new" passHref legacyBehavior>
-            <Button size="lg" className="gap-2 cursor-pointer font-bold font-heading">
+          <Button size="lg" asChild className="gap-2 cursor-pointer font-bold font-heading">
+            <Link href="/account/returns/new">
               <span>File Damage Claim Now</span>
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

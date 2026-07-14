@@ -40,12 +40,12 @@ export default function AboutPage() {
         </div>
 
         <div className="flex justify-center pt-4">
-          <Link href="/combo" passHref legacyBehavior>
-            <Button size="lg" className="gap-2 cursor-pointer font-bold font-heading">
+          <Button size="lg" asChild className="gap-2 cursor-pointer font-bold font-heading">
+            <Link href="/combo">
               <span>Start Building a Combo</span>
               <ArrowRight className="h-4.5 w-4.5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
