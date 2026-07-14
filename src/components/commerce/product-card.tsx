@@ -81,8 +81,19 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   // Front & Back Images
   const frontImage = product.media.find((m) => m.viewType === "front")?.url || product.media[0]?.url;
-  const backImage = product.media.find((m) => m.viewType === "back")?.url || product.media[0]?.url;
+  const backImage = product.media.find((m) => m.viewType === "back")?.url || frontImage;
   const hasVideo = product.media.some((m) => m.viewType === "video");
+
+  // Fallback state — if local asset 404s, revert to SVG placeholder
+  const [frontError, setFrontError] = React.useState(false);
+  const [backError, setBackError] = React.useState(false);
+
+  const displayFront = frontError
+    ? `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500"><rect width="100%" height="100%" fill="%23FFF9F4"/><text x="50%" y="50%" font-family="sans-serif" font-size="14" fill="%236D28D9" text-anchor="middle" dominant-baseline="middle">${product.shortName}</text></svg>`
+    : frontImage;
+  const displayBack = backError
+    ? displayFront
+    : backImage;
 
   const handleAddAction = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -161,7 +172,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <div className={cn("group flex flex-col justify-between rounded-card border border-border-light bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full", className)}>
-      <Link href={`/products/${product.slug}`} className="block relative aspect-[3/4] bg-bg-secondary overflow-hidden">
+      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden">
         {/* Badges */}
         <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
           {product.newArrival && (
@@ -195,22 +206,25 @@ export function ProductCard({ product, className }: ProductCardProps) {
           <Heart className="h-4.5 w-4.5" />
         </button>
 
-        {/* Hover image toggle */}
+        {/* Front image — visible by default, fades on hover for pointer devices */}
         <Image
-          src={frontImage}
+          src={displayFront}
           alt={product.name}
           fill
-          sizes="(max-width: 768px) 50vw, 33vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-          unoptimized
+          onError={() => setFrontError(true)}
+          unoptimized={frontImage?.startsWith("data:") || false}
         />
+        {/* Back image — appears on hover */}
         <Image
-          src={backImage}
+          src={displayBack}
           alt={`${product.name} alternate view`}
           fill
-          sizes="(max-width: 768px) 50vw, 33vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          unoptimized
+          onError={() => setBackError(true)}
+          unoptimized={backImage?.startsWith("data:") || false}
         />
 
         {/* Video available indicator */}
