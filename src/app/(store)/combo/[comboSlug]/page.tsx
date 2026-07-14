@@ -283,7 +283,7 @@ export default function ComboBuilderPage() {
         </div>
 
         {/* ── Right Column: Desktop Sticky Sidebar ─────────── */}
-        <aside className="hidden lg:flex flex-col bg-white rounded-2xl border border-border-light shadow-sm sticky top-24 self-start overflow-hidden">
+        <aside className="hidden lg:flex flex-col bg-white rounded-2xl border border-border-light shadow-sm sticky top-24 self-start overflow-hidden w-full lg:w-[300px] xl:w-[320px]">
           <div className="p-5 flex-1">
             <SlotsSummary />
           </div>
