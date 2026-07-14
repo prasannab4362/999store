@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const menVesti: Product[] = [
   {
@@ -28,9 +27,9 @@ export const menVesti: Product[] = [
     rating: 4.8,
     reviewCount: 42,
     media: [
-      { id: "m-ve-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Gold Border Vesti Set", "Front"), alt: "Gold Border Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Gold Border Vesti Set", "Back"), alt: "Gold Border Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Gold Border Vesti Set Video", sortOrder: 3 }
+      { id: "m-ve-1-m1", type: "image", viewType: "front", url: "/products/men/traditional-gold-border-vesti-shirt-set/front.webp", alt: "Gold Border Vesti Set Front View", sortOrder: 1 },
+      { id: "m-ve-1-m2", type: "image", viewType: "back", url: "/products/men/traditional-gold-border-vesti-shirt-set/back.webp", alt: "Gold Border Vesti Set Back View", sortOrder: 2 },
+      { id: "m-ve-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Gold Border Vesti Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ve-1-crm-m", sku: "999-MC-VE-001-CRM-M", color: { name: "Cream & Gold", hex: "#FFFDD0" }, size: "M", stock: 15, enabled: true },
@@ -65,9 +64,9 @@ export const menVesti: Product[] = [
     rating: 4.9,
     reviewCount: 35,
     media: [
-      { id: "m-ve-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Wedding Vesti Set", "Front"), alt: "Wedding Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Wedding Vesti Set", "Back"), alt: "Wedding Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Wedding Vesti Set Video", sortOrder: 3 }
+      { id: "m-ve-2-m1", type: "image", viewType: "front", url: "/products/men/classic-pure-cotton-wedding-vesti-set/front.webp", alt: "Wedding Vesti Set Front View", sortOrder: 1 },
+      { id: "m-ve-2-m2", type: "image", viewType: "back", url: "/products/men/classic-pure-cotton-wedding-vesti-set/back.webp", alt: "Wedding Vesti Set Back View", sortOrder: 2 },
+      { id: "m-ve-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Wedding Vesti Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ve-2-wht-m", sku: "999-MC-VE-002-WHT-M", color: { name: "Wedding White", hex: "#FFFFFF" }, size: "M", stock: 10, enabled: true },
@@ -102,9 +101,9 @@ export const menVesti: Product[] = [
     rating: 4.6,
     reviewCount: 18,
     media: [
-      { id: "m-ve-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Mayilkan Vesti Set", "Front"), alt: "Mayilkan Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Mayilkan Vesti Set", "Back"), alt: "Mayilkan Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Mayilkan Vesti Set Video", sortOrder: 3 }
+      { id: "m-ve-3-m1", type: "image", viewType: "front", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/front.webp", alt: "Mayilkan Vesti Set Front View", sortOrder: 1 },
+      { id: "m-ve-3-m2", type: "image", viewType: "back", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/back.webp", alt: "Mayilkan Vesti Set Back View", sortOrder: 2 },
+      { id: "m-ve-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Mayilkan Vesti Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ve-3-crm-m", sku: "999-MC-VE-003-CRM-M", color: { name: "Cream & Green", hex: "#E8E6D9" }, size: "M", stock: 12, enabled: true },
@@ -139,9 +138,9 @@ export const menVesti: Product[] = [
     rating: 4.7,
     reviewCount: 20,
     media: [
-      { id: "m-ve-4-m1", type: "image", viewType: "front", url: getProductPlaceholder("Jari Vesti Set", "Front"), alt: "Jari Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-4-m2", type: "image", viewType: "back", url: getProductPlaceholder("Jari Vesti Set", "Back"), alt: "Jari Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-4-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Jari Vesti Set Video", sortOrder: 3 }
+      { id: "m-ve-4-m1", type: "image", viewType: "front", url: "/products/men/elegant-jari-border-festival-vesti-set/front.webp", alt: "Jari Vesti Set Front View", sortOrder: 1 },
+      { id: "m-ve-4-m2", type: "image", viewType: "back", url: "/products/men/elegant-jari-border-festival-vesti-set/back.webp", alt: "Jari Vesti Set Back View", sortOrder: 2 },
+      { id: "m-ve-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Jari Vesti Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ve-4-mar-m", sku: "999-MC-VE-004-MAR-M", color: { name: "Maroon & Silver", hex: "#800000" }, size: "M", stock: 8, enabled: true },

@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const menPants: Product[] = [
   {
@@ -26,9 +25,9 @@ export const menPants: Product[] = [
     rating: 4.5,
     reviewCount: 30,
     media: [
-      { id: "m-pa-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Sandstone Chinos", "Front"), alt: "Sandstone Stretch Chino Pant Front View", sortOrder: 1 },
-      { id: "m-pa-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Sandstone Chinos", "Back"), alt: "Sandstone Stretch Chino Pant Back View", sortOrder: 2 },
-      { id: "m-pa-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Sandstone Stretch Chino Pant Video", sortOrder: 3 }
+      { id: "m-pa-1-m1", type: "image", viewType: "front", url: "/products/men/sandstone-stretch-chino-pant/front.webp", alt: "Sandstone Stretch Chino Pant Front View", sortOrder: 1 },
+      { id: "m-pa-1-m2", type: "image", viewType: "back", url: "/products/men/sandstone-stretch-chino-pant/back.webp", alt: "Sandstone Stretch Chino Pant Back View", sortOrder: 2 },
+      { id: "m-pa-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Sandstone Stretch Chino Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-pa-1-snd-30", sku: "999-MC-PA-001-SND-30", color: { name: "Sandstone Beige", hex: "#D2C5B3" }, size: "30", stock: 10, enabled: true },
@@ -62,9 +61,9 @@ export const menPants: Product[] = [
     rating: 4.7,
     reviewCount: 28,
     media: [
-      { id: "m-pa-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Slate Grey Pants", "Front"), alt: "Slate Grey Formal Pant Front View", sortOrder: 1 },
-      { id: "m-pa-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Slate Grey Pants", "Back"), alt: "Slate Grey Formal Pant Back View", sortOrder: 2 },
-      { id: "m-pa-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Slate Grey Formal Pant Video", sortOrder: 3 }
+      { id: "m-pa-2-m1", type: "image", viewType: "front", url: "/products/men/classic-slate-grey-formal-pant/front.webp", alt: "Slate Grey Formal Pant Front View", sortOrder: 1 },
+      { id: "m-pa-2-m2", type: "image", viewType: "back", url: "/products/men/classic-slate-grey-formal-pant/back.webp", alt: "Slate Grey Formal Pant Back View", sortOrder: 2 },
+      { id: "m-pa-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Slate Grey Formal Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-pa-2-gry-30", sku: "999-MC-PA-002-GRY-30", color: { name: "Slate Grey", hex: "#708090" }, size: "30", stock: 12, enabled: true },
@@ -98,9 +97,9 @@ export const menPants: Product[] = [
     rating: 4.4,
     reviewCount: 19,
     media: [
-      { id: "m-pa-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Cargo Denim", "Front"), alt: "Cargo Denim Front View", sortOrder: 1 },
-      { id: "m-pa-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Cargo Denim", "Back"), alt: "Cargo Denim Back View", sortOrder: 2 },
-      { id: "m-pa-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Cargo Denim Video", sortOrder: 3 }
+      { id: "m-pa-3-m1", type: "image", viewType: "front", url: "/products/men/sandstone-stretch-chino-pant/front.webp", alt: "Cargo Denim Front View", sortOrder: 1 },
+      { id: "m-pa-3-m2", type: "image", viewType: "back", url: "/products/men/sandstone-stretch-chino-pant/back.webp", alt: "Cargo Denim Back View", sortOrder: 2 },
+      { id: "m-pa-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Cargo Denim Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-pa-3-den-30", sku: "999-MC-PA-003-DEN-30", color: { name: "Indigo Blue", hex: "#4B0082" }, size: "30", stock: 8, enabled: true },
@@ -133,9 +132,9 @@ export const menPants: Product[] = [
     rating: 4.3,
     reviewCount: 17,
     media: [
-      { id: "m-pa-4-m1", type: "image", viewType: "front", url: getProductPlaceholder("Khaki Casual Pants", "Front"), alt: "Khaki Casual Pant Front View", sortOrder: 1 },
-      { id: "m-pa-4-m2", type: "image", viewType: "back", url: getProductPlaceholder("Khaki Casual Pants", "Back"), alt: "Khaki Casual Pant Back View", sortOrder: 2 },
-      { id: "m-pa-4-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Khaki Casual Pant Video", sortOrder: 3 }
+      { id: "m-pa-4-m1", type: "image", viewType: "front", url: "/products/men/twill-cotton-khaki-casual-pant/front.webp", alt: "Khaki Casual Pant Front View", sortOrder: 1 },
+      { id: "m-pa-4-m2", type: "image", viewType: "back", url: "/products/men/twill-cotton-khaki-casual-pant/back.webp", alt: "Khaki Casual Pant Back View", sortOrder: 2 },
+      { id: "m-pa-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Khaki Casual Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-pa-4-khk-30", sku: "999-MC-PA-004-KHK-30", color: { name: "Desert Khaki", hex: "#C2B280" }, size: "30", stock: 15, enabled: true },

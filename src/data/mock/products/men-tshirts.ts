@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const menTshirts: Product[] = [
   {
@@ -28,9 +27,9 @@ export const menTshirts: Product[] = [
     rating: 4.7,
     reviewCount: 45,
     media: [
-      { id: "m-ts-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Black Graphic Tee", "Front"), alt: "Black Graphic Tee Front View", sortOrder: 1 },
-      { id: "m-ts-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Black Graphic Tee", "Back"), alt: "Black Graphic Tee Back View", sortOrder: 2 },
-      { id: "m-ts-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Black Graphic Tee Video", sortOrder: 3 }
+      { id: "m-ts-1-m1", type: "image", viewType: "front", url: "/products/men/midnight-black-oversized-graphic-tee/front.webp", alt: "Black Graphic Tee Front View", sortOrder: 1 },
+      { id: "m-ts-1-m2", type: "image", viewType: "back", url: "/products/men/midnight-black-oversized-graphic-tee/back.webp", alt: "Black Graphic Tee Back View", sortOrder: 2 },
+      { id: "m-ts-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Graphic Tee Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ts-1-blk-s", sku: "999-MC-TS-001-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 10, enabled: true },
@@ -66,9 +65,9 @@ export const menTshirts: Product[] = [
     rating: 4.5,
     reviewCount: 38,
     media: [
-      { id: "m-ts-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Olive Polo", "Front"), alt: "Olive Polo Front View", sortOrder: 1 },
-      { id: "m-ts-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Olive Polo", "Back"), alt: "Olive Polo Back View", sortOrder: 2 },
-      { id: "m-ts-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Olive Polo Video", sortOrder: 3 }
+      { id: "m-ts-2-m1", type: "image", viewType: "front", url: "/products/men/classic-olive-green-polo-tshirt/front.webp", alt: "Olive Polo Front View", sortOrder: 1 },
+      { id: "m-ts-2-m2", type: "image", viewType: "back", url: "/products/men/classic-olive-green-polo-tshirt/back.webp", alt: "Olive Polo Back View", sortOrder: 2 },
+      { id: "m-ts-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Olive Polo Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ts-2-olv-m", sku: "999-MC-TS-002-OLV-M", color: { name: "Olive Green", hex: "#556B2F" }, size: "M", stock: 15, enabled: true },
@@ -103,9 +102,9 @@ export const menTshirts: Product[] = [
     rating: 4.4,
     reviewCount: 22,
     media: [
-      { id: "m-ts-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Crimson Henley", "Front"), alt: "Crimson Henley Front View", sortOrder: 1 },
-      { id: "m-ts-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Crimson Henley", "Back"), alt: "Crimson Henley Back View", sortOrder: 2 },
-      { id: "m-ts-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Crimson Henley Video", sortOrder: 3 }
+      { id: "m-ts-3-m1", type: "image", viewType: "front", url: "/products/men/crimson-red-henley-neck-tee/front.webp", alt: "Crimson Henley Front View", sortOrder: 1 },
+      { id: "m-ts-3-m2", type: "image", viewType: "back", url: "/products/men/crimson-red-henley-neck-tee/back.webp", alt: "Crimson Henley Back View", sortOrder: 2 },
+      { id: "m-ts-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Crimson Henley Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ts-3-red-m", sku: "999-MC-TS-003-RED-M", color: { name: "Crimson Red", hex: "#990000" }, size: "M", stock: 8, enabled: true },
@@ -140,9 +139,9 @@ export const menTshirts: Product[] = [
     rating: 4.6,
     reviewCount: 31,
     media: [
-      { id: "m-ts-4-m1", type: "image", viewType: "front", url: getProductPlaceholder("Heather Grey Tee", "Front"), alt: "Heather Grey Sports Tee Front View", sortOrder: 1 },
-      { id: "m-ts-4-m2", type: "image", viewType: "back", url: getProductPlaceholder("Heather Grey Tee", "Back"), alt: "Heather Grey Sports Tee Back View", sortOrder: 2 },
-      { id: "m-ts-4-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Heather Grey Sports Tee Video", sortOrder: 3 }
+      { id: "m-ts-4-m1", type: "image", viewType: "front", url: "/products/men/athletic-heather-grey-sports-tee/front.webp", alt: "Heather Grey Sports Tee Front View", sortOrder: 1 },
+      { id: "m-ts-4-m2", type: "image", viewType: "back", url: "/products/men/athletic-heather-grey-sports-tee/back.webp", alt: "Heather Grey Sports Tee Back View", sortOrder: 2 },
+      { id: "m-ts-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Heather Grey Sports Tee Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-ts-4-gry-s", sku: "999-MC-TS-004-GRY-S", color: { name: "Heather Grey", hex: "#808080" }, size: "S", stock: 15, enabled: true },

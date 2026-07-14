@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenStraightPants: Product[] = [
   {
@@ -26,9 +25,9 @@ export const womenStraightPants: Product[] = [
     rating: 4.6,
     reviewCount: 25,
     media: [
-      { id: "w-sp-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Black Straight Pant", "Front"), alt: "Black Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Black Straight Pant", "Back"), alt: "Black Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Black Straight Pant Video", sortOrder: 3 }
+      { id: "w-sp-1-m1", type: "image", viewType: "front", url: "/products/women/office-classic-black-straight-pant/front.webp", alt: "Black Straight Pant Front View", sortOrder: 1 },
+      { id: "w-sp-1-m2", type: "image", viewType: "back", url: "/products/women/office-classic-black-straight-pant/back.webp", alt: "Black Straight Pant Back View", sortOrder: 2 },
+      { id: "w-sp-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Straight Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-sp-1-blk-28", sku: "999-WC-SP-001-BLK-28", color: { name: "Midnight Black", hex: "#111111" }, size: "28", stock: 12, enabled: true },
@@ -62,9 +61,9 @@ export const womenStraightPants: Product[] = [
     rating: 4.4,
     reviewCount: 18,
     media: [
-      { id: "w-sp-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Beige Straight Pant", "Front"), alt: "Beige Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Beige Straight Pant", "Back"), alt: "Beige Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Beige Straight Pant Video", sortOrder: 3 }
+      { id: "w-sp-2-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-cotton-straight-pant/front.webp", alt: "Beige Straight Pant Front View", sortOrder: 1 },
+      { id: "w-sp-2-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-cotton-straight-pant/back.webp", alt: "Beige Straight Pant Back View", sortOrder: 2 },
+      { id: "w-sp-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Beige Straight Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-sp-2-beg-28", sku: "999-WC-SP-002-BEG-28", color: { name: "Desert Beige", hex: "#F5F5DC" }, size: "28", stock: 15, enabled: true },
@@ -97,9 +96,9 @@ export const womenStraightPants: Product[] = [
     rating: 4.5,
     reviewCount: 12,
     media: [
-      { id: "w-sp-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Rosewood Straight Pant", "Front"), alt: "Rosewood Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Rosewood Straight Pant", "Back"), alt: "Rosewood Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Rosewood Straight Pant Video", sortOrder: 3 }
+      { id: "w-sp-3-m1", type: "image", viewType: "front", url: "/products/women/rosewood-stretch-formal-straight-pant/front.webp", alt: "Rosewood Straight Pant Front View", sortOrder: 1 },
+      { id: "w-sp-3-m2", type: "image", viewType: "back", url: "/products/women/rosewood-stretch-formal-straight-pant/back.webp", alt: "Rosewood Straight Pant Back View", sortOrder: 2 },
+      { id: "w-sp-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rosewood Straight Pant Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-sp-3-rwd-28", sku: "999-WC-SP-003-RWD-28", color: { name: "Rosewood Pink", hex: "#8A5A5C" }, size: "28", stock: 8, enabled: true },

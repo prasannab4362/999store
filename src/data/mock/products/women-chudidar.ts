@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenChudidar: Product[] = [
   {
@@ -28,9 +27,9 @@ export const womenChudidar: Product[] = [
     rating: 4.6,
     reviewCount: 30,
     media: [
-      { id: "w-ch-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Floral Chudidar Set", "Front"), alt: "Floral Cotton Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Floral Chudidar Set", "Back"), alt: "Floral Cotton Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Floral Cotton Chudidar Set Video", sortOrder: 3 }
+      { id: "w-ch-1-m1", type: "image", viewType: "front", url: "/products/women/elegant-floral-cotton-chudidar-set/front.webp", alt: "Floral Cotton Chudidar Set Front View", sortOrder: 1 },
+      { id: "w-ch-1-m2", type: "image", viewType: "back", url: "/products/women/elegant-floral-cotton-chudidar-set/back.webp", alt: "Floral Cotton Chudidar Set Back View", sortOrder: 2 },
+      { id: "w-ch-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Floral Cotton Chudidar Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-ch-1-red-s", sku: "999-WC-CH-001-RED-S", color: { name: "Indian Red", hex: "#CD5C5C" }, size: "S", stock: 12, enabled: true },
@@ -66,9 +65,9 @@ export const womenChudidar: Product[] = [
     rating: 4.8,
     reviewCount: 25,
     media: [
-      { id: "w-ch-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Banarasi Chudidar Set", "Front"), alt: "Banarasi Silk Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Banarasi Chudidar Set", "Back"), alt: "Banarasi Silk Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Banarasi Silk Chudidar Set Video", sortOrder: 3 }
+      { id: "w-ch-2-m1", type: "image", viewType: "front", url: "/products/women/banarasi-silk-festive-chudidar-set/front.webp", alt: "Banarasi Silk Chudidar Set Front View", sortOrder: 1 },
+      { id: "w-ch-2-m2", type: "image", viewType: "back", url: "/products/women/banarasi-silk-festive-chudidar-set/back.webp", alt: "Banarasi Silk Chudidar Set Back View", sortOrder: 2 },
+      { id: "w-ch-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Banarasi Silk Chudidar Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-ch-2-gld-m", sku: "999-WC-CH-002-GLD-M", color: { name: "Deep Gold", hex: "#DAA520" }, size: "M", stock: 8, enabled: true },
@@ -103,9 +102,9 @@ export const womenChudidar: Product[] = [
     rating: 4.4,
     reviewCount: 16,
     media: [
-      { id: "w-ch-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Solid Rayon Chudidar", "Front"), alt: "Rayon Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Solid Rayon Chudidar", "Back"), alt: "Rayon Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Rayon Chudidar Set Video", sortOrder: 3 }
+      { id: "w-ch-3-m1", type: "image", viewType: "front", url: "/products/women/comfort-solid-rayon-chudidar-set/front.webp", alt: "Rayon Chudidar Set Front View", sortOrder: 1 },
+      { id: "w-ch-3-m2", type: "image", viewType: "back", url: "/products/women/comfort-solid-rayon-chudidar-set/back.webp", alt: "Rayon Chudidar Set Back View", sortOrder: 2 },
+      { id: "w-ch-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rayon Chudidar Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-ch-3-grn-s", sku: "999-WC-CH-003-GRN-S", color: { name: "Teal Green", hex: "#008080" }, size: "S", stock: 10, enabled: true },

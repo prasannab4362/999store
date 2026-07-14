@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenTops: Product[] = [
   {
@@ -28,9 +27,9 @@ export const womenTops: Product[] = [
     rating: 4.5,
     reviewCount: 30,
     media: [
-      { id: "w-tp-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Rosewood Top", "Front"), alt: "Rosewood Printed Rayon Top Front View", sortOrder: 1 },
-      { id: "w-tp-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Rosewood Top", "Back"), alt: "Rosewood Printed Rayon Top Back View", sortOrder: 2 },
-      { id: "w-tp-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Rosewood Printed Rayon Top Video", sortOrder: 3 }
+      { id: "w-tp-1-m1", type: "image", viewType: "front", url: "/products/women/rosewood-printed-rayon-top/front.webp", alt: "Rosewood Printed Rayon Top Front View", sortOrder: 1 },
+      { id: "w-tp-1-m2", type: "image", viewType: "back", url: "/products/women/rosewood-printed-rayon-top/back.webp", alt: "Rosewood Printed Rayon Top Back View", sortOrder: 2 },
+      { id: "w-tp-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rosewood Printed Rayon Top Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-tp-1-pnk-s", sku: "999-WC-TP-001-PNK-S", color: { name: "Rosewood Pink", hex: "#B76E79" }, size: "S", stock: 12, enabled: true },
@@ -66,9 +65,9 @@ export const womenTops: Product[] = [
     rating: 4.3,
     reviewCount: 22,
     media: [
-      { id: "w-tp-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Olive Crop Top", "Front"), alt: "Olive Crop Top Front View", sortOrder: 1 },
-      { id: "w-tp-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Olive Crop Top", "Back"), alt: "Olive Crop Top Back View", sortOrder: 2 },
-      { id: "w-tp-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Olive Crop Top Video", sortOrder: 3 }
+      { id: "w-tp-2-m1", type: "image", viewType: "front", url: "/products/women/olive-linen-sleeveless-crop-top/front.webp", alt: "Olive Crop Top Front View", sortOrder: 1 },
+      { id: "w-tp-2-m2", type: "image", viewType: "back", url: "/products/women/olive-linen-sleeveless-crop-top/back.webp", alt: "Olive Crop Top Back View", sortOrder: 2 },
+      { id: "w-tp-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Olive Crop Top Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-tp-2-olv-s", sku: "999-WC-TP-002-OLV-S", color: { name: "Olive Green", hex: "#556B2F" }, size: "S", stock: 10, enabled: true },
@@ -103,9 +102,9 @@ export const womenTops: Product[] = [
     rating: 4.6,
     reviewCount: 15,
     media: [
-      { id: "w-tp-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Schiffli Long Top", "Front"), alt: "Ivory Schiffli Long Top Front View", sortOrder: 1 },
-      { id: "w-tp-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Schiffli Long Top", "Back"), alt: "Ivory Schiffli Long Top Back View", sortOrder: 2 },
-      { id: "w-tp-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Ivory Schiffli Long Top Video", sortOrder: 3 }
+      { id: "w-tp-3-m1", type: "image", viewType: "front", url: "/products/women/ivory-schiffli-cotton-long-top/front.webp", alt: "Ivory Schiffli Long Top Front View", sortOrder: 1 },
+      { id: "w-tp-3-m2", type: "image", viewType: "back", url: "/products/women/ivory-schiffli-cotton-long-top/back.webp", alt: "Ivory Schiffli Long Top Back View", sortOrder: 2 },
+      { id: "w-tp-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Ivory Schiffli Long Top Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-tp-3-ivr-m", sku: "999-WC-TP-003-IVR-M", color: { name: "Ivory White", hex: "#FFFFF0" }, size: "M", stock: 8, enabled: true },

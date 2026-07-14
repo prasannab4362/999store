@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenJeans: Product[] = [
   {
@@ -26,9 +25,9 @@ export const womenJeans: Product[] = [
     rating: 4.7,
     reviewCount: 32,
     media: [
-      { id: "w-jn-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Wide Leg Jeans", "Front"), alt: "Wide Leg Denim Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Wide Leg Jeans", "Back"), alt: "Wide Leg Denim Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Wide Leg Denim Jeans Video", sortOrder: 3 }
+      { id: "w-jn-1-m1", type: "image", viewType: "front", url: "/products/women/indigo-wide-leg-denim-jeans/front.webp", alt: "Wide Leg Denim Jeans Front View", sortOrder: 1 },
+      { id: "w-jn-1-m2", type: "image", viewType: "back", url: "/products/women/indigo-wide-leg-denim-jeans/back.webp", alt: "Wide Leg Denim Jeans Back View", sortOrder: 2 },
+      { id: "w-jn-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Wide Leg Denim Jeans Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-jn-1-den-28", sku: "999-WC-JN-001-DEN-28", color: { name: "Indigo Faded", hex: "#2E5894" }, size: "28", stock: 10, enabled: true },
@@ -62,9 +61,9 @@ export const womenJeans: Product[] = [
     rating: 4.5,
     reviewCount: 28,
     media: [
-      { id: "w-jn-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Black Skinny Jeans", "Front"), alt: "Black Skinny Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Black Skinny Jeans", "Back"), alt: "Black Skinny Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Black Skinny Jeans Video", sortOrder: 3 }
+      { id: "w-jn-2-m1", type: "image", viewType: "front", url: "/products/women/midnight-black-skinny-fit-jeans/front.webp", alt: "Black Skinny Jeans Front View", sortOrder: 1 },
+      { id: "w-jn-2-m2", type: "image", viewType: "back", url: "/products/women/midnight-black-skinny-fit-jeans/back.webp", alt: "Black Skinny Jeans Back View", sortOrder: 2 },
+      { id: "w-jn-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Skinny Jeans Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-jn-2-blk-28", sku: "999-WC-JN-002-BLK-28", color: { name: "Midnight Black", hex: "#111111" }, size: "28", stock: 12, enabled: true },
@@ -97,9 +96,9 @@ export const womenJeans: Product[] = [
     rating: 4.4,
     reviewCount: 16,
     media: [
-      { id: "w-jn-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Light Mom Jeans", "Front"), alt: "Light Blue Mom Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Light Mom Jeans", "Back"), alt: "Light Blue Mom Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Light Blue Mom Jeans Video", sortOrder: 3 }
+      { id: "w-jn-3-m1", type: "image", viewType: "front", url: "/products/women/indigo-wide-leg-denim-jeans/front.webp", alt: "Light Blue Mom Jeans Front View", sortOrder: 1 },
+      { id: "w-jn-3-m2", type: "image", viewType: "back", url: "/products/women/indigo-wide-leg-denim-jeans/back.webp", alt: "Light Blue Mom Jeans Back View", sortOrder: 2 },
+      { id: "w-jn-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Light Blue Mom Jeans Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-jn-3-lbl-28", sku: "999-WC-JN-003-LBL-28", color: { name: "Light Blue Wash", hex: "#ADD8E6" }, size: "28", stock: 8, enabled: true },

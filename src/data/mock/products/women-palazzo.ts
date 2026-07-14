@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenPalazzo: Product[] = [
   {
@@ -26,9 +25,9 @@ export const womenPalazzo: Product[] = [
     rating: 4.5,
     reviewCount: 22,
     media: [
-      { id: "w-pl-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Indigo Printed Palazzo", "Front"), alt: "Indigo Rayon Palazzo Front View", sortOrder: 1 },
-      { id: "w-pl-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Indigo Printed Palazzo", "Back"), alt: "Indigo Rayon Palazzo Back View", sortOrder: 2 },
-      { id: "w-pl-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Indigo Rayon Palazzo Video", sortOrder: 3 }
+      { id: "w-pl-1-m1", type: "image", viewType: "front", url: "/products/women/indigo-floral-printed-rayon-palazzo/front.webp", alt: "Indigo Rayon Palazzo Front View", sortOrder: 1 },
+      { id: "w-pl-1-m2", type: "image", viewType: "back", url: "/products/women/indigo-floral-printed-rayon-palazzo/back.webp", alt: "Indigo Rayon Palazzo Back View", sortOrder: 2 },
+      { id: "w-pl-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Indigo Rayon Palazzo Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-pl-1-blu-s", sku: "999-WC-PL-001-BLU-S", color: { name: "Indigo Blue", hex: "#1F305E" }, size: "S", stock: 12, enabled: true },
@@ -62,9 +61,9 @@ export const womenPalazzo: Product[] = [
     rating: 4.6,
     reviewCount: 30,
     media: [
-      { id: "w-pl-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Cream Cotton Palazzo", "Front"), alt: "Cream Cotton Palazzo Front View", sortOrder: 1 },
-      { id: "w-pl-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Cream Cotton Palazzo", "Back"), alt: "Cream Cotton Palazzo Back View", sortOrder: 2 },
-      { id: "w-pl-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Cream Cotton Palazzo Video", sortOrder: 3 }
+      { id: "w-pl-2-m1", type: "image", viewType: "front", url: "/products/women/indigo-floral-printed-rayon-palazzo/front.webp", alt: "Cream Cotton Palazzo Front View", sortOrder: 1 },
+      { id: "w-pl-2-m2", type: "image", viewType: "back", url: "/products/women/indigo-floral-printed-rayon-palazzo/back.webp", alt: "Cream Cotton Palazzo Back View", sortOrder: 2 },
+      { id: "w-pl-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Cream Cotton Palazzo Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-pl-2-crm-m", sku: "999-WC-PL-002-CRM-M", color: { name: "Cream White", hex: "#FFFDD0" }, size: "M", stock: 20, enabled: true },
@@ -97,9 +96,9 @@ export const womenPalazzo: Product[] = [
     rating: 4.4,
     reviewCount: 15,
     media: [
-      { id: "w-pl-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Red Party Palazzo", "Front"), alt: "Red Rayon Palazzo Front View", sortOrder: 1 },
-      { id: "w-pl-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Red Party Palazzo", "Back"), alt: "Red Rayon Palazzo Back View", sortOrder: 2 },
-      { id: "w-pl-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Red Rayon Palazzo Video", sortOrder: 3 }
+      { id: "w-pl-3-m1", type: "image", viewType: "front", url: "/products/women/indigo-floral-printed-rayon-palazzo/front.webp", alt: "Red Rayon Palazzo Front View", sortOrder: 1 },
+      { id: "w-pl-3-m2", type: "image", viewType: "back", url: "/products/women/indigo-floral-printed-rayon-palazzo/back.webp", alt: "Red Rayon Palazzo Back View", sortOrder: 2 },
+      { id: "w-pl-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Red Rayon Palazzo Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-pl-3-red-s", sku: "999-WC-PL-003-RED-S", color: { name: "Crimson Red", hex: "#D21F3C" }, size: "S", stock: 10, enabled: true },

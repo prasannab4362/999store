@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenCottonSets: Product[] = [
   {
@@ -28,9 +27,9 @@ export const womenCottonSets: Product[] = [
     rating: 4.6,
     reviewCount: 28,
     media: [
-      { id: "w-cs-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Ivory Kurta Set", "Front"), alt: "Ivory Daily Cotton Kurta Set Front View", sortOrder: 1 },
-      { id: "w-cs-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Ivory Kurta Set", "Back"), alt: "Ivory Daily Cotton Kurta Set Back View", sortOrder: 2 },
-      { id: "w-cs-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Ivory Daily Cotton Kurta Set Video", sortOrder: 3 }
+      { id: "w-cs-1-m1", type: "image", viewType: "front", url: "/products/women/ivory-daily-cotton-kurta-set/front.webp", alt: "Ivory Daily Cotton Kurta Set Front View", sortOrder: 1 },
+      { id: "w-cs-1-m2", type: "image", viewType: "back", url: "/products/women/ivory-daily-cotton-kurta-set/back.webp", alt: "Ivory Daily Cotton Kurta Set Back View", sortOrder: 2 },
+      { id: "w-cs-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Ivory Daily Cotton Kurta Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-cs-1-ivr-s", sku: "999-WC-CS-001-IVR-S", color: { name: "Ivory White", hex: "#FFFFF0" }, size: "S", stock: 10, enabled: true },
@@ -66,9 +65,9 @@ export const womenCottonSets: Product[] = [
     rating: 4.5,
     reviewCount: 22,
     media: [
-      { id: "w-cs-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Blue Office Kurta Set", "Front"), alt: "Blue Office Kurta Set Front View", sortOrder: 1 },
-      { id: "w-cs-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Blue Office Kurta Set", "Back"), alt: "Blue Office Kurta Set Back View", sortOrder: 2 },
-      { id: "w-cs-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Blue Office Kurta Set Video", sortOrder: 3 }
+      { id: "w-cs-2-m1", type: "image", viewType: "front", url: "/products/women/ivory-daily-cotton-kurta-set/front.webp", alt: "Blue Office Kurta Set Front View", sortOrder: 1 },
+      { id: "w-cs-2-m2", type: "image", viewType: "back", url: "/products/women/ivory-daily-cotton-kurta-set/back.webp", alt: "Blue Office Kurta Set Back View", sortOrder: 2 },
+      { id: "w-cs-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Blue Office Kurta Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-cs-2-blu-m", sku: "999-WC-CS-002-BLU-M", color: { name: "Indigo Navy", hex: "#1D2A44" }, size: "M", stock: 12, enabled: true },
@@ -103,9 +102,9 @@ export const womenCottonSets: Product[] = [
     rating: 4.7,
     reviewCount: 15,
     media: [
-      { id: "w-cs-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Festive Kurta Set", "Front"), alt: "Festive Kurta Set Front View", sortOrder: 1 },
-      { id: "w-cs-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Festive Kurta Set", "Back"), alt: "Festive Kurta Set Back View", sortOrder: 2 },
-      { id: "w-cs-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Festive Kurta Set Video", sortOrder: 3 }
+      { id: "w-cs-3-m1", type: "image", viewType: "front", url: "/products/women/ivory-daily-cotton-kurta-set/front.webp", alt: "Festive Kurta Set Front View", sortOrder: 1 },
+      { id: "w-cs-3-m2", type: "image", viewType: "back", url: "/products/women/ivory-daily-cotton-kurta-set/back.webp", alt: "Festive Kurta Set Back View", sortOrder: 2 },
+      { id: "w-cs-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Festive Kurta Set Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-cs-3-pnk-s", sku: "999-WC-CS-003-PNK-S", color: { name: "Pastel Pink", hex: "#FFC0CB" }, size: "S", stock: 8, enabled: true },

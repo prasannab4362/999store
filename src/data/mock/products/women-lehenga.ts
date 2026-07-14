@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenLehenga: Product[] = [
   {
@@ -26,9 +25,9 @@ export const womenLehenga: Product[] = [
     rating: 4.8,
     reviewCount: 35,
     media: [
-      { id: "w-lh-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Embroidered Lehenga", "Front"), alt: "Golden Embroidered Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Embroidered Lehenga", "Back"), alt: "Golden Embroidered Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Golden Embroidered Lehenga Video", sortOrder: 3 }
+      { id: "w-lh-1-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Golden Embroidered Lehenga Front View", sortOrder: 1 },
+      { id: "w-lh-1-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Golden Embroidered Lehenga Back View", sortOrder: 2 },
+      { id: "w-lh-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Golden Embroidered Lehenga Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-lh-1-gld-m", sku: "999-WC-LH-001-GLD-M", color: { name: "Marigold Gold", hex: "#FFD700" }, size: "M", stock: 10, enabled: true },
@@ -61,9 +60,9 @@ export const womenLehenga: Product[] = [
     rating: 4.7,
     reviewCount: 22,
     media: [
-      { id: "w-lh-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Floral Silk Lehenga", "Front"), alt: "Floral Silk Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Floral Silk Lehenga", "Back"), alt: "Floral Silk Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Floral Silk Lehenga Video", sortOrder: 3 }
+      { id: "w-lh-2-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Floral Silk Lehenga Front View", sortOrder: 1 },
+      { id: "w-lh-2-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Floral Silk Lehenga Back View", sortOrder: 2 },
+      { id: "w-lh-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Floral Silk Lehenga Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-lh-2-pnk-m", sku: "999-WC-LH-002-PNK-M", color: { name: "Silk Pink", hex: "#FC8EAC" }, size: "M", stock: 8, enabled: true },
@@ -96,9 +95,9 @@ export const womenLehenga: Product[] = [
     rating: 4.5,
     reviewCount: 16,
     media: [
-      { id: "w-lh-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Rayon Lehenga Set", "Front"), alt: "Rayon Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Rayon Lehenga Set", "Back"), alt: "Rayon Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Rayon Lehenga Video", sortOrder: 3 }
+      { id: "w-lh-3-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Rayon Lehenga Front View", sortOrder: 1 },
+      { id: "w-lh-3-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Rayon Lehenga Back View", sortOrder: 2 },
+      { id: "w-lh-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rayon Lehenga Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-lh-3-red-s", sku: "999-WC-LH-003-RED-S", color: { name: "Vibrant Red", hex: "#FF0000" }, size: "S", stock: 10, enabled: true },

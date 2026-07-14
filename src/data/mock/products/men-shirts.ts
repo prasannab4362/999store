@@ -1,5 +1,4 @@
 import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
 
 export const menShirts: Product[] = [
   {
@@ -28,10 +27,10 @@ export const menShirts: Product[] = [
     rating: 4.6,
     reviewCount: 34,
     media: [
-      { id: "m-sh-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Emerald Check Shirt", "Front"), alt: "Emerald Check Casual Shirt Front View", sortOrder: 1 },
-      { id: "m-sh-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Emerald Check Shirt", "Back"), alt: "Emerald Check Casual Shirt Back View", sortOrder: 2 },
-      { id: "m-sh-1-m3", type: "image", viewType: "detail", url: getProductPlaceholder("Emerald Check Shirt", "Fabric Detail"), alt: "Emerald Check Casual Shirt Fabric Close-up", sortOrder: 3 },
-      { id: "m-sh-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Emerald Check Casual Shirt Showcase Video", sortOrder: 4 }
+      { id: "m-sh-1-m1", type: "image", viewType: "front", url: "/products/men/emerald-check-casual-shirt/front.webp", alt: "Emerald Check Casual Shirt Front View", sortOrder: 1 },
+      { id: "m-sh-1-m2", type: "image", viewType: "back", url: "/products/men/emerald-check-casual-shirt/back.webp", alt: "Emerald Check Casual Shirt Back View", sortOrder: 2 },
+      { id: "m-sh-1-m3", type: "image", viewType: "detail", url: "/products/men/emerald-check-casual-shirt/detail.webp", alt: "Emerald Check Casual Shirt Fabric Close-up", sortOrder: 3 },
+      { id: "m-sh-1-v1", type: "video", viewType: "video", url: "/products/men/emerald-check-casual-shirt/product-preview.mp4", posterUrl: "/products/men/emerald-check-casual-shirt/video-poster.webp", alt: "Emerald Check Casual Shirt Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-sh-1-grn-s", sku: "999-MC-SH-001-GRN-S", color: { name: "Emerald Green", hex: "#0F9D58" }, size: "S", stock: 12, enabled: true },
@@ -67,9 +66,9 @@ export const menShirts: Product[] = [
     rating: 4.8,
     reviewCount: 52,
     media: [
-      { id: "m-sh-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Crisp White Shirt", "Front"), alt: "Crisp White Formal Shirt Front View", sortOrder: 1 },
-      { id: "m-sh-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Crisp White Shirt", "Back"), alt: "Crisp White Formal Shirt Back View", sortOrder: 2 },
-      { id: "m-sh-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Crisp White Formal Shirt Video", sortOrder: 3 }
+      { id: "m-sh-2-m1", type: "image", viewType: "front", url: "/products/men/classic-crisp-white-formal-shirt/front.webp", alt: "Crisp White Formal Shirt Front View", sortOrder: 1 },
+      { id: "m-sh-2-m2", type: "image", viewType: "back", url: "/products/men/classic-crisp-white-formal-shirt/back.webp", alt: "Crisp White Formal Shirt Back View", sortOrder: 2 },
+      { id: "m-sh-2-v1", type: "video", viewType: "video", url: "/products/men/classic-crisp-white-formal-shirt/product-preview.mp4", posterUrl: "/products/men/classic-crisp-white-formal-shirt/video-poster.webp", alt: "Crisp White Formal Shirt Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-sh-2-wht-m", sku: "999-MC-SH-002-WHT-M", color: { name: "Crisp White", hex: "#FFFFFF" }, size: "M", stock: 20, enabled: true },
@@ -104,9 +103,9 @@ export const menShirts: Product[] = [
     rating: 4.3,
     reviewCount: 15,
     media: [
-      { id: "m-sh-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Linen Printed Shirt", "Front"), alt: "Linen Printed Casual Shirt Front View", sortOrder: 1 },
-      { id: "m-sh-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Linen Printed Shirt", "Back"), alt: "Linen Printed Casual Shirt Back View", sortOrder: 2 },
-      { id: "m-sh-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Linen Printed Casual Shirt Video", sortOrder: 3 }
+      { id: "m-sh-3-m1", type: "image", viewType: "front", url: "/products/men/midnight-linen-printed-casual-shirt/front.webp", alt: "Linen Printed Casual Shirt Front View", sortOrder: 1 },
+      { id: "m-sh-3-m2", type: "image", viewType: "back", url: "/products/men/midnight-linen-printed-casual-shirt/back.webp", alt: "Linen Printed Casual Shirt Back View", sortOrder: 2 },
+      { id: "m-sh-3-v1", type: "video", viewType: "video", url: "/products/men/midnight-linen-printed-casual-shirt/product-preview.mp4", posterUrl: "/products/men/midnight-linen-printed-casual-shirt/video-poster.webp", alt: "Linen Printed Casual Shirt Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-m-sh-3-nvy-m", sku: "999-MC-SH-003-NVY-M", color: { name: "Midnight Navy", hex: "#1D2A44" }, size: "M", stock: 14, enabled: true },
@@ -141,9 +140,10 @@ export const menShirts: Product[] = [
     rating: 4.5,
     reviewCount: 29,
     media: [
-      { id: "m-sh-4-m1", type: "image", viewType: "front", url: getProductPlaceholder("Oversized Shirt", "Front"), alt: "Oversized Cotton Shirt Front View", sortOrder: 1 },
-      { id: "m-sh-4-m2", type: "image", viewType: "back", url: getProductPlaceholder("Oversized Shirt", "Back"), alt: "Oversized Cotton Shirt Back View", sortOrder: 2 },
-      { id: "m-sh-4-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Oversized Cotton Shirt Video", sortOrder: 3 }
+      { id: "m-sh-4-m1", type: "image", viewType: "front", url: "/products/men/sandstone-oversized-cotton-shirt/front.webp", alt: "Oversized Cotton Shirt Front View", sortOrder: 1 },
+      { id: "m-sh-4-m2", type: "image", viewType: "back", url: "/products/men/sandstone-oversized-cotton-shirt/back.webp", alt: "Oversized Cotton Shirt Back View", sortOrder: 2 },
+      { id: "m-sh-4-m3", type: "image", viewType: "detail", url: "/products/men/sandstone-oversized-cotton-shirt/detail.webp", alt: "Oversized Cotton Shirt Fabric Detail", sortOrder: 3 },
+      { id: "m-sh-4-v1", type: "video", viewType: "video", url: "/products/men/sandstone-oversized-cotton-shirt/product-preview.mp4", posterUrl: "/products/men/sandstone-oversized-cotton-shirt/video-poster.webp", alt: "Oversized Cotton Shirt Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-sh-4-snd-s", sku: "999-MC-SH-004-SND-S", color: { name: "Sandstone Beige", hex: "#D2C5B3" }, size: "S", stock: 5, enabled: true },

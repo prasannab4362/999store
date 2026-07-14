@@ -1,5 +1,4 @@
-import { Product } from "@/types/product";
-import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+﻿import { Product } from "@/types/product";
 
 export const womenLeggings: Product[] = [
   {
@@ -26,9 +25,9 @@ export const womenLeggings: Product[] = [
     rating: 4.6,
     reviewCount: 38,
     media: [
-      { id: "w-le-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Black Leggings", "Front"), alt: "Black Ankle Leggings Front View", sortOrder: 1 },
-      { id: "w-le-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Black Leggings", "Back"), alt: "Black Ankle Leggings Back View", sortOrder: 2 },
-      { id: "w-le-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Black Ankle Leggings Video", sortOrder: 3 }
+      { id: "w-le-1-m1", type: "image", viewType: "front", url: "/products/women/black-flex-ankle-length-leggings/front.webp", alt: "Black Ankle Leggings Front View", sortOrder: 1 },
+      { id: "w-le-1-m2", type: "image", viewType: "back", url: "/products/women/black-flex-ankle-length-leggings/back.webp", alt: "Black Ankle Leggings Back View", sortOrder: 2 },
+      { id: "w-le-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Ankle Leggings Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-le-1-blk-s", sku: "999-WC-LE-001-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 20, enabled: true },
@@ -62,9 +61,9 @@ export const womenLeggings: Product[] = [
     rating: 4.4,
     reviewCount: 19,
     media: [
-      { id: "w-le-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Maroon Leggings", "Front"), alt: "Maroon Full Leggings Front View", sortOrder: 1 },
-      { id: "w-le-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Maroon Leggings", "Back"), alt: "Maroon Full Leggings Back View", sortOrder: 2 },
-      { id: "w-le-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Maroon Full Leggings Video", sortOrder: 3 }
+      { id: "w-le-2-m1", type: "image", viewType: "front", url: "/products/women/classic-maroon-cotton-lycra-leggings/front.webp", alt: "Maroon Full Leggings Front View", sortOrder: 1 },
+      { id: "w-le-2-m2", type: "image", viewType: "back", url: "/products/women/classic-maroon-cotton-lycra-leggings/back.webp", alt: "Maroon Full Leggings Back View", sortOrder: 2 },
+      { id: "w-le-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Maroon Full Leggings Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-le-2-mar-m", sku: "999-WC-LE-002-MAR-M", color: { name: "Deep Maroon", hex: "#800020" }, size: "M", stock: 15, enabled: true },
@@ -97,9 +96,9 @@ export const womenLeggings: Product[] = [
     rating: 4.3,
     reviewCount: 14,
     media: [
-      { id: "w-le-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Beige Leggings", "Front"), alt: "Beige Leggings Front View", sortOrder: 1 },
-      { id: "w-le-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Beige Leggings", "Back"), alt: "Beige Leggings Back View", sortOrder: 2 },
-      { id: "w-le-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Beige Leggings Video", sortOrder: 3 }
+      { id: "w-le-3-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-full-length-leggings/front.webp", alt: "Beige Leggings Front View", sortOrder: 1 },
+      { id: "w-le-3-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-full-length-leggings/back.webp", alt: "Beige Leggings Back View", sortOrder: 2 },
+      { id: "w-le-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Beige Leggings Video", sortOrder: 3 }
     ],
     variants: [
       { id: "v-w-le-3-beg-s", sku: "999-WC-LE-003-BEG-S", color: { name: "Desert Beige", hex: "#E1C699" }, size: "S", stock: 10, enabled: true },
