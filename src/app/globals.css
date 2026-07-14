@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #16131A;
+  --bg-secondary: #FFF9F4;
+  --border-light: #e5e7eb;
+  
+  --font-poppins: 'Poppins', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+@theme {
+  --color-brand-primary: #6D28D9;
+  --color-brand-primary-hover: #4C1D95;
+  --color-brand-primary-soft: #F4F0FF;
+  --color-brand-primary-foreground: #ffffff;
+  
+  --color-brand-accent: #FF5A5F;
+  --color-brand-accent-hover: #e04f53;
+  --color-brand-accent-soft: #FFF9F4;
+  
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #FFF9F4;
+  --color-bg-neutral: #F5F5F7;
+  
+  --color-text-primary: #16131A;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  
+  --color-border-light: #e5e7eb;
+  
+  --font-heading: var(--font-poppins), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  
+  --radius-control: 10px;
+  --radius-card: 20px;
+  --radius-promo: 28px;
+  
+  --animate-carousel-drag: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom visual styles */
+.gradient-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px rgba(109, 40, 217, 0.15);
+}
+
+.focus-ring {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
