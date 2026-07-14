@@ -1,0 +1,155 @@
+import { Product } from "@/types/product";
+import { getProductPlaceholder, mockVideoUrl } from "@/lib/utils/placeholders";
+
+export const menTshirts: Product[] = [
+  {
+    id: "prod-m-tshirt-1",
+    slug: "midnight-black-oversized-graphic-tee",
+    name: "Midnight Black Oversized Graphic Tee",
+    shortName: "Black Graphic Tee",
+    productCode: "MC-TS-001",
+    sku: "999-MC-TS-001",
+    gender: "men",
+    categoryId: "t-shirts",
+    subcategory: "Graphic T-Shirts",
+    collectionIds: ["college-styles", "weekend-casuals"],
+    description: "Rock the streets with this heavy-knit oversized graphic tee. Made from 240 GSM pre-shrunk cotton, it features a vibrant back-print detail and a relaxed street silhouette.",
+    shortDescription: "Heavy-knit 240 GSM graphic cotton oversized tee.",
+    fabric: "Cotton (240 GSM)",
+    pattern: "Printed",
+    fit: "Oversized",
+    sleeve: "Half Sleeve",
+    neck: "Round Neck",
+    washCare: "Wash inside out. Cool iron on reverse. Do not iron print.",
+    comboEligible: true,
+    featured: true,
+    trending: true,
+    newArrival: true,
+    rating: 4.7,
+    reviewCount: 45,
+    media: [
+      { id: "m-ts-1-m1", type: "image", viewType: "front", url: getProductPlaceholder("Black Graphic Tee", "Front"), alt: "Black Graphic Tee Front View", sortOrder: 1 },
+      { id: "m-ts-1-m2", type: "image", viewType: "back", url: getProductPlaceholder("Black Graphic Tee", "Back"), alt: "Black Graphic Tee Back View", sortOrder: 2 },
+      { id: "m-ts-1-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Black Graphic Tee Video", sortOrder: 3 }
+    ],
+    variants: [
+      { id: "v-m-ts-1-blk-s", sku: "999-MC-TS-001-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 10, enabled: true },
+      { id: "v-m-ts-1-blk-m", sku: "999-MC-TS-001-BLK-M", color: { name: "Midnight Black", hex: "#111111" }, size: "M", stock: 25, enabled: true },
+      { id: "v-m-ts-1-blk-l", sku: "999-MC-TS-001-BLK-L", color: { name: "Midnight Black", hex: "#111111" }, size: "L", stock: 30, enabled: true },
+      { id: "v-m-ts-1-blk-xl", sku: "999-MC-TS-001-BLK-XL", color: { name: "Midnight Black", hex: "#111111" }, size: "XL", stock: 12, enabled: true }
+    ],
+    tags: ["cotton", "graphic", "black", "streetwear", "oversized"]
+  },
+  {
+    id: "prod-m-tshirt-2",
+    slug: "classic-olive-green-polo-tshirt",
+    name: "Classic Olive Green Polo T-Shirt",
+    shortName: "Olive Polo",
+    productCode: "MC-TS-002",
+    sku: "999-MC-TS-002",
+    gender: "men",
+    categoryId: "t-shirts",
+    subcategory: "Polo T-Shirts",
+    collectionIds: ["daily-essentials", "office-edit"],
+    description: "Crafted from fine honeycomb pique cotton, this polo t-shirt provides a structured fit and smart-casual elegance. Finished with a ribbed collar and cuffs.",
+    shortDescription: "Fine pique cotton collared polo t-shirt.",
+    fabric: "Pique Cotton",
+    pattern: "Solid",
+    fit: "Regular Fit",
+    sleeve: "Half Sleeve",
+    neck: "Collar",
+    washCare: "Machine wash warm with similar colors. Do not bleach.",
+    comboEligible: true,
+    featured: false,
+    trending: true,
+    newArrival: false,
+    rating: 4.5,
+    reviewCount: 38,
+    media: [
+      { id: "m-ts-2-m1", type: "image", viewType: "front", url: getProductPlaceholder("Olive Polo", "Front"), alt: "Olive Polo Front View", sortOrder: 1 },
+      { id: "m-ts-2-m2", type: "image", viewType: "back", url: getProductPlaceholder("Olive Polo", "Back"), alt: "Olive Polo Back View", sortOrder: 2 },
+      { id: "m-ts-2-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Olive Polo Video", sortOrder: 3 }
+    ],
+    variants: [
+      { id: "v-m-ts-2-olv-m", sku: "999-MC-TS-002-OLV-M", color: { name: "Olive Green", hex: "#556B2F" }, size: "M", stock: 15, enabled: true },
+      { id: "v-m-ts-2-olv-l", sku: "999-MC-TS-002-OLV-L", color: { name: "Olive Green", hex: "#556B2F" }, size: "L", stock: 20, enabled: true },
+      { id: "v-m-ts-2-olv-xl", sku: "999-MC-TS-002-OLV-XL", color: { name: "Olive Green", hex: "#556B2F" }, size: "XL", stock: 15, enabled: true }
+    ],
+    tags: ["cotton", "polo", "olive", "casual", "smart"]
+  },
+  {
+    id: "prod-m-tshirt-3",
+    slug: "crimson-red-henley-neck-tee",
+    name: "Crimson Red Henley Neck Tee",
+    shortName: "Crimson Henley",
+    productCode: "MC-TS-003",
+    sku: "999-MC-TS-003",
+    gender: "men",
+    categoryId: "t-shirts",
+    subcategory: "Henley T-Shirts",
+    collectionIds: ["weekend-casuals"],
+    description: "Get that effortless, athletic style with our crimson henley tee. Made from slub cotton with a 3-button placket, it offers a textured look and feels extra soft.",
+    shortDescription: "Textured slub cotton Henley neck t-shirt.",
+    fabric: "Slub Cotton",
+    pattern: "Solid",
+    fit: "Regular Fit",
+    sleeve: "Full Sleeve",
+    neck: "Henley",
+    washCare: "Machine wash cold. Iron on medium heat.",
+    comboEligible: true,
+    featured: true,
+    trending: false,
+    newArrival: true,
+    rating: 4.4,
+    reviewCount: 22,
+    media: [
+      { id: "m-ts-3-m1", type: "image", viewType: "front", url: getProductPlaceholder("Crimson Henley", "Front"), alt: "Crimson Henley Front View", sortOrder: 1 },
+      { id: "m-ts-3-m2", type: "image", viewType: "back", url: getProductPlaceholder("Crimson Henley", "Back"), alt: "Crimson Henley Back View", sortOrder: 2 },
+      { id: "m-ts-3-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Crimson Henley Video", sortOrder: 3 }
+    ],
+    variants: [
+      { id: "v-m-ts-3-red-m", sku: "999-MC-TS-003-RED-M", color: { name: "Crimson Red", hex: "#990000" }, size: "M", stock: 8, enabled: true },
+      { id: "v-m-ts-3-red-l", sku: "999-MC-TS-003-RED-L", color: { name: "Crimson Red", hex: "#990000" }, size: "L", stock: 12, enabled: true },
+      { id: "v-m-ts-3-red-xl", sku: "999-MC-TS-003-RED-XL", color: { name: "Crimson Red", hex: "#990000" }, size: "XL", stock: 5, enabled: true }
+    ],
+    tags: ["cotton", "henley", "red", "casual"]
+  },
+  {
+    id: "prod-m-tshirt-4",
+    slug: "athletic-heather-grey-sports-tee",
+    name: "Athletic Heather Grey Sports T-Shirt",
+    shortName: "Heather Grey Tee",
+    productCode: "MC-TS-004",
+    sku: "999-MC-TS-004",
+    gender: "men",
+    categoryId: "t-shirts",
+    subcategory: "Sports T-Shirts",
+    collectionIds: ["daily-essentials"],
+    description: "Engage in your active routine with this lightweight grey sports tee. Built with moisture-wicking dry-fit poly-spandex blend to keep you cool and dry.",
+    shortDescription: "Dry-fit moisture-wicking grey activewear sports tee.",
+    fabric: "Polyester Spandex Blend",
+    pattern: "Solid",
+    fit: "Regular Fit",
+    sleeve: "Half Sleeve",
+    neck: "Round Neck",
+    washCare: "Cold wash with mild detergent. Do not iron.",
+    comboEligible: true,
+    featured: false,
+    trending: true,
+    newArrival: false,
+    rating: 4.6,
+    reviewCount: 31,
+    media: [
+      { id: "m-ts-4-m1", type: "image", viewType: "front", url: getProductPlaceholder("Heather Grey Tee", "Front"), alt: "Heather Grey Sports Tee Front View", sortOrder: 1 },
+      { id: "m-ts-4-m2", type: "image", viewType: "back", url: getProductPlaceholder("Heather Grey Tee", "Back"), alt: "Heather Grey Sports Tee Back View", sortOrder: 2 },
+      { id: "m-ts-4-v1", type: "video", viewType: "video", url: mockVideoUrl, alt: "Heather Grey Sports Tee Video", sortOrder: 3 }
+    ],
+    variants: [
+      { id: "v-m-ts-4-gry-s", sku: "999-MC-TS-004-GRY-S", color: { name: "Heather Grey", hex: "#808080" }, size: "S", stock: 15, enabled: true },
+      { id: "v-m-ts-4-gry-m", sku: "999-MC-TS-004-GRY-M", color: { name: "Heather Grey", hex: "#808080" }, size: "M", stock: 22, enabled: true },
+      { id: "v-m-ts-4-gry-l", sku: "999-MC-TS-004-GRY-L", color: { name: "Heather Grey", hex: "#808080" }, size: "L", stock: 20, enabled: true },
+      { id: "v-m-ts-4-gry-xl", sku: "999-MC-TS-004-GRY-XL", color: { name: "Heather Grey", hex: "#808080" }, size: "XL", stock: 14, enabled: true }
+    ],
+    tags: ["grey", "sports", "active", "dryfit"]
+  }
+];
