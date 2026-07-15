@@ -156,7 +156,7 @@ export default function HomePage() {
             src="/sections/mix-match-guide.webp"
             alt="Mix and Match Step-by-Step illustration"
             fill
-            className="object-cover"
+            className="object-contain p-2"
             unoptimized
           />
         </div>
