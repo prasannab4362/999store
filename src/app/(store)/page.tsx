@@ -52,7 +52,7 @@ export default function HomePage() {
               *Courier charges are calculated separately at checkout. COD requires a 20% advance payment.
             </p>
           </div>
-          <div className="relative aspect-video md:aspect-[4/3] rounded-promo overflow-hidden shadow-lg border border-border-light bg-white">
+          <div className="relative aspect-[3/4] max-w-sm w-full justify-self-center md:justify-self-end rounded-promo overflow-hidden shadow-lg border border-border-light bg-white">
             <Image
               src={homeHeroBanner.image}
               alt="Build Your Own Fashion Combo Showcase"
