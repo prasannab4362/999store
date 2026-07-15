@@ -14,7 +14,7 @@ export const homeHeroBanner: Banner = {
   id: "banner-home-hero",
   title: "BUILD YOUR OWN FASHION COMBO",
   subtitle: "Mix men's and women's fashion. Choose your combo size. Pick your styles, colours and sizes.",
-  image: "/banners/home_hero_banner.png",
+  image: "/sections/home-hero.webp",
   ctaText: "START YOUR COMBO",
   ctaLink: "/combo",
   badge: "ANY COMBO TIER FOR ₹999",

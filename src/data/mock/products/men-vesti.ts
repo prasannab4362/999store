@@ -27,9 +27,10 @@ export const menVesti: Product[] = [
     rating: 4.8,
     reviewCount: 42,
     media: [
-      { id: "m-ve-1-m1", type: "image", viewType: "front", url: "/products/men/traditional-gold-border-vesti-shirt-set/front.webp", alt: "Gold Border Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-1-m2", type: "image", viewType: "back", url: "/products/men/traditional-gold-border-vesti-shirt-set/back.webp", alt: "Gold Border Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Gold Border Vesti Set Video", sortOrder: 3 }
+      { id: "m-traditio-m1", type: "image", viewType: "front", url: "/products/men/traditional-gold-border-vesti-shirt-set/front.webp", alt: "Traditional Gold Border Vesti & Shirt Set Front View", sortOrder: 1 },
+      { id: "m-traditio-m2", type: "image", viewType: "back", url: "/products/men/traditional-gold-border-vesti-shirt-set/back.webp", alt: "Traditional Gold Border Vesti & Shirt Set Back View", sortOrder: 2 },
+      { id: "m-traditio-m3", type: "image", viewType: "detail", url: "/products/men/traditional-gold-border-vesti-shirt-set/detail.webp", alt: "Traditional Gold Border Vesti & Shirt Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-traditio-v1", type: "video", viewType: "video", url: "/products/men/traditional-gold-border-vesti-shirt-set/product-preview.mp4", posterUrl: "/products/men/traditional-gold-border-vesti-shirt-set/video-poster.webp", alt: "Traditional Gold Border Vesti & Shirt Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ve-1-crm-m", sku: "999-MC-VE-001-CRM-M", color: { name: "Cream & Gold", hex: "#FFFDD0" }, size: "M", stock: 15, enabled: true },
@@ -64,9 +65,10 @@ export const menVesti: Product[] = [
     rating: 4.9,
     reviewCount: 35,
     media: [
-      { id: "m-ve-2-m1", type: "image", viewType: "front", url: "/products/men/classic-pure-cotton-wedding-vesti-set/front.webp", alt: "Wedding Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-2-m2", type: "image", viewType: "back", url: "/products/men/classic-pure-cotton-wedding-vesti-set/back.webp", alt: "Wedding Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Wedding Vesti Set Video", sortOrder: 3 }
+      { id: "m-classic--m1", type: "image", viewType: "front", url: "/products/men/classic-pure-cotton-wedding-vesti-set/front.webp", alt: "Classic Pure Cotton Wedding Vesti Set Front View", sortOrder: 1 },
+      { id: "m-classic--m2", type: "image", viewType: "back", url: "/products/men/classic-pure-cotton-wedding-vesti-set/back.webp", alt: "Classic Pure Cotton Wedding Vesti Set Back View", sortOrder: 2 },
+      { id: "m-classic--m3", type: "image", viewType: "detail", url: "/products/men/classic-pure-cotton-wedding-vesti-set/detail.webp", alt: "Classic Pure Cotton Wedding Vesti Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-classic--v1", type: "video", viewType: "video", url: "/products/men/classic-pure-cotton-wedding-vesti-set/product-preview.mp4", posterUrl: "/products/men/classic-pure-cotton-wedding-vesti-set/video-poster.webp", alt: "Classic Pure Cotton Wedding Vesti Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ve-2-wht-m", sku: "999-MC-VE-002-WHT-M", color: { name: "Wedding White", hex: "#FFFFFF" }, size: "M", stock: 10, enabled: true },
@@ -101,9 +103,10 @@ export const menVesti: Product[] = [
     rating: 4.6,
     reviewCount: 18,
     media: [
-      { id: "m-ve-3-m1", type: "image", viewType: "front", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/front.webp", alt: "Mayilkan Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-3-m2", type: "image", viewType: "back", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/back.webp", alt: "Mayilkan Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Mayilkan Vesti Set Video", sortOrder: 3 }
+      { id: "m-premium--m1", type: "image", viewType: "front", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/front.webp", alt: "Premium Mayilkan Border Traditional Vesti Set Front View", sortOrder: 1 },
+      { id: "m-premium--m2", type: "image", viewType: "back", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/back.webp", alt: "Premium Mayilkan Border Traditional Vesti Set Back View", sortOrder: 2 },
+      { id: "m-premium--m3", type: "image", viewType: "detail", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/detail.webp", alt: "Premium Mayilkan Border Traditional Vesti Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-premium--v1", type: "video", viewType: "video", url: "/products/men/premium-mayilkan-border-traditional-vesti-set/product-preview.mp4", posterUrl: "/products/men/premium-mayilkan-border-traditional-vesti-set/video-poster.webp", alt: "Premium Mayilkan Border Traditional Vesti Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ve-3-crm-m", sku: "999-MC-VE-003-CRM-M", color: { name: "Cream & Green", hex: "#E8E6D9" }, size: "M", stock: 12, enabled: true },
@@ -138,9 +141,10 @@ export const menVesti: Product[] = [
     rating: 4.7,
     reviewCount: 20,
     media: [
-      { id: "m-ve-4-m1", type: "image", viewType: "front", url: "/products/men/elegant-jari-border-festival-vesti-set/front.webp", alt: "Jari Vesti Set Front View", sortOrder: 1 },
-      { id: "m-ve-4-m2", type: "image", viewType: "back", url: "/products/men/elegant-jari-border-festival-vesti-set/back.webp", alt: "Jari Vesti Set Back View", sortOrder: 2 },
-      { id: "m-ve-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Jari Vesti Set Video", sortOrder: 3 }
+      { id: "m-elegant--m1", type: "image", viewType: "front", url: "/products/men/elegant-jari-border-festival-vesti-set/front.webp", alt: "Elegant Jari Border Festival Vesti Set Front View", sortOrder: 1 },
+      { id: "m-elegant--m2", type: "image", viewType: "back", url: "/products/men/elegant-jari-border-festival-vesti-set/back.webp", alt: "Elegant Jari Border Festival Vesti Set Back View", sortOrder: 2 },
+      { id: "m-elegant--m3", type: "image", viewType: "detail", url: "/products/men/elegant-jari-border-festival-vesti-set/detail.webp", alt: "Elegant Jari Border Festival Vesti Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-elegant--v1", type: "video", viewType: "video", url: "/products/men/elegant-jari-border-festival-vesti-set/product-preview.mp4", posterUrl: "/products/men/elegant-jari-border-festival-vesti-set/video-poster.webp", alt: "Elegant Jari Border Festival Vesti Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ve-4-mar-m", sku: "999-MC-VE-004-MAR-M", color: { name: "Maroon & Silver", hex: "#800000" }, size: "M", stock: 8, enabled: true },

@@ -25,9 +25,10 @@ export const womenJeans: Product[] = [
     rating: 4.7,
     reviewCount: 32,
     media: [
-      { id: "w-jn-1-m1", type: "image", viewType: "front", url: "/products/women/indigo-wide-leg-denim-jeans/front.webp", alt: "Wide Leg Denim Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-1-m2", type: "image", viewType: "back", url: "/products/women/indigo-wide-leg-denim-jeans/back.webp", alt: "Wide Leg Denim Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Wide Leg Denim Jeans Video", sortOrder: 3 }
+      { id: "m-indigo-w-m1", type: "image", viewType: "front", url: "/products/women/indigo-wide-leg-denim-jeans/front.webp", alt: "Indigo Wide Leg Denim Jeans Front View", sortOrder: 1 },
+      { id: "m-indigo-w-m2", type: "image", viewType: "back", url: "/products/women/indigo-wide-leg-denim-jeans/back.webp", alt: "Indigo Wide Leg Denim Jeans Back View", sortOrder: 2 },
+      { id: "m-indigo-w-m3", type: "image", viewType: "detail", url: "/products/women/indigo-wide-leg-denim-jeans/detail.webp", alt: "Indigo Wide Leg Denim Jeans Fabric Close-up", sortOrder: 3 },
+      { id: "m-indigo-w-v1", type: "video", viewType: "video", url: "/products/women/indigo-wide-leg-denim-jeans/product-preview.mp4", posterUrl: "/products/women/indigo-wide-leg-denim-jeans/video-poster.webp", alt: "Indigo Wide Leg Denim Jeans Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-jn-1-den-28", sku: "999-WC-JN-001-DEN-28", color: { name: "Indigo Faded", hex: "#2E5894" }, size: "28", stock: 10, enabled: true },
@@ -61,9 +62,10 @@ export const womenJeans: Product[] = [
     rating: 4.5,
     reviewCount: 28,
     media: [
-      { id: "w-jn-2-m1", type: "image", viewType: "front", url: "/products/women/midnight-black-skinny-fit-jeans/front.webp", alt: "Black Skinny Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-2-m2", type: "image", viewType: "back", url: "/products/women/midnight-black-skinny-fit-jeans/back.webp", alt: "Black Skinny Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Skinny Jeans Video", sortOrder: 3 }
+      { id: "m-midnight-m1", type: "image", viewType: "front", url: "/products/women/midnight-black-skinny-fit-jeans/front.webp", alt: "Midnight Black Skinny Fit Jeans Front View", sortOrder: 1 },
+      { id: "m-midnight-m2", type: "image", viewType: "back", url: "/products/women/midnight-black-skinny-fit-jeans/back.webp", alt: "Midnight Black Skinny Fit Jeans Back View", sortOrder: 2 },
+      { id: "m-midnight-m3", type: "image", viewType: "detail", url: "/products/women/midnight-black-skinny-fit-jeans/detail.webp", alt: "Midnight Black Skinny Fit Jeans Fabric Close-up", sortOrder: 3 },
+      { id: "m-midnight-v1", type: "video", viewType: "video", url: "/products/women/midnight-black-skinny-fit-jeans/product-preview.mp4", posterUrl: "/products/women/midnight-black-skinny-fit-jeans/video-poster.webp", alt: "Midnight Black Skinny Fit Jeans Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-jn-2-blk-28", sku: "999-WC-JN-002-BLK-28", color: { name: "Midnight Black", hex: "#111111" }, size: "28", stock: 12, enabled: true },
@@ -96,9 +98,10 @@ export const womenJeans: Product[] = [
     rating: 4.4,
     reviewCount: 16,
     media: [
-      { id: "w-jn-3-m1", type: "image", viewType: "front", url: "/products/women/indigo-wide-leg-denim-jeans/front.webp", alt: "Light Blue Mom Jeans Front View", sortOrder: 1 },
-      { id: "w-jn-3-m2", type: "image", viewType: "back", url: "/products/women/indigo-wide-leg-denim-jeans/back.webp", alt: "Light Blue Mom Jeans Back View", sortOrder: 2 },
-      { id: "w-jn-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Light Blue Mom Jeans Video", sortOrder: 3 }
+      { id: "m-retro-li-m1", type: "image", viewType: "front", url: "/products/women/retro-light-blue-mom-fit-jeans/front.webp", alt: "Retro Light Blue Mom Fit Jeans Front View", sortOrder: 1 },
+      { id: "m-retro-li-m2", type: "image", viewType: "back", url: "/products/women/retro-light-blue-mom-fit-jeans/back.webp", alt: "Retro Light Blue Mom Fit Jeans Back View", sortOrder: 2 },
+      { id: "m-retro-li-m3", type: "image", viewType: "detail", url: "/products/women/retro-light-blue-mom-fit-jeans/detail.webp", alt: "Retro Light Blue Mom Fit Jeans Fabric Close-up", sortOrder: 3 },
+      { id: "m-retro-li-v1", type: "video", viewType: "video", url: "/products/women/retro-light-blue-mom-fit-jeans/product-preview.mp4", posterUrl: "/products/women/retro-light-blue-mom-fit-jeans/video-poster.webp", alt: "Retro Light Blue Mom Fit Jeans Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-jn-3-lbl-28", sku: "999-WC-JN-003-LBL-28", color: { name: "Light Blue Wash", hex: "#ADD8E6" }, size: "28", stock: 8, enabled: true },

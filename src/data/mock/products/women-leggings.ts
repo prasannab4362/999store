@@ -25,9 +25,10 @@ export const womenLeggings: Product[] = [
     rating: 4.6,
     reviewCount: 38,
     media: [
-      { id: "w-le-1-m1", type: "image", viewType: "front", url: "/products/women/black-flex-ankle-length-leggings/front.webp", alt: "Black Ankle Leggings Front View", sortOrder: 1 },
-      { id: "w-le-1-m2", type: "image", viewType: "back", url: "/products/women/black-flex-ankle-length-leggings/back.webp", alt: "Black Ankle Leggings Back View", sortOrder: 2 },
-      { id: "w-le-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Ankle Leggings Video", sortOrder: 3 }
+      { id: "m-black-fl-m1", type: "image", viewType: "front", url: "/products/women/black-flex-ankle-length-leggings/front.webp", alt: "Black Flex Ankle Length Leggings Front View", sortOrder: 1 },
+      { id: "m-black-fl-m2", type: "image", viewType: "back", url: "/products/women/black-flex-ankle-length-leggings/back.webp", alt: "Black Flex Ankle Length Leggings Back View", sortOrder: 2 },
+      { id: "m-black-fl-m3", type: "image", viewType: "detail", url: "/products/women/black-flex-ankle-length-leggings/detail.webp", alt: "Black Flex Ankle Length Leggings Fabric Close-up", sortOrder: 3 },
+      { id: "m-black-fl-v1", type: "video", viewType: "video", url: "/products/women/black-flex-ankle-length-leggings/product-preview.mp4", posterUrl: "/products/women/black-flex-ankle-length-leggings/video-poster.webp", alt: "Black Flex Ankle Length Leggings Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-le-1-blk-s", sku: "999-WC-LE-001-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 20, enabled: true },
@@ -61,9 +62,10 @@ export const womenLeggings: Product[] = [
     rating: 4.4,
     reviewCount: 19,
     media: [
-      { id: "w-le-2-m1", type: "image", viewType: "front", url: "/products/women/classic-maroon-cotton-lycra-leggings/front.webp", alt: "Maroon Full Leggings Front View", sortOrder: 1 },
-      { id: "w-le-2-m2", type: "image", viewType: "back", url: "/products/women/classic-maroon-cotton-lycra-leggings/back.webp", alt: "Maroon Full Leggings Back View", sortOrder: 2 },
-      { id: "w-le-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Maroon Full Leggings Video", sortOrder: 3 }
+      { id: "m-classic--m1", type: "image", viewType: "front", url: "/products/women/classic-maroon-cotton-lycra-leggings/front.webp", alt: "Classic Maroon Cotton Lycra Leggings Front View", sortOrder: 1 },
+      { id: "m-classic--m2", type: "image", viewType: "back", url: "/products/women/classic-maroon-cotton-lycra-leggings/back.webp", alt: "Classic Maroon Cotton Lycra Leggings Back View", sortOrder: 2 },
+      { id: "m-classic--m3", type: "image", viewType: "detail", url: "/products/women/classic-maroon-cotton-lycra-leggings/detail.webp", alt: "Classic Maroon Cotton Lycra Leggings Fabric Close-up", sortOrder: 3 },
+      { id: "m-classic--v1", type: "video", viewType: "video", url: "/products/women/classic-maroon-cotton-lycra-leggings/product-preview.mp4", posterUrl: "/products/women/classic-maroon-cotton-lycra-leggings/video-poster.webp", alt: "Classic Maroon Cotton Lycra Leggings Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-le-2-mar-m", sku: "999-WC-LE-002-MAR-M", color: { name: "Deep Maroon", hex: "#800020" }, size: "M", stock: 15, enabled: true },
@@ -96,9 +98,10 @@ export const womenLeggings: Product[] = [
     rating: 4.3,
     reviewCount: 14,
     media: [
-      { id: "w-le-3-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-full-length-leggings/front.webp", alt: "Beige Leggings Front View", sortOrder: 1 },
-      { id: "w-le-3-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-full-length-leggings/back.webp", alt: "Beige Leggings Back View", sortOrder: 2 },
-      { id: "w-le-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Beige Leggings Video", sortOrder: 3 }
+      { id: "m-desert-b-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-full-length-leggings/front.webp", alt: "Desert Beige Full Length Leggings Front View", sortOrder: 1 },
+      { id: "m-desert-b-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-full-length-leggings/back.webp", alt: "Desert Beige Full Length Leggings Back View", sortOrder: 2 },
+      { id: "m-desert-b-m3", type: "image", viewType: "detail", url: "/products/women/desert-beige-full-length-leggings/detail.webp", alt: "Desert Beige Full Length Leggings Fabric Close-up", sortOrder: 3 },
+      { id: "m-desert-b-v1", type: "video", viewType: "video", url: "/products/women/desert-beige-full-length-leggings/product-preview.mp4", posterUrl: "/products/women/desert-beige-full-length-leggings/video-poster.webp", alt: "Desert Beige Full Length Leggings Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-le-3-beg-s", sku: "999-WC-LE-003-BEG-S", color: { name: "Desert Beige", hex: "#E1C699" }, size: "S", stock: 10, enabled: true },

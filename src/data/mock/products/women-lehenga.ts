@@ -25,9 +25,10 @@ export const womenLehenga: Product[] = [
     rating: 4.8,
     reviewCount: 35,
     media: [
-      { id: "w-lh-1-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Golden Embroidered Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-1-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Golden Embroidered Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Golden Embroidered Lehenga Video", sortOrder: 3 }
+      { id: "m-festival-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Festival Golden Embroidered Georgette Lehenga Front View", sortOrder: 1 },
+      { id: "m-festival-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Festival Golden Embroidered Georgette Lehenga Back View", sortOrder: 2 },
+      { id: "m-festival-m3", type: "image", viewType: "detail", url: "/products/women/festival-golden-embroidered-georgette-lehenga/detail.webp", alt: "Festival Golden Embroidered Georgette Lehenga Fabric Close-up", sortOrder: 3 },
+      { id: "m-festival-v1", type: "video", viewType: "video", url: "/products/women/festival-golden-embroidered-georgette-lehenga/product-preview.mp4", posterUrl: "/products/women/festival-golden-embroidered-georgette-lehenga/video-poster.webp", alt: "Festival Golden Embroidered Georgette Lehenga Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-lh-1-gld-m", sku: "999-WC-LH-001-GLD-M", color: { name: "Marigold Gold", hex: "#FFD700" }, size: "M", stock: 10, enabled: true },
@@ -60,9 +61,10 @@ export const womenLehenga: Product[] = [
     rating: 4.7,
     reviewCount: 22,
     media: [
-      { id: "w-lh-2-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Floral Silk Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-2-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Floral Silk Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Floral Silk Lehenga Video", sortOrder: 3 }
+      { id: "m-wedding--m1", type: "image", viewType: "front", url: "/products/women/wedding-silk-floral-printed-lehenga/front.webp", alt: "Wedding Silk Floral Printed Lehenga Front View", sortOrder: 1 },
+      { id: "m-wedding--m2", type: "image", viewType: "back", url: "/products/women/wedding-silk-floral-printed-lehenga/back.webp", alt: "Wedding Silk Floral Printed Lehenga Back View", sortOrder: 2 },
+      { id: "m-wedding--m3", type: "image", viewType: "detail", url: "/products/women/wedding-silk-floral-printed-lehenga/detail.webp", alt: "Wedding Silk Floral Printed Lehenga Fabric Close-up", sortOrder: 3 },
+      { id: "m-wedding--v1", type: "video", viewType: "video", url: "/products/women/wedding-silk-floral-printed-lehenga/product-preview.mp4", posterUrl: "/products/women/wedding-silk-floral-printed-lehenga/video-poster.webp", alt: "Wedding Silk Floral Printed Lehenga Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-lh-2-pnk-m", sku: "999-WC-LH-002-PNK-M", color: { name: "Silk Pink", hex: "#FC8EAC" }, size: "M", stock: 8, enabled: true },
@@ -95,9 +97,10 @@ export const womenLehenga: Product[] = [
     rating: 4.5,
     reviewCount: 16,
     media: [
-      { id: "w-lh-3-m1", type: "image", viewType: "front", url: "/products/women/festival-golden-embroidered-georgette-lehenga/front.webp", alt: "Rayon Lehenga Front View", sortOrder: 1 },
-      { id: "w-lh-3-m2", type: "image", viewType: "back", url: "/products/women/festival-golden-embroidered-georgette-lehenga/back.webp", alt: "Rayon Lehenga Back View", sortOrder: 2 },
-      { id: "w-lh-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rayon Lehenga Video", sortOrder: 3 }
+      { id: "m-vibrant--m1", type: "image", viewType: "front", url: "/products/women/vibrant-party-wear-rayon-lehenga-set/front.webp", alt: "Vibrant Party Wear Rayon Lehenga Set Front View", sortOrder: 1 },
+      { id: "m-vibrant--m2", type: "image", viewType: "back", url: "/products/women/vibrant-party-wear-rayon-lehenga-set/back.webp", alt: "Vibrant Party Wear Rayon Lehenga Set Back View", sortOrder: 2 },
+      { id: "m-vibrant--m3", type: "image", viewType: "detail", url: "/products/women/vibrant-party-wear-rayon-lehenga-set/detail.webp", alt: "Vibrant Party Wear Rayon Lehenga Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-vibrant--v1", type: "video", viewType: "video", url: "/products/women/vibrant-party-wear-rayon-lehenga-set/product-preview.mp4", posterUrl: "/products/women/vibrant-party-wear-rayon-lehenga-set/video-poster.webp", alt: "Vibrant Party Wear Rayon Lehenga Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-lh-3-red-s", sku: "999-WC-LH-003-RED-S", color: { name: "Vibrant Red", hex: "#FF0000" }, size: "S", stock: 10, enabled: true },

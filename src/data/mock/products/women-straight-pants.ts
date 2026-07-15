@@ -25,9 +25,10 @@ export const womenStraightPants: Product[] = [
     rating: 4.6,
     reviewCount: 25,
     media: [
-      { id: "w-sp-1-m1", type: "image", viewType: "front", url: "/products/women/office-classic-black-straight-pant/front.webp", alt: "Black Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-1-m2", type: "image", viewType: "back", url: "/products/women/office-classic-black-straight-pant/back.webp", alt: "Black Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Straight Pant Video", sortOrder: 3 }
+      { id: "m-office-c-m1", type: "image", viewType: "front", url: "/products/women/office-classic-black-straight-pant/front.webp", alt: "Office Classic Black Straight Pant Front View", sortOrder: 1 },
+      { id: "m-office-c-m2", type: "image", viewType: "back", url: "/products/women/office-classic-black-straight-pant/back.webp", alt: "Office Classic Black Straight Pant Back View", sortOrder: 2 },
+      { id: "m-office-c-m3", type: "image", viewType: "detail", url: "/products/women/office-classic-black-straight-pant/detail.webp", alt: "Office Classic Black Straight Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-office-c-v1", type: "video", viewType: "video", url: "/products/women/office-classic-black-straight-pant/product-preview.mp4", posterUrl: "/products/women/office-classic-black-straight-pant/video-poster.webp", alt: "Office Classic Black Straight Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-sp-1-blk-28", sku: "999-WC-SP-001-BLK-28", color: { name: "Midnight Black", hex: "#111111" }, size: "28", stock: 12, enabled: true },
@@ -61,9 +62,10 @@ export const womenStraightPants: Product[] = [
     rating: 4.4,
     reviewCount: 18,
     media: [
-      { id: "w-sp-2-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-cotton-straight-pant/front.webp", alt: "Beige Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-2-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-cotton-straight-pant/back.webp", alt: "Beige Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Beige Straight Pant Video", sortOrder: 3 }
+      { id: "m-desert-b-m1", type: "image", viewType: "front", url: "/products/women/desert-beige-cotton-straight-pant/front.webp", alt: "Desert Beige Cotton Straight Pant Front View", sortOrder: 1 },
+      { id: "m-desert-b-m2", type: "image", viewType: "back", url: "/products/women/desert-beige-cotton-straight-pant/back.webp", alt: "Desert Beige Cotton Straight Pant Back View", sortOrder: 2 },
+      { id: "m-desert-b-m3", type: "image", viewType: "detail", url: "/products/women/desert-beige-cotton-straight-pant/detail.webp", alt: "Desert Beige Cotton Straight Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-desert-b-v1", type: "video", viewType: "video", url: "/products/women/desert-beige-cotton-straight-pant/product-preview.mp4", posterUrl: "/products/women/desert-beige-cotton-straight-pant/video-poster.webp", alt: "Desert Beige Cotton Straight Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-sp-2-beg-28", sku: "999-WC-SP-002-BEG-28", color: { name: "Desert Beige", hex: "#F5F5DC" }, size: "28", stock: 15, enabled: true },
@@ -96,9 +98,10 @@ export const womenStraightPants: Product[] = [
     rating: 4.5,
     reviewCount: 12,
     media: [
-      { id: "w-sp-3-m1", type: "image", viewType: "front", url: "/products/women/rosewood-stretch-formal-straight-pant/front.webp", alt: "Rosewood Straight Pant Front View", sortOrder: 1 },
-      { id: "w-sp-3-m2", type: "image", viewType: "back", url: "/products/women/rosewood-stretch-formal-straight-pant/back.webp", alt: "Rosewood Straight Pant Back View", sortOrder: 2 },
-      { id: "w-sp-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rosewood Straight Pant Video", sortOrder: 3 }
+      { id: "m-rosewood-m1", type: "image", viewType: "front", url: "/products/women/rosewood-stretch-formal-straight-pant/front.webp", alt: "Rosewood Stretch Formal Straight Pant Front View", sortOrder: 1 },
+      { id: "m-rosewood-m2", type: "image", viewType: "back", url: "/products/women/rosewood-stretch-formal-straight-pant/back.webp", alt: "Rosewood Stretch Formal Straight Pant Back View", sortOrder: 2 },
+      { id: "m-rosewood-m3", type: "image", viewType: "detail", url: "/products/women/rosewood-stretch-formal-straight-pant/detail.webp", alt: "Rosewood Stretch Formal Straight Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-rosewood-v1", type: "video", viewType: "video", url: "/products/women/rosewood-stretch-formal-straight-pant/product-preview.mp4", posterUrl: "/products/women/rosewood-stretch-formal-straight-pant/video-poster.webp", alt: "Rosewood Stretch Formal Straight Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-sp-3-rwd-28", sku: "999-WC-SP-003-RWD-28", color: { name: "Rosewood Pink", hex: "#8A5A5C" }, size: "28", stock: 8, enabled: true },

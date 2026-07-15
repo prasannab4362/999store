@@ -25,9 +25,10 @@ export const menPants: Product[] = [
     rating: 4.5,
     reviewCount: 30,
     media: [
-      { id: "m-pa-1-m1", type: "image", viewType: "front", url: "/products/men/sandstone-stretch-chino-pant/front.webp", alt: "Sandstone Stretch Chino Pant Front View", sortOrder: 1 },
-      { id: "m-pa-1-m2", type: "image", viewType: "back", url: "/products/men/sandstone-stretch-chino-pant/back.webp", alt: "Sandstone Stretch Chino Pant Back View", sortOrder: 2 },
-      { id: "m-pa-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Sandstone Stretch Chino Pant Video", sortOrder: 3 }
+      { id: "m-sandston-m1", type: "image", viewType: "front", url: "/products/men/sandstone-stretch-chino-pant/front.webp", alt: "Sandstone Stretch Chino Pant Front View", sortOrder: 1 },
+      { id: "m-sandston-m2", type: "image", viewType: "back", url: "/products/men/sandstone-stretch-chino-pant/back.webp", alt: "Sandstone Stretch Chino Pant Back View", sortOrder: 2 },
+      { id: "m-sandston-m3", type: "image", viewType: "detail", url: "/products/men/sandstone-stretch-chino-pant/detail.webp", alt: "Sandstone Stretch Chino Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-sandston-v1", type: "video", viewType: "video", url: "/products/men/sandstone-stretch-chino-pant/product-preview.mp4", posterUrl: "/products/men/sandstone-stretch-chino-pant/video-poster.webp", alt: "Sandstone Stretch Chino Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-pa-1-snd-30", sku: "999-MC-PA-001-SND-30", color: { name: "Sandstone Beige", hex: "#D2C5B3" }, size: "30", stock: 10, enabled: true },
@@ -61,9 +62,10 @@ export const menPants: Product[] = [
     rating: 4.7,
     reviewCount: 28,
     media: [
-      { id: "m-pa-2-m1", type: "image", viewType: "front", url: "/products/men/classic-slate-grey-formal-pant/front.webp", alt: "Slate Grey Formal Pant Front View", sortOrder: 1 },
-      { id: "m-pa-2-m2", type: "image", viewType: "back", url: "/products/men/classic-slate-grey-formal-pant/back.webp", alt: "Slate Grey Formal Pant Back View", sortOrder: 2 },
-      { id: "m-pa-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Slate Grey Formal Pant Video", sortOrder: 3 }
+      { id: "m-classic--m1", type: "image", viewType: "front", url: "/products/men/classic-slate-grey-formal-pant/front.webp", alt: "Classic Slate Grey Formal Pant Front View", sortOrder: 1 },
+      { id: "m-classic--m2", type: "image", viewType: "back", url: "/products/men/classic-slate-grey-formal-pant/back.webp", alt: "Classic Slate Grey Formal Pant Back View", sortOrder: 2 },
+      { id: "m-classic--m3", type: "image", viewType: "detail", url: "/products/men/classic-slate-grey-formal-pant/detail.webp", alt: "Classic Slate Grey Formal Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-classic--v1", type: "video", viewType: "video", url: "/products/men/classic-slate-grey-formal-pant/product-preview.mp4", posterUrl: "/products/men/classic-slate-grey-formal-pant/video-poster.webp", alt: "Classic Slate Grey Formal Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-pa-2-gry-30", sku: "999-MC-PA-002-GRY-30", color: { name: "Slate Grey", hex: "#708090" }, size: "30", stock: 12, enabled: true },
@@ -97,9 +99,10 @@ export const menPants: Product[] = [
     rating: 4.4,
     reviewCount: 19,
     media: [
-      { id: "m-pa-3-m1", type: "image", viewType: "front", url: "/products/men/sandstone-stretch-chino-pant/front.webp", alt: "Cargo Denim Front View", sortOrder: 1 },
-      { id: "m-pa-3-m2", type: "image", viewType: "back", url: "/products/men/sandstone-stretch-chino-pant/back.webp", alt: "Cargo Denim Back View", sortOrder: 2 },
-      { id: "m-pa-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Cargo Denim Video", sortOrder: 3 }
+      { id: "m-midnight-m1", type: "image", viewType: "front", url: "/products/men/midnight-blue-cargo-denim-pant/front.webp", alt: "Midnight Blue Cargo Denim Pant Front View", sortOrder: 1 },
+      { id: "m-midnight-m2", type: "image", viewType: "back", url: "/products/men/midnight-blue-cargo-denim-pant/back.webp", alt: "Midnight Blue Cargo Denim Pant Back View", sortOrder: 2 },
+      { id: "m-midnight-m3", type: "image", viewType: "detail", url: "/products/men/midnight-blue-cargo-denim-pant/detail.webp", alt: "Midnight Blue Cargo Denim Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-midnight-v1", type: "video", viewType: "video", url: "/products/men/midnight-blue-cargo-denim-pant/product-preview.mp4", posterUrl: "/products/men/midnight-blue-cargo-denim-pant/video-poster.webp", alt: "Midnight Blue Cargo Denim Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-pa-3-den-30", sku: "999-MC-PA-003-DEN-30", color: { name: "Indigo Blue", hex: "#4B0082" }, size: "30", stock: 8, enabled: true },
@@ -132,9 +135,10 @@ export const menPants: Product[] = [
     rating: 4.3,
     reviewCount: 17,
     media: [
-      { id: "m-pa-4-m1", type: "image", viewType: "front", url: "/products/men/twill-cotton-khaki-casual-pant/front.webp", alt: "Khaki Casual Pant Front View", sortOrder: 1 },
-      { id: "m-pa-4-m2", type: "image", viewType: "back", url: "/products/men/twill-cotton-khaki-casual-pant/back.webp", alt: "Khaki Casual Pant Back View", sortOrder: 2 },
-      { id: "m-pa-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Khaki Casual Pant Video", sortOrder: 3 }
+      { id: "m-twill-co-m1", type: "image", viewType: "front", url: "/products/men/twill-cotton-khaki-casual-pant/front.webp", alt: "Twill Cotton Khaki Casual Pant Front View", sortOrder: 1 },
+      { id: "m-twill-co-m2", type: "image", viewType: "back", url: "/products/men/twill-cotton-khaki-casual-pant/back.webp", alt: "Twill Cotton Khaki Casual Pant Back View", sortOrder: 2 },
+      { id: "m-twill-co-m3", type: "image", viewType: "detail", url: "/products/men/twill-cotton-khaki-casual-pant/detail.webp", alt: "Twill Cotton Khaki Casual Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-twill-co-v1", type: "video", viewType: "video", url: "/products/men/twill-cotton-khaki-casual-pant/product-preview.mp4", posterUrl: "/products/men/twill-cotton-khaki-casual-pant/video-poster.webp", alt: "Twill Cotton Khaki Casual Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-pa-4-khk-30", sku: "999-MC-PA-004-KHK-30", color: { name: "Desert Khaki", hex: "#C2B280" }, size: "30", stock: 15, enabled: true },

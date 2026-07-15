@@ -25,9 +25,10 @@ export const menShorts: Product[] = [
     rating: 4.5,
     reviewCount: 18,
     media: [
-      { id: "m-shs-1-m1", type: "image", viewType: "front", url: "/products/men/slate-cotton-casual-shorts/front.webp", alt: "Slate Cotton Casual Shorts Front View", sortOrder: 1 },
-      { id: "m-shs-1-m2", type: "image", viewType: "back", url: "/products/men/slate-cotton-casual-shorts/back.webp", alt: "Slate Cotton Casual Shorts Back View", sortOrder: 2 },
-      { id: "m-shs-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Slate Cotton Casual Shorts Video", sortOrder: 3 }
+      { id: "m-slate-co-m1", type: "image", viewType: "front", url: "/products/men/slate-cotton-casual-shorts/front.webp", alt: "Slate Cotton Casual Shorts Front View", sortOrder: 1 },
+      { id: "m-slate-co-m2", type: "image", viewType: "back", url: "/products/men/slate-cotton-casual-shorts/back.webp", alt: "Slate Cotton Casual Shorts Back View", sortOrder: 2 },
+      { id: "m-slate-co-m3", type: "image", viewType: "detail", url: "/products/men/slate-cotton-casual-shorts/detail.webp", alt: "Slate Cotton Casual Shorts Fabric Close-up", sortOrder: 3 },
+      { id: "m-slate-co-v1", type: "video", viewType: "video", url: "/products/men/slate-cotton-casual-shorts/product-preview.mp4", posterUrl: "/products/men/slate-cotton-casual-shorts/video-poster.webp", alt: "Slate Cotton Casual Shorts Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-shs-1-gry-s", sku: "999-MC-SH-011-GRY-S", color: { name: "Slate Grey", hex: "#708090" }, size: "S", stock: 12, enabled: true },
@@ -61,9 +62,10 @@ export const menShorts: Product[] = [
     rating: 4.6,
     reviewCount: 22,
     media: [
-      { id: "m-shs-2-m1", type: "image", viewType: "front", url: "/products/men/active-dry-fit-sports-shorts/front.webp", alt: "Active Dry-Fit Sports Shorts Front View", sortOrder: 1 },
-      { id: "m-shs-2-m2", type: "image", viewType: "back", url: "/products/men/active-dry-fit-sports-shorts/back.webp", alt: "Active Dry-Fit Sports Shorts Back View", sortOrder: 2 },
-      { id: "m-shs-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Active Dry-Fit Sports Shorts Video", sortOrder: 3 }
+      { id: "m-active-d-m1", type: "image", viewType: "front", url: "/products/men/active-dry-fit-sports-shorts/front.webp", alt: "Active Dry-Fit Sports Shorts Front View", sortOrder: 1 },
+      { id: "m-active-d-m2", type: "image", viewType: "back", url: "/products/men/active-dry-fit-sports-shorts/back.webp", alt: "Active Dry-Fit Sports Shorts Back View", sortOrder: 2 },
+      { id: "m-active-d-m3", type: "image", viewType: "detail", url: "/products/men/active-dry-fit-sports-shorts/detail.webp", alt: "Active Dry-Fit Sports Shorts Fabric Close-up", sortOrder: 3 },
+      { id: "m-active-d-v1", type: "video", viewType: "video", url: "/products/men/active-dry-fit-sports-shorts/product-preview.mp4", posterUrl: "/products/men/active-dry-fit-sports-shorts/video-poster.webp", alt: "Active Dry-Fit Sports Shorts Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-shs-2-blk-m", sku: "999-MC-SH-012-BLK-M", color: { name: "Active Black", hex: "#1A1A1A" }, size: "M", stock: 15, enabled: true },
@@ -96,9 +98,10 @@ export const menShorts: Product[] = [
     rating: 4.3,
     reviewCount: 14,
     media: [
-      { id: "m-shs-3-m1", type: "image", viewType: "front", url: "/products/men/slate-cotton-casual-shorts/front.webp", alt: "Indigo Denim Frayed Shorts Front View", sortOrder: 1 },
-      { id: "m-shs-3-m2", type: "image", viewType: "back", url: "/products/men/slate-cotton-casual-shorts/back.webp", alt: "Indigo Denim Frayed Shorts Back View", sortOrder: 2 },
-      { id: "m-shs-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Indigo Denim Frayed Shorts Video", sortOrder: 3 }
+      { id: "m-indigo-d-m1", type: "image", viewType: "front", url: "/products/men/indigo-denim-frayed-shorts/front.webp", alt: "Indigo Denim Frayed Shorts Front View", sortOrder: 1 },
+      { id: "m-indigo-d-m2", type: "image", viewType: "back", url: "/products/men/indigo-denim-frayed-shorts/back.webp", alt: "Indigo Denim Frayed Shorts Back View", sortOrder: 2 },
+      { id: "m-indigo-d-m3", type: "image", viewType: "detail", url: "/products/men/indigo-denim-frayed-shorts/detail.webp", alt: "Indigo Denim Frayed Shorts Fabric Close-up", sortOrder: 3 },
+      { id: "m-indigo-d-v1", type: "video", viewType: "video", url: "/products/men/indigo-denim-frayed-shorts/product-preview.mp4", posterUrl: "/products/men/indigo-denim-frayed-shorts/video-poster.webp", alt: "Indigo Denim Frayed Shorts Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-shs-3-den-s", sku: "999-MC-SH-013-DEN-S", color: { name: "Indigo Blue", hex: "#2E5894" }, size: "S", stock: 5, enabled: true },
@@ -131,9 +134,10 @@ export const menShorts: Product[] = [
     rating: 4.4,
     reviewCount: 16,
     media: [
-      { id: "m-shs-4-m1", type: "image", viewType: "front", url: "/products/men/camo-printed-cargo-shorts/front.webp", alt: "Camo Printed Cargo Shorts Front View", sortOrder: 1 },
-      { id: "m-shs-4-m2", type: "image", viewType: "back", url: "/products/men/camo-printed-cargo-shorts/back.webp", alt: "Camo Printed Cargo Shorts Back View", sortOrder: 2 },
-      { id: "m-shs-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Camo Printed Cargo Shorts Video", sortOrder: 3 }
+      { id: "m-camo-pri-m1", type: "image", viewType: "front", url: "/products/men/camo-printed-cargo-shorts/front.webp", alt: "Camo Printed Cargo Shorts Front View", sortOrder: 1 },
+      { id: "m-camo-pri-m2", type: "image", viewType: "back", url: "/products/men/camo-printed-cargo-shorts/back.webp", alt: "Camo Printed Cargo Shorts Back View", sortOrder: 2 },
+      { id: "m-camo-pri-m3", type: "image", viewType: "detail", url: "/products/men/camo-printed-cargo-shorts/detail.webp", alt: "Camo Printed Cargo Shorts Fabric Close-up", sortOrder: 3 },
+      { id: "m-camo-pri-v1", type: "video", viewType: "video", url: "/products/men/camo-printed-cargo-shorts/product-preview.mp4", posterUrl: "/products/men/camo-printed-cargo-shorts/video-poster.webp", alt: "Camo Printed Cargo Shorts Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-shs-4-cam-m", sku: "999-MC-SH-014-CAM-M", color: { name: "Desert Camo", hex: "#8A9A86" }, size: "M", stock: 10, enabled: true },

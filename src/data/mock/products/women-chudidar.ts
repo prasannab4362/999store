@@ -27,9 +27,10 @@ export const womenChudidar: Product[] = [
     rating: 4.6,
     reviewCount: 30,
     media: [
-      { id: "w-ch-1-m1", type: "image", viewType: "front", url: "/products/women/elegant-floral-cotton-chudidar-set/front.webp", alt: "Floral Cotton Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-1-m2", type: "image", viewType: "back", url: "/products/women/elegant-floral-cotton-chudidar-set/back.webp", alt: "Floral Cotton Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Floral Cotton Chudidar Set Video", sortOrder: 3 }
+      { id: "m-elegant--m1", type: "image", viewType: "front", url: "/products/women/elegant-floral-cotton-chudidar-set/front.webp", alt: "Elegant Floral Cotton Chudidar Set Front View", sortOrder: 1 },
+      { id: "m-elegant--m2", type: "image", viewType: "back", url: "/products/women/elegant-floral-cotton-chudidar-set/back.webp", alt: "Elegant Floral Cotton Chudidar Set Back View", sortOrder: 2 },
+      { id: "m-elegant--m3", type: "image", viewType: "detail", url: "/products/women/elegant-floral-cotton-chudidar-set/detail.webp", alt: "Elegant Floral Cotton Chudidar Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-elegant--v1", type: "video", viewType: "video", url: "/products/women/elegant-floral-cotton-chudidar-set/product-preview.mp4", posterUrl: "/products/women/elegant-floral-cotton-chudidar-set/video-poster.webp", alt: "Elegant Floral Cotton Chudidar Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-ch-1-red-s", sku: "999-WC-CH-001-RED-S", color: { name: "Indian Red", hex: "#CD5C5C" }, size: "S", stock: 12, enabled: true },
@@ -65,9 +66,10 @@ export const womenChudidar: Product[] = [
     rating: 4.8,
     reviewCount: 25,
     media: [
-      { id: "w-ch-2-m1", type: "image", viewType: "front", url: "/products/women/banarasi-silk-festive-chudidar-set/front.webp", alt: "Banarasi Silk Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-2-m2", type: "image", viewType: "back", url: "/products/women/banarasi-silk-festive-chudidar-set/back.webp", alt: "Banarasi Silk Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Banarasi Silk Chudidar Set Video", sortOrder: 3 }
+      { id: "m-banarasi-m1", type: "image", viewType: "front", url: "/products/women/banarasi-silk-festive-chudidar-set/front.webp", alt: "Banarasi Silk Festive Chudidar Set Front View", sortOrder: 1 },
+      { id: "m-banarasi-m2", type: "image", viewType: "back", url: "/products/women/banarasi-silk-festive-chudidar-set/back.webp", alt: "Banarasi Silk Festive Chudidar Set Back View", sortOrder: 2 },
+      { id: "m-banarasi-m3", type: "image", viewType: "detail", url: "/products/women/banarasi-silk-festive-chudidar-set/detail.webp", alt: "Banarasi Silk Festive Chudidar Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-banarasi-v1", type: "video", viewType: "video", url: "/products/women/banarasi-silk-festive-chudidar-set/product-preview.mp4", posterUrl: "/products/women/banarasi-silk-festive-chudidar-set/video-poster.webp", alt: "Banarasi Silk Festive Chudidar Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-ch-2-gld-m", sku: "999-WC-CH-002-GLD-M", color: { name: "Deep Gold", hex: "#DAA520" }, size: "M", stock: 8, enabled: true },
@@ -102,9 +104,10 @@ export const womenChudidar: Product[] = [
     rating: 4.4,
     reviewCount: 16,
     media: [
-      { id: "w-ch-3-m1", type: "image", viewType: "front", url: "/products/women/comfort-solid-rayon-chudidar-set/front.webp", alt: "Rayon Chudidar Set Front View", sortOrder: 1 },
-      { id: "w-ch-3-m2", type: "image", viewType: "back", url: "/products/women/comfort-solid-rayon-chudidar-set/back.webp", alt: "Rayon Chudidar Set Back View", sortOrder: 2 },
-      { id: "w-ch-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Rayon Chudidar Set Video", sortOrder: 3 }
+      { id: "m-comfort--m1", type: "image", viewType: "front", url: "/products/women/comfort-solid-rayon-chudidar-set/front.webp", alt: "Comfort Solid Rayon Chudidar Set Front View", sortOrder: 1 },
+      { id: "m-comfort--m2", type: "image", viewType: "back", url: "/products/women/comfort-solid-rayon-chudidar-set/back.webp", alt: "Comfort Solid Rayon Chudidar Set Back View", sortOrder: 2 },
+      { id: "m-comfort--m3", type: "image", viewType: "detail", url: "/products/women/comfort-solid-rayon-chudidar-set/detail.webp", alt: "Comfort Solid Rayon Chudidar Set Fabric Close-up", sortOrder: 3 },
+      { id: "m-comfort--v1", type: "video", viewType: "video", url: "/products/women/comfort-solid-rayon-chudidar-set/product-preview.mp4", posterUrl: "/products/women/comfort-solid-rayon-chudidar-set/video-poster.webp", alt: "Comfort Solid Rayon Chudidar Set Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-w-ch-3-grn-s", sku: "999-WC-CH-003-GRN-S", color: { name: "Teal Green", hex: "#008080" }, size: "S", stock: 10, enabled: true },

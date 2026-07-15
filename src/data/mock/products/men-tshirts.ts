@@ -27,9 +27,10 @@ export const menTshirts: Product[] = [
     rating: 4.7,
     reviewCount: 45,
     media: [
-      { id: "m-ts-1-m1", type: "image", viewType: "front", url: "/products/men/midnight-black-oversized-graphic-tee/front.webp", alt: "Black Graphic Tee Front View", sortOrder: 1 },
-      { id: "m-ts-1-m2", type: "image", viewType: "back", url: "/products/men/midnight-black-oversized-graphic-tee/back.webp", alt: "Black Graphic Tee Back View", sortOrder: 2 },
-      { id: "m-ts-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Graphic Tee Video", sortOrder: 3 }
+      { id: "m-midnight-m1", type: "image", viewType: "front", url: "/products/men/midnight-black-oversized-graphic-tee/front.webp", alt: "Midnight Black Oversized Graphic Tee Front View", sortOrder: 1 },
+      { id: "m-midnight-m2", type: "image", viewType: "back", url: "/products/men/midnight-black-oversized-graphic-tee/back.webp", alt: "Midnight Black Oversized Graphic Tee Back View", sortOrder: 2 },
+      { id: "m-midnight-m3", type: "image", viewType: "detail", url: "/products/men/midnight-black-oversized-graphic-tee/detail.webp", alt: "Midnight Black Oversized Graphic Tee Fabric Close-up", sortOrder: 3 },
+      { id: "m-midnight-v1", type: "video", viewType: "video", url: "/products/men/midnight-black-oversized-graphic-tee/product-preview.mp4", posterUrl: "/products/men/midnight-black-oversized-graphic-tee/video-poster.webp", alt: "Midnight Black Oversized Graphic Tee Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ts-1-blk-s", sku: "999-MC-TS-001-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 10, enabled: true },
@@ -65,9 +66,10 @@ export const menTshirts: Product[] = [
     rating: 4.5,
     reviewCount: 38,
     media: [
-      { id: "m-ts-2-m1", type: "image", viewType: "front", url: "/products/men/classic-olive-green-polo-tshirt/front.webp", alt: "Olive Polo Front View", sortOrder: 1 },
-      { id: "m-ts-2-m2", type: "image", viewType: "back", url: "/products/men/classic-olive-green-polo-tshirt/back.webp", alt: "Olive Polo Back View", sortOrder: 2 },
-      { id: "m-ts-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Olive Polo Video", sortOrder: 3 }
+      { id: "m-classic--m1", type: "image", viewType: "front", url: "/products/men/classic-olive-green-polo-tshirt/front.webp", alt: "Classic Olive Green Polo T-Shirt Front View", sortOrder: 1 },
+      { id: "m-classic--m2", type: "image", viewType: "back", url: "/products/men/classic-olive-green-polo-tshirt/back.webp", alt: "Classic Olive Green Polo T-Shirt Back View", sortOrder: 2 },
+      { id: "m-classic--m3", type: "image", viewType: "detail", url: "/products/men/classic-olive-green-polo-tshirt/detail.webp", alt: "Classic Olive Green Polo T-Shirt Fabric Close-up", sortOrder: 3 },
+      { id: "m-classic--v1", type: "video", viewType: "video", url: "/products/men/classic-olive-green-polo-tshirt/product-preview.mp4", posterUrl: "/products/men/classic-olive-green-polo-tshirt/video-poster.webp", alt: "Classic Olive Green Polo T-Shirt Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ts-2-olv-m", sku: "999-MC-TS-002-OLV-M", color: { name: "Olive Green", hex: "#556B2F" }, size: "M", stock: 15, enabled: true },
@@ -102,9 +104,10 @@ export const menTshirts: Product[] = [
     rating: 4.4,
     reviewCount: 22,
     media: [
-      { id: "m-ts-3-m1", type: "image", viewType: "front", url: "/products/men/crimson-red-henley-neck-tee/front.webp", alt: "Crimson Henley Front View", sortOrder: 1 },
-      { id: "m-ts-3-m2", type: "image", viewType: "back", url: "/products/men/crimson-red-henley-neck-tee/back.webp", alt: "Crimson Henley Back View", sortOrder: 2 },
-      { id: "m-ts-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Crimson Henley Video", sortOrder: 3 }
+      { id: "m-crimson--m1", type: "image", viewType: "front", url: "/products/men/crimson-red-henley-neck-tee/front.webp", alt: "Crimson Red Henley Neck Tee Front View", sortOrder: 1 },
+      { id: "m-crimson--m2", type: "image", viewType: "back", url: "/products/men/crimson-red-henley-neck-tee/back.webp", alt: "Crimson Red Henley Neck Tee Back View", sortOrder: 2 },
+      { id: "m-crimson--m3", type: "image", viewType: "detail", url: "/products/men/crimson-red-henley-neck-tee/detail.webp", alt: "Crimson Red Henley Neck Tee Fabric Close-up", sortOrder: 3 },
+      { id: "m-crimson--v1", type: "video", viewType: "video", url: "/products/men/crimson-red-henley-neck-tee/product-preview.mp4", posterUrl: "/products/men/crimson-red-henley-neck-tee/video-poster.webp", alt: "Crimson Red Henley Neck Tee Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ts-3-red-m", sku: "999-MC-TS-003-RED-M", color: { name: "Crimson Red", hex: "#990000" }, size: "M", stock: 8, enabled: true },
@@ -139,9 +142,10 @@ export const menTshirts: Product[] = [
     rating: 4.6,
     reviewCount: 31,
     media: [
-      { id: "m-ts-4-m1", type: "image", viewType: "front", url: "/products/men/athletic-heather-grey-sports-tee/front.webp", alt: "Heather Grey Sports Tee Front View", sortOrder: 1 },
-      { id: "m-ts-4-m2", type: "image", viewType: "back", url: "/products/men/athletic-heather-grey-sports-tee/back.webp", alt: "Heather Grey Sports Tee Back View", sortOrder: 2 },
-      { id: "m-ts-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Heather Grey Sports Tee Video", sortOrder: 3 }
+      { id: "m-athletic-m1", type: "image", viewType: "front", url: "/products/men/athletic-heather-grey-sports-tee/front.webp", alt: "Athletic Heather Grey Sports T-Shirt Front View", sortOrder: 1 },
+      { id: "m-athletic-m2", type: "image", viewType: "back", url: "/products/men/athletic-heather-grey-sports-tee/back.webp", alt: "Athletic Heather Grey Sports T-Shirt Back View", sortOrder: 2 },
+      { id: "m-athletic-m3", type: "image", viewType: "detail", url: "/products/men/athletic-heather-grey-sports-tee/detail.webp", alt: "Athletic Heather Grey Sports T-Shirt Fabric Close-up", sortOrder: 3 },
+      { id: "m-athletic-v1", type: "video", viewType: "video", url: "/products/men/athletic-heather-grey-sports-tee/product-preview.mp4", posterUrl: "/products/men/athletic-heather-grey-sports-tee/video-poster.webp", alt: "Athletic Heather Grey Sports T-Shirt Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-ts-4-gry-s", sku: "999-MC-TS-004-GRY-S", color: { name: "Heather Grey", hex: "#808080" }, size: "S", stock: 15, enabled: true },

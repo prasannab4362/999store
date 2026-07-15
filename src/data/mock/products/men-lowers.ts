@@ -25,9 +25,10 @@ export const menLowers: Product[] = [
     rating: 4.4,
     reviewCount: 32,
     media: [
-      { id: "m-lo-1-m1", type: "image", viewType: "front", url: "/products/men/navy-active-track-lower/front.webp", alt: "Navy Active Track Lower Front View", sortOrder: 1 },
-      { id: "m-lo-1-m2", type: "image", viewType: "back", url: "/products/men/navy-active-track-lower/back.webp", alt: "Navy Active Track Lower Back View", sortOrder: 2 },
-      { id: "m-lo-1-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Navy Active Track Lower Video", sortOrder: 3 }
+      { id: "m-navy-act-m1", type: "image", viewType: "front", url: "/products/men/navy-active-track-lower/front.webp", alt: "Navy Active Track Lower Front View", sortOrder: 1 },
+      { id: "m-navy-act-m2", type: "image", viewType: "back", url: "/products/men/navy-active-track-lower/back.webp", alt: "Navy Active Track Lower Back View", sortOrder: 2 },
+      { id: "m-navy-act-m3", type: "image", viewType: "detail", url: "/products/men/navy-active-track-lower/detail.webp", alt: "Navy Active Track Lower Fabric Close-up", sortOrder: 3 },
+      { id: "m-navy-act-v1", type: "video", viewType: "video", url: "/products/men/navy-active-track-lower/product-preview.mp4", posterUrl: "/products/men/navy-active-track-lower/video-poster.webp", alt: "Navy Active Track Lower Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-lo-1-nvy-s", sku: "999-MC-LO-001-NVY-S", color: { name: "Navy Blue", hex: "#1D2A44" }, size: "S", stock: 12, enabled: true },
@@ -61,9 +62,10 @@ export const menLowers: Product[] = [
     rating: 4.6,
     reviewCount: 29,
     media: [
-      { id: "m-lo-2-m1", type: "image", viewType: "front", url: "/products/men/charcoal-grey-slim-jogger/front.webp", alt: "Charcoal Grey Slim Jogger Front View", sortOrder: 1 },
-      { id: "m-lo-2-m2", type: "image", viewType: "back", url: "/products/men/charcoal-grey-slim-jogger/back.webp", alt: "Charcoal Grey Slim Jogger Back View", sortOrder: 2 },
-      { id: "m-lo-2-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Charcoal Grey Slim Jogger Video", sortOrder: 3 }
+      { id: "m-charcoal-m1", type: "image", viewType: "front", url: "/products/men/charcoal-grey-slim-jogger/front.webp", alt: "Charcoal Grey Slim Jogger Front View", sortOrder: 1 },
+      { id: "m-charcoal-m2", type: "image", viewType: "back", url: "/products/men/charcoal-grey-slim-jogger/back.webp", alt: "Charcoal Grey Slim Jogger Back View", sortOrder: 2 },
+      { id: "m-charcoal-m3", type: "image", viewType: "detail", url: "/products/men/charcoal-grey-slim-jogger/detail.webp", alt: "Charcoal Grey Slim Jogger Fabric Close-up", sortOrder: 3 },
+      { id: "m-charcoal-v1", type: "video", viewType: "video", url: "/products/men/charcoal-grey-slim-jogger/product-preview.mp4", posterUrl: "/products/men/charcoal-grey-slim-jogger/video-poster.webp", alt: "Charcoal Grey Slim Jogger Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-lo-2-gry-m", sku: "999-MC-LO-002-GRY-M", color: { name: "Charcoal Grey", hex: "#36454F" }, size: "M", stock: 20, enabled: true },
@@ -96,9 +98,10 @@ export const menLowers: Product[] = [
     rating: 4.5,
     reviewCount: 22,
     media: [
-      { id: "m-lo-3-m1", type: "image", viewType: "front", url: "/products/men/black-flex-running-track-pant/front.webp", alt: "Black Running Track Pant Front View", sortOrder: 1 },
-      { id: "m-lo-3-m2", type: "image", viewType: "back", url: "/products/men/black-flex-running-track-pant/back.webp", alt: "Black Running Track Pant Back View", sortOrder: 2 },
-      { id: "m-lo-3-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Black Running Track Pant Video", sortOrder: 3 }
+      { id: "m-black-fl-m1", type: "image", viewType: "front", url: "/products/men/black-flex-running-track-pant/front.webp", alt: "Black Flex Running Track Pant Front View", sortOrder: 1 },
+      { id: "m-black-fl-m2", type: "image", viewType: "back", url: "/products/men/black-flex-running-track-pant/back.webp", alt: "Black Flex Running Track Pant Back View", sortOrder: 2 },
+      { id: "m-black-fl-m3", type: "image", viewType: "detail", url: "/products/men/black-flex-running-track-pant/detail.webp", alt: "Black Flex Running Track Pant Fabric Close-up", sortOrder: 3 },
+      { id: "m-black-fl-v1", type: "video", viewType: "video", url: "/products/men/black-flex-running-track-pant/product-preview.mp4", posterUrl: "/products/men/black-flex-running-track-pant/video-poster.webp", alt: "Black Flex Running Track Pant Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-lo-3-blk-s", sku: "999-MC-LO-003-BLK-S", color: { name: "Midnight Black", hex: "#111111" }, size: "S", stock: 8, enabled: true },
@@ -131,9 +134,10 @@ export const menLowers: Product[] = [
     rating: 4.3,
     reviewCount: 15,
     media: [
-      { id: "m-lo-4-m1", type: "image", viewType: "front", url: "/products/men/olive-utility-gym-lower/front.webp", alt: "Olive Utility Gym Lower Front View", sortOrder: 1 },
-      { id: "m-lo-4-m2", type: "image", viewType: "back", url: "/products/men/olive-utility-gym-lower/back.webp", alt: "Olive Utility Gym Lower Back View", sortOrder: 2 },
-      { id: "m-lo-4-v1", type: "video", viewType: "video", url: "/products/men/placeholder/product-preview.mp4", alt: "Olive Utility Gym Lower Video", sortOrder: 3 }
+      { id: "m-olive-ut-m1", type: "image", viewType: "front", url: "/products/men/olive-utility-gym-lower/front.webp", alt: "Olive Utility Gym Lower Front View", sortOrder: 1 },
+      { id: "m-olive-ut-m2", type: "image", viewType: "back", url: "/products/men/olive-utility-gym-lower/back.webp", alt: "Olive Utility Gym Lower Back View", sortOrder: 2 },
+      { id: "m-olive-ut-m3", type: "image", viewType: "detail", url: "/products/men/olive-utility-gym-lower/detail.webp", alt: "Olive Utility Gym Lower Fabric Close-up", sortOrder: 3 },
+      { id: "m-olive-ut-v1", type: "video", viewType: "video", url: "/products/men/olive-utility-gym-lower/product-preview.mp4", posterUrl: "/products/men/olive-utility-gym-lower/video-poster.webp", alt: "Olive Utility Gym Lower Showcase Video", sortOrder: 4 }
     ],
     variants: [
       { id: "v-m-lo-4-olv-m", sku: "999-MC-LO-004-OLV-M", color: { name: "Olive Drab", hex: "#6B8E23" }, size: "M", stock: 15, enabled: true },

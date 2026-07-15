@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -150,45 +150,15 @@ export default function HomePage() {
             BUILD A MIX COMBO
           </Button>
         </div>
-        {/* Mix & Match Visual Guide — CSS editorial panel */}
-        <div className="relative aspect-video rounded-card overflow-hidden border border-border-light shadow-sm bg-gradient-to-br from-[#F4F0FF] to-[#EDE9FE] flex items-center justify-center">
-          {/* Step flow visual */}
-          <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6">
-            <div className="grid grid-cols-5 gap-2 w-full max-w-md">
-              {[
-                { icon: "🎽", label: "Shirt", gender: "M" },
-                { icon: "👚", label: "Top", gender: "W" },
-                { icon: "👖", label: "Pants", gender: "M" },
-                { icon: "🧣", label: "Palazzo", gender: "W" },
-                { icon: "🩳", label: "Shorts", gender: "M" },
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center gap-1.5">
-                  <div className="w-12 h-12 rounded-xl bg-white shadow-md flex items-center justify-center text-2xl border border-brand-primary/20">
-                    {item.icon}
-                  </div>
-                  <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                    item.gender === "M"
-                      ? "bg-brand-primary text-white"
-                      : "bg-brand-accent text-white"
-                  }`}>{item.gender}</span>
-                  <span className="text-[8px] text-text-secondary font-medium">{item.label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="h-px w-16 bg-brand-primary/30" />
-              <div className="px-4 py-1.5 rounded-full bg-brand-primary text-white text-xs font-extrabold font-heading tracking-wider shadow-md">
-                = YOUR ₹999 COMBO
-              </div>
-              <div className="h-px w-16 bg-brand-primary/30" />
-            </div>
-            <p className="text-[9px] text-text-secondary font-medium text-center max-w-xs">
-              Mix Men's and Women's styles in any combination • Any size • Any colour • One ₹999 price
-            </p>
-          </div>
-          {/* Decorative circles */}
-          <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-brand-primary/10" />
-          <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-brand-accent/10" />
+        {/* Mix & Match Visual Guide — Normalized WebP Showcase */}
+        <div className="relative aspect-video rounded-card overflow-hidden border border-border-light shadow-sm bg-white">
+          <Image
+            src="/sections/mix-match-guide.webp"
+            alt="Mix and Match Step-by-Step illustration"
+            fill
+            className="object-cover"
+            unoptimized
+          />
         </div>
       </section>
 
@@ -203,16 +173,15 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Men's landing card — styled panel with generated hero image */}
+          {/* Men's landing card — styled panel with normalized campaign image */}
           <div className="group relative rounded-promo overflow-hidden aspect-[16/10] border border-border-light shadow-sm">
-            {/* Background: try generated image first, fall back to gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1D2A44] via-[#2C3E5D] to-[#16213E]" />
-            {/* Decorative fashion silhouette shapes */}
-            <div className="absolute inset-0 overflow-hidden opacity-20">
-              <div className="absolute top-4 right-8 w-24 h-32 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] bg-white/30" />
-              <div className="absolute top-8 right-16 w-16 h-24 rounded-[50%_50%_40%_60%/60%_40%_60%_40%] bg-white/20" />
-              <div className="absolute bottom-0 right-4 w-20 h-28 bg-white/10 rounded-t-full" />
-            </div>
+            <Image
+              src="/sections/men-combo-card.webp"
+              alt="Men's Fashion Landing"
+              fill
+              className="object-cover group-hover:scale-103 transition-transform duration-300"
+              unoptimized
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 space-y-3">
               <span className="inline-block text-[9px] font-bold font-heading bg-brand-primary text-white px-2 py-0.5 rounded-full w-max">
                 MEN'S SERIES
@@ -228,17 +197,15 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Women's landing card — styled panel */}
+          {/* Women's landing card — styled panel with normalized campaign image */}
           <div className="group relative rounded-promo overflow-hidden aspect-[16/10] border border-border-light shadow-sm">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#7B2869] via-[#9E3D7B] to-[#C2587A]" />
-            {/* Decorative shapes */}
-            <div className="absolute inset-0 overflow-hidden opacity-20">
-              <div className="absolute top-4 right-6 w-20 h-32 rounded-[60%_40%_50%_50%/40%_60%_40%_60%] bg-white/30" />
-              <div className="absolute top-12 right-20 w-12 h-20 rounded-full bg-white/20" />
-              <div className="absolute bottom-0 right-2 w-16 h-24 bg-white/10 rounded-t-[60%_40%]" />
-              <div className="absolute top-2 right-32 w-8 h-12 bg-white/15 rounded-full" />
-            </div>
+            <Image
+              src="/sections/women-combo-card.webp"
+              alt="Women's Fashion Landing"
+              fill
+              className="object-cover group-hover:scale-103 transition-transform duration-300"
+              unoptimized
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 space-y-3">
               <span className="inline-block text-[9px] font-bold font-heading bg-brand-accent text-white px-2 py-0.5 rounded-full w-max">
                 WOMEN'S SERIES
@@ -255,6 +222,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
 
 
       {/* 6. Customer Reviews */}
