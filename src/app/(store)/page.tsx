@@ -174,7 +174,7 @@ export default function HomePage() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {/* Men's landing card — styled panel with normalized campaign image */}
-          <div className="group relative rounded-promo overflow-hidden aspect-[16/10] border border-border-light shadow-sm">
+          <div className="group relative rounded-promo overflow-hidden aspect-[4/5] sm:aspect-[4/3] border border-border-light shadow-sm">
             <Image
               src="/sections/men-combo-card.webp"
               alt="Men's Fashion Landing"
@@ -182,7 +182,7 @@ export default function HomePage() {
               className="object-cover group-hover:scale-103 transition-transform duration-300"
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 space-y-3">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6 space-y-3">
               <span className="inline-block text-[9px] font-bold font-heading bg-brand-primary text-white px-2 py-0.5 rounded-full w-max">
                 MEN'S SERIES
               </span>
@@ -198,7 +198,7 @@ export default function HomePage() {
           </div>
 
           {/* Women's landing card — styled panel with normalized campaign image */}
-          <div className="group relative rounded-promo overflow-hidden aspect-[16/10] border border-border-light shadow-sm">
+          <div className="group relative rounded-promo overflow-hidden aspect-[4/5] sm:aspect-[4/3] border border-border-light shadow-sm">
             <Image
               src="/sections/women-combo-card.webp"
               alt="Women's Fashion Landing"
@@ -206,7 +206,7 @@ export default function HomePage() {
               className="object-cover group-hover:scale-103 transition-transform duration-300"
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 space-y-3">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6 space-y-3">
               <span className="inline-block text-[9px] font-bold font-heading bg-brand-accent text-white px-2 py-0.5 rounded-full w-max">
                 WOMEN'S SERIES
               </span>
