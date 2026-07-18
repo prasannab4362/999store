@@ -192,33 +192,33 @@ export default function ComboBuilderPage() {
       <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-6 lg:px-8 py-4 sm:py-6 font-body pb-[160px] xl:pb-8">
 
         {/* ── 1. Progress Header (Compact) ───────────────────── */}
-        <div className="rounded-xl bg-white border border-border-light p-4 shadow-sm mb-4 sm:mb-6">
+        <div className="rounded-xl bg-white border border-border-light/60 p-5 shadow-xs mb-4 sm:mb-6 font-body">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-extrabold bg-brand-primary-soft text-brand-primary px-2 py-0.5 rounded-full uppercase tracking-wider">
-                  Building
+                <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
+                  BUILDING YOUR {activeCombo.itemLimit}-PICK COMBO
                 </span>
-                <span className="text-[10px] font-bold text-text-secondary uppercase tracking-wider">
-                  {activeCombo.comboName}
+                <span className="text-xs font-heading font-extrabold text-text-primary">
+                  (₹999)
                 </span>
               </div>
-              <p className="text-xs text-text-secondary mt-1">
-                Mix Men's + Women's styles. Complete all {activeCombo.itemLimit} picks.
+              <p className="text-[11px] text-text-secondary mt-1">
+                Mix Men's + Women's styles. Add styles to complete your package.
               </p>
             </div>
-            <div className="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-border-light shrink-0">
+            <div className="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-border-light/40 shrink-0">
               <div className="text-left sm:text-right">
                 <p className="text-xs font-bold text-text-primary uppercase tracking-wider">
-                  {selectedCount} / {activeCombo.itemLimit} Selected
+                  {selectedCount} OF {activeCombo.itemLimit} PICKED
                 </p>
-                <p className="text-[10px] font-bold text-brand-accent uppercase tracking-wider mt-0.5">
-                  {isComplete ? "Combo Complete!" : `${remainingCount} Picks Left`}
+                <p className="text-[10px] font-bold text-brand-primary uppercase tracking-wider mt-0.5">
+                  {isComplete ? "COMBO READY ✓" : `${remainingCount} PICKS LEFT`}
                 </p>
               </div>
             </div>
           </div>
-          <Progress value={selectedCount} max={activeCombo.itemLimit} className="h-1.5 mt-3.5" />
+          <Progress value={selectedCount} max={activeCombo.itemLimit} className="h-1.5 mt-4" />
         </div>
 
         {/* ── 2. Two Column Responsive Grid ──────────────────── */}
