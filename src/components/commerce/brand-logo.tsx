@@ -69,14 +69,14 @@ export function BrandLogo({
         {/* Brand Name "999" with custom offset styling */}
         <div className="flex items-baseline font-heading font-extrabold tracking-tighter">
           <span className={cn(isDark ? "text-white" : "text-text-primary", {
-            "text-lg": size === "sm",
-            "text-2xl": size === "md",
-            "text-4xl": size === "lg",
+            "text-xl": size === "sm",
+            "text-3xl": size === "md",
+            "text-5xl": size === "lg",
           })}>
             99
           </span>
           <span className="text-brand-primary transition-transform group-hover:translate-x-0.5 duration-200" style={{
-            fontSize: size === "sm" ? "1.125rem" : size === "md" ? "1.5rem" : "2.25rem"
+            fontSize: size === "sm" ? "1.25rem" : size === "md" ? "1.875rem" : "3rem"
           }}>
             9
           </span>
