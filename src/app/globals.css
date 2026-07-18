@@ -2,33 +2,33 @@
 
 :root {
   --background: #FFFFFF;
-  --foreground: #16131A;
-  --bg-secondary: #FFF9F4;
-  --border-light: #e5e7eb;
+  --foreground: #111318;
+  --bg-secondary: #FAF8F4;
+  --border-light: #E8E8EA;
   
   --font-poppins: 'Poppins', system-ui, sans-serif;
   --font-inter: 'Inter', system-ui, sans-serif;
 }
 
 @theme {
-  --color-brand-primary: #6D28D9;
-  --color-brand-primary-hover: #4C1D95;
-  --color-brand-primary-soft: #F4F0FF;
+  --color-brand-primary: #315CFF;
+  --color-brand-primary-hover: #1D3FCC;
+  --color-brand-primary-soft: #F4F6FF;
   --color-brand-primary-foreground: #ffffff;
   
-  --color-brand-accent: #FF5A5F;
-  --color-brand-accent-hover: #e04f53;
-  --color-brand-accent-soft: #FFF9F4;
+  --color-brand-accent: #FF6B35;
+  --color-brand-accent-hover: #e05e2d;
+  --color-brand-accent-soft: #FAF8F4;
   
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #FFF9F4;
+  --color-bg-secondary: #FAF8F4;
   --color-bg-neutral: #F5F5F7;
   
-  --color-text-primary: #16131A;
-  --color-text-secondary: #4b5563;
+  --color-text-primary: #111318;
+  --color-text-secondary: #737780;
   --color-text-muted: #9ca3af;
   
-  --color-border-light: #e5e7eb;
+  --color-border-light: #E8E8EA;
   
   --font-heading: var(--font-poppins), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glow-primary {
-  box-shadow: 0 0 20px rgba(109, 40, 217, 0.15);
+  box-shadow: 0 0 20px rgba(49, 92, 255, 0.15);
 }
 
 .focus-ring {
