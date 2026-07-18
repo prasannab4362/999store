@@ -24,48 +24,90 @@ export default function HomePage() {
     router.push(`/combo/${config.slug}`);
   };
 
+  const [isPlaying, setIsPlaying] = React.useState(true);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(() => {});
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
-    <div className="space-y-16 pb-12">
-      {/* 1. Hero Section */}
-      <section className="relative bg-bg-secondary py-12 md:py-20 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 items-center gap-12 relative z-10">
-          <div className="space-y-6 text-center md:text-left">
-            <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-brand-primary-soft text-brand-primary text-[10px] font-extrabold font-heading uppercase tracking-widest">
-              MIX. MATCH. MAKE IT 999.
+    <div className="space-y-16 pb-12 bg-white text-text-primary font-body">
+      {/* 1. Cinematic Video Hero Section */}
+      <section className="relative mx-auto max-w-[1700px] w-full px-4 sm:px-6 lg:px-8 mt-4">
+        <div className="relative w-full h-[65svh] sm:h-[75svh] md:h-[80svh] min-h-[500px] max-h-[850px] rounded-promo overflow-hidden bg-black shadow-lg border border-border-light/40 group">
+          {/* Background Video */}
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            src="/sections/home-hero-preview.mp4"
+            poster="/sections/home-hero.webp"
+            muted
+            playsInline
+            loop
+            autoPlay
+            preload="metadata"
+          />
+
+          {/* Vignette Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/30" />
+
+          {/* Interactive play/pause controller */}
+          <button
+            onClick={togglePlay}
+            className="absolute bottom-6 right-6 z-20 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-xs flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 active:scale-95 cursor-pointer border border-white/20"
+          >
+            {isPlaying ? (
+              <span className="text-[10px] font-bold tracking-widest font-heading">PAUSE</span>
+            ) : (
+              <span className="text-[10px] font-bold tracking-widest font-heading">PLAY</span>
+            )}
+          </button>
+
+          {/* Text Overlays - Editorial D2C styling */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 sm:p-12 md:p-16 space-y-6 max-w-2xl text-white">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/25 text-white text-[9px] font-bold font-heading uppercase tracking-widest w-max backdrop-blur-xs">
+              THE NEW WAY TO SHOP FASHION
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-text-primary tracking-tight leading-tight uppercase">
-              BUILD YOUR COMBO. <br />
-              <span className="text-brand-primary">MAKE IT YOURS.</span> <br />
-              <span className="text-brand-accent">ALL AT ₹999.</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight leading-none uppercase">
+              BUILD YOUR <br />
+              <span className="text-brand-primary">₹999 COMBO.</span>
             </h1>
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto md:mx-0">
-              Pick 2, 3, 5, 8 or 10 styles from selected collections. Mix Men + Women styles. Select sizes & colours dynamically. Get the whole combo for ₹999.
+            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed max-w-md">
+              Choose your picks. Mix Men + Women styles. Configure sizes & colours dynamically. Make it yours.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-              <Button size="lg" onClick={() => router.push("/combo")} className="w-full sm:w-auto font-heading font-bold uppercase tracking-wide cursor-pointer">
-                BUILD MY COMBO
-                <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Button size="lg" onClick={() => router.push("/combo")} className="w-full sm:w-auto font-heading font-extrabold bg-brand-primary hover:bg-brand-primary-hover text-white uppercase tracking-wider text-xs h-12 px-6 rounded-lg cursor-pointer">
+                BUILD MY COMBO →
               </Button>
               <Button size="lg" variant="outline" onClick={() => {
                 const el = document.getElementById("how-it-works-video");
                 el?.scrollIntoView({ behavior: "smooth" });
-              }} className="w-full sm:w-auto font-heading font-bold uppercase tracking-wide cursor-pointer">
+              }} className="w-full sm:w-auto font-heading font-extrabold border-white text-white hover:bg-white/10 hover:text-white uppercase tracking-wider text-xs h-12 px-6 rounded-lg cursor-pointer">
                 SEE HOW IT WORKS
               </Button>
             </div>
-            <p className="text-[10px] text-text-muted font-heading uppercase tracking-wider">
-              *Choose from products available within your selected combo collection. Courier extra. COD requires 20% advance.
-            </p>
-          </div>
-          <div className="relative aspect-video md:aspect-[4/3] rounded-promo overflow-hidden shadow-lg border border-border-light bg-white">
-            <Image
-              src={homeHeroBanner.image}
-              alt="Build Your Own Fashion Combo Showcase"
-              fill
-              className="object-cover"
-              priority
-              unoptimized
-            />
+            
+            {/* Visual Combo Price Marker */}
+            <div className="pt-2 border-t border-white/10 flex items-center gap-4 text-[10px] uppercase font-bold text-gray-300 font-heading tracking-wider">
+              <span>02</span>
+              <span>·</span>
+              <span>03</span>
+              <span>·</span>
+              <span>05</span>
+              <span>·</span>
+              <span>08</span>
+              <span>·</span>
+              <span>10</span>
+              <span className="text-brand-primary">Picks for flat ₹999</span>
+            </div>
           </div>
         </div>
       </section>
