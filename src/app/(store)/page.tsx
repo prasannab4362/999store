@@ -83,10 +83,10 @@ export default function HomePage() {
             <div className="absolute inset-0 w-full h-full animate-in fade-in zoom-in-95 duration-700">
               <Image
                 src={
-                  mediaSource === "image-1" ? "/sections/media__1784082027431.png" :
-                  mediaSource === "image-2" ? "/sections/media__1784082661358.png" :
-                  mediaSource === "image-3" ? "/sections/media__1784083336779.png" :
-                  "/sections/media__1784083374115.png"
+                  mediaSource === "image-1" ? "/products/men/traditional-gold-border-vesti-shirt-set/front.webp" :
+                  mediaSource === "image-2" ? "/products/men/classic-crisp-white-formal-shirt/front.webp" :
+                  mediaSource === "image-3" ? "/products/men/sandstone-oversized-cotton-shirt/front.webp" :
+                  "/products/men/emerald-check-casual-shirt/front.webp"
                 }
                 alt="Fashion Editorial Collection Outfit"
                 fill
