@@ -215,9 +215,8 @@ export default function HomePage() {
               playsInline
               loop
               autoPlay
-            >
-              <source src="/sections/how-combo-works.mp4" type="video/mp4" />
-            </video>
+              src="/sections/how-combo-works.mp4"
+            />
             <div className="absolute bottom-3 left-3 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
               <Video className="h-3 w-3" />
               <span>EXPLORE BUILDER FLOW</span>
