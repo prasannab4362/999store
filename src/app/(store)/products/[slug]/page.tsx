@@ -370,7 +370,7 @@ export default function ProductDetailPage() {
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
               size="lg"
-              className="flex-1 gap-2 h-12 text-sm font-bold tracking-wide uppercase cursor-pointer"
+              className="flex-1 gap-2 h-12 text-xs font-bold tracking-wider uppercase cursor-pointer bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg border-transparent transition-smooth active:scale-98"
               onClick={handleAddAction}
               disabled={!!activeCombo && (!selectedColor || !selectedSize || !selectedVariant || !isVariantAvailable(selectedVariant))}
             >
@@ -382,7 +382,7 @@ export default function ProductDetailPage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 w-12 p-0 cursor-pointer"
+                className="h-12 w-12 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95"
                 onClick={() => {
                   toggleWishlist(slug);
                   toast.success(isWishlisted ? "Removed from wishlist." : "Added to wishlist.");
@@ -394,7 +394,7 @@ export default function ProductDetailPage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 w-12 p-0 cursor-pointer"
+                className="h-12 w-12 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95"
                 onClick={handleShare}
                 aria-label="Share Link"
               >
@@ -402,6 +402,31 @@ export default function ProductDetailPage() {
               </Button>
             </div>
           </div>
+
+          {/* Sticky Progress Dock for Products Detail Page (Swiggy inspired) */}
+          {activeCombo && activeCombo.slots.filter(s => s.item).length > 0 && (
+            <div className="fixed bottom-16 left-4 right-4 z-40 bg-black/90 text-white backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.24)] px-4 py-3 pb-3.5 border border-white/10 flex items-center justify-between gap-3 animate-in fade-in slide-in-from-bottom-5 duration-300">
+              <div className="flex flex-col gap-1 text-[11px]">
+                <span className="font-bold uppercase tracking-wider text-white">
+                  {activeCombo.slots.filter(s => s.item).length} OF {activeCombo.itemLimit} SELECTED
+                </span>
+                <span className="text-[9px] text-gray-300">
+                  {activeCombo.slots.filter(s => s.item).length === activeCombo.itemLimit 
+                    ? "COMBO READY ✓" 
+                    : `${activeCombo.itemLimit - activeCombo.slots.filter(s => s.item).length} PICKS LEFT`}
+                </span>
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  size="sm" 
+                  onClick={() => router.push(`/combo/${activeCombo.comboSlug}`)}
+                  className="h-9 px-4 font-bold uppercase tracking-wider text-[10px] bg-brand-primary text-white hover:bg-brand-primary-hover border-transparent"
+                >
+                  View Picks
+                </Button>
+              </div>
+            </div>
+          )}
 
           {/* Policies & Accordions */}
           <div className="space-y-4 border-t border-border-light pt-6">
