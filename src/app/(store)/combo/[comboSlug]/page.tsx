@@ -317,54 +317,56 @@ export default function ComboBuilderPage() {
           </aside>
         </div>
 
-        {/* ── 3. Mobile/Tablet Sticky Combo Progress Dock (Visible < 1280px) ── */}
-        <div className="xl:hidden fixed bottom-16 left-0 right-0 z-30 bg-white border-t border-border-light shadow-[0_-8px_20px_rgba(0,0,0,0.06)] px-4 py-3 pb-[calc(12px+env(safe-area-inset-bottom))] flex flex-col gap-2.5">
-          {/* Top row */}
-          <div className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-1.5 font-bold text-text-primary uppercase tracking-wider">
-              <span>{selectedCount} / {activeCombo.itemLimit} PICKS</span>
-              {isComplete ? (
-                <span className="text-[9px] bg-brand-primary-soft text-brand-primary px-2 py-0.5 rounded-full">COMPLETE</span>
-              ) : (
-                <span className="text-[9px] text-brand-accent bg-amber-50 px-2 py-0.5 rounded-full">{remainingCount} LEFT</span>
-              )}
+        {/* ── 3. Mobile/Tablet Sticky Combo Progress Dock (Visible < 1280px, Swiggy-cart inspired glass surface) ── */}
+        {selectedCount > 0 && (
+          <div className="xl:hidden fixed bottom-16 left-4 right-4 z-40 bg-black/90 text-white backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.24)] px-4 py-3 pb-3.5 border border-white/10 flex flex-col gap-2.5 animate-in fade-in slide-in-from-bottom-5 duration-350">
+            {/* Top row */}
+            <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-white">
+                <span>{selectedCount} OF {activeCombo.itemLimit} SELECTED</span>
+                {isComplete ? (
+                  <span className="text-[9px] bg-emerald-600/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20">COMBO READY ✓</span>
+                ) : (
+                  <span className="text-[9px] text-brand-accent bg-brand-accent/10 px-2 py-0.5 rounded-full border border-brand-accent/20">{remainingCount} LEFT</span>
+                )}
+              </div>
+              <span className="font-heading font-extrabold text-white text-base">₹999</span>
             </div>
-            <span className="font-heading font-extrabold text-brand-primary text-base">₹999</span>
+
+            {/* Progress bar */}
+            <Progress value={selectedCount} max={activeCombo.itemLimit} className="h-1 bg-white/20" />
+
+            {/* Actions */}
+            <div className="flex gap-2">
+              <Sheet open={mobileSummaryOpen} onOpenChange={setMobileSummaryOpen}>
+                <SheetTrigger asChild>
+                  <Button size="sm" variant="outline" className="flex-1 h-10 font-bold uppercase tracking-wider text-[10px] gap-1.5 cursor-pointer rounded-lg border-white/25 text-white hover:bg-white/10 bg-transparent">
+                    <ShoppingBag className="h-4 w-4" />
+                    <span>View Combo</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="rounded-t-2xl max-h-[85dvh] flex flex-col p-0">
+                  <SheetHeader className="px-5 pt-5 pb-3 border-b border-border-light shrink-0">
+                    <SheetTitle className="font-heading text-base">Your Combo Summary</SheetTitle>
+                  </SheetHeader>
+                  <div className="flex-1 overflow-y-auto px-5 pb-6 pt-4">
+                    <SlotsSummary compact />
+                  </div>
+                </SheetContent>
+              </Sheet>
+
+              <Button
+                onClick={handleReviewRedirect}
+                disabled={!isComplete}
+                size="sm"
+                className="flex-1 h-10 font-bold uppercase tracking-wider text-[10px] gap-1 shrink-0 rounded-lg bg-brand-primary text-white hover:bg-brand-primary-hover border-transparent"
+              >
+                <span>Review Combo</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Button>
+            </div>
           </div>
-
-          {/* Progress bar */}
-          <Progress value={selectedCount} max={activeCombo.itemLimit} className="h-1.5" />
-
-          {/* Actions */}
-          <div className="flex gap-2">
-            <Sheet open={mobileSummaryOpen} onOpenChange={setMobileSummaryOpen}>
-              <SheetTrigger asChild>
-                <Button size="sm" variant="outline" className="flex-1 h-10 font-bold uppercase tracking-wider text-[10px] gap-1.5 cursor-pointer rounded-lg border-brand-primary/20 text-brand-primary bg-brand-primary-soft/10">
-                  <ShoppingBag className="h-4 w-4" />
-                  <span>View Combo</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="bottom" className="rounded-t-2xl max-h-[85dvh] flex flex-col p-0">
-                <SheetHeader className="px-5 pt-5 pb-3 border-b border-border-light shrink-0">
-                  <SheetTitle className="font-heading text-base">Your Combo Summary</SheetTitle>
-                </SheetHeader>
-                <div className="flex-1 overflow-y-auto px-5 pb-6 pt-4">
-                  <SlotsSummary compact />
-                </div>
-              </SheetContent>
-            </Sheet>
-
-            <Button
-              onClick={handleReviewRedirect}
-              disabled={!isComplete}
-              size="sm"
-              className="flex-1 h-10 font-bold uppercase tracking-wider text-[10px] gap-1 shrink-0 rounded-lg"
-            >
-              <span>Review Combo</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
-          </div>
-        </div>
+        )}
 
       </div>
     </main>
