@@ -108,7 +108,7 @@ export default function ComboBuilderPage() {
               "p-3 rounded-xl border flex items-center gap-3 transition-colors min-w-0",
               slot.item
                 ? "border-brand-primary/20 bg-brand-primary-soft/10"
-                : "border-dashed border-border-medium bg-bg-secondary/40"
+                : "border-border-light bg-bg-secondary/40"
             )}
           >
             {/* Slot index circle / image */}
@@ -120,7 +120,7 @@ export default function ComboBuilderPage() {
                 </span>
               </div>
             ) : (
-              <div className="h-14 w-11 rounded-lg border-2 border-dashed border-border-medium bg-white flex items-center justify-center shrink-0 text-xs font-heading font-extrabold text-text-muted">
+              <div className="h-14 w-11 rounded-lg border border-border-light bg-bg-secondary/60 flex items-center justify-center shrink-0 text-xs font-heading font-extrabold text-text-muted">
                 {(index + 1).toString().padStart(2, "0")}
               </div>
             )}
