@@ -251,6 +251,34 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Cinematic Combo Narrative Story Strip (Visual banner scroll) */}
+        <div className="border-t border-border-light/40 pt-10">
+          <div className="text-center max-w-xl mx-auto space-y-2 mb-6">
+            <span className="text-[9px] font-bold tracking-widest text-brand-primary uppercase">CHOOSE · PICK · COMPLETE</span>
+            <h3 className="text-xl font-extrabold font-heading text-text-primary uppercase">Build Your Combo Story</h3>
+          </div>
+          <div className="flex overflow-x-auto pb-4 gap-6 snap-x snap-mandatory scrollbar-none sm:grid sm:grid-cols-3 sm:overflow-visible">
+            {/* Slide 1 */}
+            <div className="bg-bg-secondary p-6 rounded-card border border-border-light/50 shrink-0 w-[280px] snap-center sm:w-auto space-y-3">
+              <span className="text-[10px] font-extrabold text-brand-accent tracking-widest uppercase">STEP 01</span>
+              <h4 className="font-heading font-bold text-sm text-text-primary uppercase">Choose Your Combo</h4>
+              <p className="text-xs text-text-secondary leading-relaxed">Choose from 2, 3, 5, 8 or 10 picks combo sizes. All tiers cost a flat ₹999 base price.</p>
+            </div>
+            {/* Slide 2 */}
+            <div className="bg-bg-secondary p-6 rounded-card border border-border-light/50 shrink-0 w-[280px] snap-center sm:w-auto space-y-3">
+              <span className="text-[10px] font-extrabold text-brand-primary tracking-widest uppercase">STEP 02</span>
+              <h4 className="font-heading font-bold text-sm text-text-primary uppercase">Choose Any Style</h4>
+              <p className="text-xs text-text-secondary leading-relaxed">Mix Men's clothing + Women's dresses in the same combo. Choose styles from selected assortments.</p>
+            </div>
+            {/* Slide 3 */}
+            <div className="bg-bg-secondary p-6 rounded-card border border-border-light/50 shrink-0 w-[280px] snap-center sm:w-auto space-y-3">
+              <span className="text-[10px] font-extrabold text-emerald-600 tracking-widest uppercase">STEP 03</span>
+              <h4 className="font-heading font-bold text-sm text-text-primary uppercase">Combo Complete</h4>
+              <p className="text-xs text-text-secondary leading-relaxed">Review selected items, add variant parameters, and pay with Cash on Delivery (COD) 20% advance options.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 4. Mix & Match Editorial Section */}
