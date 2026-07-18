@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Sparkles, CheckCircle2, Video, Play, CreditCard, RotateCcw } from "lucide-react";
