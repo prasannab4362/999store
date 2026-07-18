@@ -239,15 +239,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <div className="p-2 sm:p-4 flex flex-col justify-between flex-1 min-w-0 w-full">
         <div className="space-y-1 min-w-0">
           <div className="flex items-center justify-between text-[9px] sm:text-xs">
-            <span className="uppercase font-bold text-text-muted tracking-wider truncate max-w-[70%] hidden sm:inline-block">
-              {product.subcategory}
+            <span className="uppercase font-bold text-brand-primary tracking-wider truncate max-w-[70%]">
+              {product.brandName || "999 EDIT"}
             </span>
             <span className="text-text-secondary flex items-center gap-0.5 font-semibold sm:ml-auto shrink-0">
               ★ {product.rating}
             </span>
           </div>
           <Link href={`/products/${product.slug}`} className="block hover:text-brand-primary">
-            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2rem] sm:min-h-0 sm:truncate">
+            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2.5rem] sm:min-h-0 sm:truncate">
               {product.name}
             </h3>
           </Link>
@@ -286,12 +286,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
         {/* Pricing / Action */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 mt-2 border-t border-border-light gap-2 shrink-0">
-          <div className="flex flex-col hidden sm:flex">
-            <span className="text-[9px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
               ₹999 COMBO
             </span>
             <span className="text-[8px] uppercase font-bold text-text-muted mt-1 leading-none">
-              Eligible Style
+              AVAILABLE IN {product.comboTierIds?.map(t => t.replace("combo-", "")).join(" · ") || "ALL"}
             </span>
           </div>
           <div className="flex gap-1.5 w-full sm:w-auto">

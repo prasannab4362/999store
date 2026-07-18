@@ -108,4 +108,19 @@ describe("Product Catalog and Variant Integrity Tests", () => {
     expect(isVariantAvailable(mockDisabled)).toBe(false);
     expect(isVariantAvailable(mockZeroStock)).toBe(false);
   });
+
+  // 12. 5-tier combo eligibility distribution
+  test("5-tier combo eligibility assortments function correctly", () => {
+    const combo2Items = products.filter((p) => p.comboTierIds?.includes("combo-2"));
+    const combo3Items = products.filter((p) => p.comboTierIds?.includes("combo-3"));
+    const combo5Items = products.filter((p) => p.comboTierIds?.includes("combo-5"));
+    const combo8Items = products.filter((p) => p.comboTierIds?.includes("combo-8"));
+    const combo10Items = products.filter((p) => p.comboTierIds?.includes("combo-10"));
+
+    expect(combo2Items.length).toBeGreaterThan(0);
+    expect(combo3Items.length).toBeGreaterThan(0);
+    expect(combo5Items.length).toBeGreaterThan(0);
+    expect(combo8Items.length).toBeGreaterThan(0);
+    expect(combo10Items.length).toBeGreaterThan(0);
+  });
 });

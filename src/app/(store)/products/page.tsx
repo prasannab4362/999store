@@ -23,6 +23,7 @@ function ProductsContent() {
   const categoryFilter = searchParams.get("category");
   const sizeFilter = searchParams.get("size");
   const colorFilter = searchParams.get("color");
+  const comboFilter = searchParams.get("combo");
   const searchFilter = searchParams.get("q");
   const sortOption = searchParams.get("sort") || "recommended";
 
@@ -79,6 +80,14 @@ function ProductsContent() {
         return false;
       }
 
+      // Combo Tier
+      if (comboFilter) {
+        const targetComboId = `combo-${comboFilter}`;
+        if (!product.comboTierIds || !product.comboTierIds.includes(targetComboId as any)) {
+          return false;
+        }
+      }
+
       // Size / Color
       if (sizeFilter || colorFilter) {
         const hasMatchingVariant = product.variants.some((v) => {
@@ -91,7 +100,7 @@ function ProductsContent() {
 
       return true;
     });
-  }, [genderFilter, categoryFilter, sizeFilter, colorFilter, searchFilter]);
+  }, [genderFilter, categoryFilter, comboFilter, sizeFilter, colorFilter, searchFilter]);
 
   // 2. Sort products
   const sortedProducts = React.useMemo(() => {
@@ -111,10 +120,31 @@ function ProductsContent() {
     return sorted;
   }, [filteredProducts, sortOption]);
 
-  const activeFiltersCount = [genderFilter, categoryFilter, sizeFilter, colorFilter, searchFilter].filter(Boolean).length;
+  const activeFiltersCount = [genderFilter, categoryFilter, sizeFilter, colorFilter, comboFilter, searchFilter].filter(Boolean).length;
 
   const FiltersContent = () => (
     <div className="space-y-6 font-body">
+      {/* Combo Tier Filter */}
+      <div className="space-y-2">
+        <h4 className="text-xs font-bold font-heading uppercase text-text-primary tracking-wider">Combo Tier</h4>
+        <div className="grid grid-cols-3 gap-1.5">
+          {["2", "3", "5", "8", "10"].map((tierNum) => (
+            <button
+              key={tierNum}
+              onClick={() => setParam("combo", comboFilter === tierNum ? null : tierNum)}
+              className={cn(
+                "text-center text-xs py-1.5 rounded-control border transition-colors cursor-pointer font-bold",
+                comboFilter === tierNum
+                  ? "border-brand-primary bg-brand-primary-soft text-brand-primary"
+                  : "border-border-light text-text-secondary hover:bg-bg-secondary"
+              )}
+            >
+              {tierNum} Tier
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Gender */}
       <div className="space-y-2">
         <h4 className="text-xs font-bold font-heading uppercase text-text-primary tracking-wider">Gender</h4>
@@ -272,6 +302,12 @@ function ProductsContent() {
             <span className="inline-flex items-center gap-1 bg-bg-secondary px-2.5 py-1 rounded-full border border-border-light">
               Category: {categoryFilter}
               <X className="h-3.5 w-3.5 cursor-pointer text-text-muted hover:text-text-primary" onClick={() => setParam("category", null)} />
+            </span>
+          )}
+          {comboFilter && (
+            <span className="inline-flex items-center gap-1 bg-bg-secondary px-2.5 py-1 rounded-full border border-border-light">
+              Combo: {comboFilter} Items
+              <X className="h-3.5 w-3.5 cursor-pointer text-text-muted hover:text-text-primary" onClick={() => setParam("combo", null)} />
             </span>
           )}
           {sizeFilter && (

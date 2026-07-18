@@ -28,6 +28,8 @@ export interface ProductMedia {
   posterUrl?: string;
 }
 
+export type ComboTierId = "combo-2" | "combo-3" | "combo-5" | "combo-8" | "combo-10";
+
 export interface Product {
   id: string;
   slug: string;
@@ -48,6 +50,9 @@ export interface Product {
   neck?: string;
   washCare?: string;
   comboEligible: boolean;
+  comboTierIds?: ComboTierId[];
+  brandId?: string;
+  brandName?: string;
   featured: boolean;
   trending: boolean;
   newArrival: boolean;

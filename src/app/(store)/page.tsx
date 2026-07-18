@@ -8,6 +8,8 @@ import { comboConfigs } from "@/config/combo";
 import { categories } from "@/data/mock/categories";
 import { mockHomeReviews } from "@/data/mock/reviews";
 import { homeHeroBanner } from "@/data/mock/banners";
+import { products } from "@/data/mock/products";
+import { ProductCard } from "@/components/commerce/product-card";
 import { PolicyNotice } from "@/components/commerce/policy-notice";
 import { useComboStore } from "@/stores/combo-store";
 import { useRouter } from "next/navigation";
@@ -37,19 +39,22 @@ export default function HomePage() {
               <span className="text-brand-accent">ALL AT ₹999.</span>
             </h1>
             <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto md:mx-0">
-              Pick your combo size. Mix Men's and Women's styles. Choose your colours and sizes. Complete your combo for ₹999.
+              Pick 2, 3, 5, 8 or 10 styles from selected collections. Mix Men + Women styles. Select sizes & colours dynamically. Get the whole combo for ₹999.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <Button size="lg" onClick={() => router.push("/combo")} className="w-full sm:w-auto font-heading font-bold uppercase tracking-wide cursor-pointer">
-                {homeHeroBanner.ctaText}
+                BUILD MY COMBO
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline" onClick={() => router.push("/products")} className="w-full sm:w-auto font-heading font-bold uppercase tracking-wide cursor-pointer">
-                EXPLORE STYLES
+              <Button size="lg" variant="outline" onClick={() => {
+                const el = document.getElementById("how-it-works-video");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }} className="w-full sm:w-auto font-heading font-bold uppercase tracking-wide cursor-pointer">
+                SEE HOW IT WORKS
               </Button>
             </div>
-            <p className="text-[11px] text-text-muted font-heading uppercase tracking-wider">
-              *Courier charges are calculated separately at checkout. COD requires a 20% advance payment.
+            <p className="text-[10px] text-text-muted font-heading uppercase tracking-wider">
+              *Choose from products available within your selected combo collection. Courier extra. COD requires 20% advance.
             </p>
           </div>
           <div className="relative aspect-video md:aspect-[4/3] rounded-promo overflow-hidden shadow-lg border border-border-light bg-white">
@@ -76,33 +81,36 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {comboConfigs.map((config) => (
             <div
               key={config.id}
-              className="rounded-card border border-border-light bg-white p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group"
+              className="rounded-card border border-border-light bg-white p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group"
             >
               <div className="space-y-4">
-                <span className={`inline-block text-[9px] font-bold font-heading px-2 py-0.5 rounded-full ${config.themeMetadata?.bgClass} ${config.themeMetadata?.colorClass}`}>
+                <span className={`inline-block text-[8px] sm:text-[9px] font-bold font-heading px-2 py-0.5 rounded-full ${config.themeMetadata?.bgClass} ${config.themeMetadata?.colorClass}`}>
                   {config.badge}
                 </span>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-text-primary">{config.name}</h3>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-text-primary uppercase tracking-tight">{config.name}</h3>
                   <p className="text-[10px] text-text-muted">{config.itemLimit} Selected Items</p>
                 </div>
-                <div className="flex items-baseline gap-1.5 py-1">
-                  <span className="text-2xl font-bold font-heading text-brand-primary">₹999</span>
+                <div className="flex items-baseline gap-1 py-1">
+                  <span className="text-xl sm:text-2xl font-extrabold font-heading text-brand-primary">₹999</span>
                   <span className="text-[10px] text-text-muted line-through">₹2,499</span>
                 </div>
-                <p className="text-xs text-text-secondary leading-normal">{config.description}</p>
+                <p className="text-[11px] text-text-secondary leading-normal min-h-[3rem] line-clamp-3">
+                  {config.description}
+                </p>
               </div>
 
               <Button
                 variant="secondary"
-                className="mt-6 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors"
+                size="sm"
+                className="mt-6 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors uppercase font-bold tracking-wide"
                 onClick={() => handleStartCombo(config)}
               >
-                Start Building
+                Choose {config.itemLimit} Items
               </Button>
             </div>
           ))}
@@ -120,6 +128,65 @@ export default function HomePage() {
           </p>
         </div>
         <PolicyNotice variant="full" />
+      </section>
+
+      {/* 3. How ₹999 Combo Works Video Section */}
+      <section id="how-it-works-video" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-text-primary tracking-tight uppercase">
+            HOW DOES THE ₹999 COMBO WORK?
+          </h2>
+          <p className="text-xs sm:text-sm text-text-secondary">
+            Select your pack size, pick any styles, choose sizes/colours, and build your package for ₹999.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-8 items-center bg-bg-secondary rounded-promo p-6 md:p-10 border border-border-light shadow-sm">
+          {/* Video Container */}
+          <div className="md:col-span-7 relative aspect-video rounded-card overflow-hidden border border-border-light bg-black group shadow-sm">
+            <video
+              className="w-full h-full object-cover"
+              poster="/sections/how-combo-works-poster.webp"
+              muted
+              playsInline
+              loop
+              autoPlay
+            >
+              <source src="/sections/how-combo-works.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/45 transition-colors">
+              <button className="h-14 w-14 rounded-full bg-brand-accent text-white flex items-center justify-center shadow-lg active:scale-95 transition-all cursor-pointer">
+                <Play className="h-6 w-6 fill-current ml-1" />
+              </button>
+            </div>
+            <div className="absolute bottom-3 left-3 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
+              <Video className="h-3 w-3" />
+              <span>EXPLORE BUILDER FLOW</span>
+            </div>
+          </div>
+
+          {/* Stepper Details */}
+          <div className="md:col-span-5 space-y-6 font-body">
+            <div className="space-y-4">
+              {[
+                { step: "01", title: "Choose Combo Size", desc: "Select 2, 3, 5, 8 or 10 item tiers based on your needs." },
+                { step: "02", title: "Pick Eligible Styles", desc: "Select clothing items configured inside your collection." },
+                { step: "03", title: "Configure Variants", desc: "Individually configure sizes and colours for each selected slot." },
+                { step: "04", title: "Pay Base ₹999 Price", desc: "Confirm selections and pay ₹999 flat base rate for the combo." }
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-4 items-start">
+                  <span className="h-7 w-7 rounded-lg bg-brand-primary-soft text-brand-primary font-heading font-extrabold text-xs flex items-center justify-center shrink-0">
+                    {item.step}
+                  </span>
+                  <div className="space-y-0.5">
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-text-primary uppercase tracking-wide">{item.title}</h4>
+                    <p className="text-[11px] sm:text-xs text-text-secondary leading-normal">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 4. Mix & Match Editorial Section */}
@@ -162,7 +229,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Shop Category Men/Women */}
+      {/* Shop by Category Section - 12 Categories grid */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 font-body">
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-border-light pb-4">
+          <h2 className="text-2xl font-extrabold font-heading text-text-primary tracking-tight">
+            SHOP BY CATEGORY
+          </h2>
+          <p className="text-xs text-text-secondary">
+            Quick fashion category rails. Explore trending silhouettes immediately.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {[
+            { name: "Men's Shirts", code: "shirts", count: "4 Styles", image: "/products/men/emerald-check-casual-shirt/front.webp" },
+            { name: "Men's T-Shirts", code: "t-shirts", count: "4 Styles", image: "/products/men/midnight-black-oversized-graphic-tee/front.webp" },
+            { name: "Men's Pants", code: "pants", count: "4 Styles", image: "/products/men/indigo-comfort-cargo-pant/front.webp" },
+            { name: "Men's Lowers", code: "lowers", count: "4 Styles", image: "/products/men/emerald-active-sport-jogger/front.webp" },
+            { name: "Men's Shorts", code: "shorts", count: "4 Styles", image: "/products/men/sandstone-cargo-shorts/front.webp" },
+            { name: "Traditional Vesti", code: "vesti-sets", count: "4 Styles", image: "/products/men/traditional-gold-border-vesti/front.webp" },
+            { name: "Women's Tops", code: "tops", count: "3 Styles", image: "/products/women/rosewood-printed-rayon-top/front.webp" },
+            { name: "Women's Leggings", code: "leggings", count: "3 Styles", image: "/products/women/scarlet-red-cotton-leggings/front.webp" },
+            { name: "Women's Jeans", code: "jeans", count: "2 Styles", image: "/products/women/indigo-high-waist-mom-jeans/front.webp" },
+            { name: "Women's Palazzo", code: "palazzo", count: "3 Styles", image: "/products/women/indigo-block-printed-palazzo/front.webp" },
+            { name: "Straight Pants", code: "straight-pants", count: "3 Styles", image: "/products/women/classic-black-straight-pants/front.webp" },
+            { name: "Kurta Sets", code: "cotton-sets", count: "4 Styles", image: "/products/women/festival-gota-work-kurta-set/front.webp" },
+          ].map((cat, idx) => (
+            <div
+              key={idx}
+              onClick={() => router.push(`/products?category=${cat.code}`)}
+              className="group cursor-pointer rounded-card border border-border-light overflow-hidden bg-white p-3 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:border-brand-primary/20 transition-all"
+            >
+              <div className="relative h-28 w-full rounded-xl overflow-hidden bg-bg-secondary mb-3 shrink-0">
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <h4 className="font-heading font-extrabold text-[11px] sm:text-xs text-text-primary uppercase tracking-wide truncate max-w-full">
+                {cat.name}
+              </h4>
+              <span className="text-[9px] font-bold text-text-muted mt-0.5">{cat.count}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Combo Products Row */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 font-body">
+        <div className="flex items-center justify-between border-b border-border-light pb-4">
+          <div>
+            <h2 className="text-2xl font-extrabold font-heading text-text-primary tracking-tight">
+              TRENDING IN ₹999 COMBOS
+            </h2>
+            <p className="text-xs text-text-secondary">
+              Our most popular style picks, fully eligible for any combo size.
+            </p>
+          </div>
+          <Button variant="outline" size="sm" onClick={() => router.push("/products")} className="cursor-pointer">
+            View All
+          </Button>
+        </div>
+
+        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {products.filter((p) => p.featured).slice(0, 4).map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-border-light pb-4">
           <h2 className="text-2xl font-extrabold font-heading text-text-primary tracking-tight">

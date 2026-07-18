@@ -42,7 +42,8 @@ export default function ComboBuilderPage() {
   // Filter products for combo builder
   const filteredProducts = React.useMemo(() => {
     return products.filter((p) => {
-      if (!p.comboEligible) return false;
+      // Must match currently active combo tier ID
+      if (activeCombo && p.comboTierIds && !p.comboTierIds.includes(activeCombo.comboId as any)) return false;
       if (genderFilter !== "all" && p.gender !== genderFilter && p.gender !== "unisex") return false;
       if (selectedCategory !== "all" && p.categoryId !== selectedCategory) return false;
       if (searchQuery) {
@@ -51,7 +52,7 @@ export default function ComboBuilderPage() {
       }
       return true;
     });
-  }, [genderFilter, selectedCategory, searchQuery]);
+  }, [activeCombo, genderFilter, selectedCategory, searchQuery]);
 
   if (!activeCombo) {
     return (
