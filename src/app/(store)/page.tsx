@@ -28,27 +28,8 @@ export default function HomePage() {
     router.push(`/combo/${config.slug}`);
   };
 
-  const [mediaSource, setMediaSource] = React.useState<"video" | "image-1" | "image-2" | "image-3" | "image-4">("video");
   const [isPlaying, setIsPlaying] = React.useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  // Slideshow cycle effect every 5 seconds once video completes
-  React.useEffect(() => {
-    if (mediaSource === "video") return;
-    const sources: Array<"image-1" | "image-2" | "image-3" | "image-4"> = ["image-1", "image-2", "image-3", "image-4"];
-    const interval = setInterval(() => {
-      setMediaSource((prev) => {
-        const idx = sources.indexOf(prev as any);
-        const nextIdx = (idx + 1) % sources.length;
-        return sources[nextIdx];
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [mediaSource]);
-
-  const handleVideoEnded = () => {
-    setMediaSource("image-1");
-  };
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -66,35 +47,18 @@ export default function HomePage() {
       {/* 1. Cinematic Video Hero Section */}
       <section className="relative mx-auto max-w-[1700px] w-full px-4 sm:px-6 lg:px-8 mt-4">
         <div className="relative w-full h-[65svh] sm:h-[75svh] md:h-[80svh] min-h-[500px] max-h-[850px] rounded-promo overflow-hidden bg-black shadow-lg border border-border-light/40 group">
-          {/* Background Video or Slideshow Image */}
-          {mediaSource === "video" ? (
-            <video
-              ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-700"
-              src="/sections/home-hero-preview.mp4"
-              poster="/sections/home-hero.webp"
-              muted
-              playsInline
-              autoPlay
-              preload="metadata"
-              onEnded={handleVideoEnded}
-            />
-          ) : (
-            <div className="absolute inset-0 w-full h-full animate-in fade-in zoom-in-95 duration-700">
-              <Image
-                src={
-                  mediaSource === "image-1" ? "/products/men/traditional-gold-border-vesti-shirt-set/front.webp" :
-                  mediaSource === "image-2" ? "/products/men/classic-crisp-white-formal-shirt/front.webp" :
-                  mediaSource === "image-3" ? "/products/men/sandstone-oversized-cotton-shirt/front.webp" :
-                  "/products/men/emerald-check-casual-shirt/front.webp"
-                }
-                alt="Fashion Editorial Collection Outfit"
-                fill
-                className="object-cover opacity-85 transition-all duration-700 transform hover:scale-102"
-                unoptimized
-              />
-            </div>
-          )}
+          {/* Background Video */}
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            src="/sections/home-hero-preview.mp4"
+            poster="/sections/home-hero.webp"
+            muted
+            playsInline
+            loop
+            autoPlay
+            preload="metadata"
+          />
 
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/30" />
@@ -254,11 +218,6 @@ export default function HomePage() {
             >
               <source src="/sections/how-combo-works.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/45 transition-colors">
-              <button className="h-14 w-14 rounded-full bg-brand-accent text-white flex items-center justify-center shadow-lg active:scale-95 transition-all cursor-pointer">
-                <Play className="h-6 w-6 fill-current ml-1" />
-              </button>
-            </div>
             <div className="absolute bottom-3 left-3 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
               <Video className="h-3 w-3" />
               <span>EXPLORE BUILDER FLOW</span>
