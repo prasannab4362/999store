@@ -11,13 +11,16 @@ import { homeHeroBanner } from "@/data/mock/banners";
 import { products } from "@/data/mock/products";
 import { ProductCard } from "@/components/commerce/product-card";
 import { PolicyNotice } from "@/components/commerce/policy-notice";
-import { useComboStore } from "@/stores/combo-store";
+import { useComboStore, useActiveComboDetails } from "@/stores/combo-store";
 import { useRouter } from "next/navigation";
 import { getPlaceholderSvg } from "@/lib/utils/placeholders";
 
 export default function HomePage() {
   const router = useRouter();
   const startCombo = useComboStore((state) => state.startCombo);
+
+  const activeCombo = useComboStore((state) => state.activeCombo);
+  const [selectedDialId, setSelectedDialId] = React.useState<string>("combo-3");
 
   const handleStartCombo = (config: any) => {
     startCombo(config);
@@ -112,50 +115,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Combo Selector */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* 2. Interactive Combo Dial Selector Section */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 font-body">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-text-primary tracking-tight uppercase">
-            HOW MANY ARE YOU PICKING?
+            CHOOSE YOUR ₹999 COMBO
           </h2>
           <p className="text-xs sm:text-sm text-text-secondary">
-            Pick your pack size. Mix and match any Men's and Women's items. Base price is flat ₹999 for all combo tiers!
+            One price. Different collections. Your choice. Drag or tap a tier size.
           </p>
         </div>
 
-        <div className="flex overflow-x-auto pb-4 gap-6 snap-x snap-mandatory scrollbar-none sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:pb-0 sm:overflow-visible">
-          {comboConfigs.map((config) => (
-            <div
-              key={config.id}
-              className="rounded-card border border-border-light bg-white p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow relative overflow-hidden group shrink-0 w-[240px] snap-center sm:w-auto sm:shrink"
-            >
-              <div className="space-y-4">
-                <span className={`inline-block text-[8px] sm:text-[9px] font-bold font-heading px-2 py-0.5 rounded-full ${config.themeMetadata?.bgClass} ${config.themeMetadata?.colorClass}`}>
-                  {config.badge}
-                </span>
-                <div>
-                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-text-primary uppercase tracking-tight">{config.name}</h3>
-                  <p className="text-[10px] text-text-muted">{config.itemLimit} Selected Items</p>
-                </div>
-                <div className="flex items-baseline gap-1 py-1">
-                  <span className="text-xl sm:text-2xl font-extrabold font-heading text-brand-primary">₹999</span>
-                  <span className="text-[10px] text-text-muted line-through">₹2,499</span>
-                </div>
-                <p className="text-[11px] text-text-secondary leading-normal min-h-[3rem] line-clamp-3">
-                  {config.description}
-                </p>
-              </div>
+        {/* Dynamic Combo Dial Segment Selector */}
+        <div className="max-w-2xl mx-auto bg-bg-secondary rounded-promo p-8 border border-border-light/60 shadow-xs text-center space-y-8">
+          {/* Dial Selection row */}
+          <div className="flex items-center justify-center gap-4 sm:gap-6 border-b border-border-light/40 pb-6 overflow-x-auto scrollbar-none select-none">
+            {comboConfigs.map((config) => {
+              const isActive = selectedDialId === config.id;
+              return (
+                <button
+                  key={config.id}
+                  onClick={() => setSelectedDialId(config.id)}
+                  className={`text-2xl sm:text-4xl font-extrabold font-heading transition-all duration-300 px-4 py-2 rounded-xl cursor-pointer ${
+                    isActive
+                      ? "text-brand-primary bg-white scale-110 shadow-sm border border-border-light/50"
+                      : "text-text-secondary/50 hover:text-text-primary hover:scale-105"
+                  }`}
+                >
+                  {config.itemLimit.toString().padStart(2, "0")}
+                </button>
+              );
+            })}
+          </div>
 
-              <Button
-                variant="secondary"
-                size="sm"
-                className="mt-6 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors uppercase font-bold tracking-wide cursor-pointer"
-                onClick={() => handleStartCombo(config)}
-              >
-                Choose {config.itemLimit} Items
-              </Button>
-            </div>
-          ))}
+          {/* Description layout details */}
+          {(() => {
+            const currentConfig = comboConfigs.find(c => c.id === selectedDialId) || comboConfigs[1];
+            return (
+              <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                <span className={`inline-block text-[9px] font-bold font-heading px-3 py-1 rounded-full ${currentConfig.themeMetadata?.bgClass} ${currentConfig.themeMetadata?.colorClass}`}>
+                  {currentConfig.badge}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="font-heading font-extrabold text-xl text-text-primary uppercase">
+                    {currentConfig.itemLimit} PICKS COMBO
+                  </h3>
+                  <p className="text-xs text-text-secondary max-w-sm mx-auto">
+                    {currentConfig.description}
+                  </p>
+                </div>
+                <div className="flex justify-center items-baseline gap-1.5 pt-2">
+                  <span className="text-3xl font-extrabold font-heading text-brand-primary">₹999</span>
+                  <span className="text-xs text-text-secondary font-semibold">flat price</span>
+                </div>
+                <Button
+                  onClick={() => handleStartCombo(currentConfig)}
+                  className="w-full max-w-xs h-11 uppercase font-heading font-extrabold tracking-wider text-xs bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg cursor-pointer"
+                >
+                  Start Building {currentConfig.itemLimit} Picks →
+                </Button>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
