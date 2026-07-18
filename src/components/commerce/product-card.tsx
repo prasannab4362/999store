@@ -171,25 +171,20 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   return (
-    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full min-w-0 w-full", className)}>
-      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden shrink-0">
+    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light/60 bg-white overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 h-full min-w-0 w-full", className)}>
+      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-neutral overflow-hidden shrink-0">
         {/* Badges - Hidden/Simplified on Mobile */}
         <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
           {product.newArrival && (
-            <Badge className="bg-brand-primary border-transparent text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2">
+            <Badge className="bg-brand-primary border-transparent text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider">
               <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1 fill-current" />
               NEW
             </Badge>
           )}
           {product.trending && (
-            <Badge variant="accent" className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 hidden sm:inline-flex">
+            <Badge variant="accent" className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider hidden sm:inline-flex">
               <Flame className="h-3 w-3 mr-1 fill-current" />
               TRENDING
-            </Badge>
-          )}
-          {product.comboEligible && (
-            <Badge variant="success" className="text-[8px] sm:text-[10px] py-0.5 px-1.5 sm:px-2 hidden md:inline-flex">
-              COMBO ELIGIBLE
             </Badge>
           )}
         </div>
@@ -198,7 +193,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <button
           onClick={handleWishlist}
           className={cn(
-            "absolute top-2 right-2 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 rounded-full shadow-sm bg-white/80 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light",
+            "absolute top-2 right-2 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 rounded-full shadow-xs bg-white/90 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light/40",
             isWishlisted ? "text-red-500 fill-current" : "text-text-secondary hover:text-red-500"
           )}
           aria-label="Toggle Wishlist"
@@ -212,7 +207,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+          className="object-cover transition-all duration-500 group-hover:scale-102 group-hover:opacity-0"
           onError={() => setFrontError(true)}
           unoptimized={frontImage?.startsWith("data:") || false}
         />
@@ -222,7 +217,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={`${product.name} alternate view`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          className="object-cover absolute inset-0 opacity-0 transition-all duration-500 group-hover:scale-102 group-hover:opacity-100"
           onError={() => setBackError(true)}
           unoptimized={backImage?.startsWith("data:") || false}
         />
