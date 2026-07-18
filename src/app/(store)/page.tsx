@@ -28,8 +28,27 @@ export default function HomePage() {
     router.push(`/combo/${config.slug}`);
   };
 
+  const [mediaSource, setMediaSource] = React.useState<"video" | "image-1" | "image-2" | "image-3" | "image-4">("video");
   const [isPlaying, setIsPlaying] = React.useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  // Slideshow cycle effect every 5 seconds once video completes
+  React.useEffect(() => {
+    if (mediaSource === "video") return;
+    const sources: Array<"image-1" | "image-2" | "image-3" | "image-4"> = ["image-1", "image-2", "image-3", "image-4"];
+    const interval = setInterval(() => {
+      setMediaSource((prev) => {
+        const idx = sources.indexOf(prev as any);
+        const nextIdx = (idx + 1) % sources.length;
+        return sources[nextIdx];
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [mediaSource]);
+
+  const handleVideoEnded = () => {
+    setMediaSource("image-1");
+  };
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -47,18 +66,35 @@ export default function HomePage() {
       {/* 1. Cinematic Video Hero Section */}
       <section className="relative mx-auto max-w-[1700px] w-full px-4 sm:px-6 lg:px-8 mt-4">
         <div className="relative w-full h-[65svh] sm:h-[75svh] md:h-[80svh] min-h-[500px] max-h-[850px] rounded-promo overflow-hidden bg-black shadow-lg border border-border-light/40 group">
-          {/* Background Video */}
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
-            src="/sections/home-hero-preview.mp4"
-            poster="/sections/home-hero.webp"
-            muted
-            playsInline
-            loop
-            autoPlay
-            preload="metadata"
-          />
+          {/* Background Video or Slideshow Image */}
+          {mediaSource === "video" ? (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-700"
+              src="/sections/home-hero-preview.mp4"
+              poster="/sections/home-hero.webp"
+              muted
+              playsInline
+              autoPlay
+              preload="metadata"
+              onEnded={handleVideoEnded}
+            />
+          ) : (
+            <div className="absolute inset-0 w-full h-full animate-in fade-in zoom-in-95 duration-700">
+              <Image
+                src={
+                  mediaSource === "image-1" ? "/sections/media__1784082027431.png" :
+                  mediaSource === "image-2" ? "/sections/media__1784082661358.png" :
+                  mediaSource === "image-3" ? "/sections/media__1784083336779.png" :
+                  "/sections/media__1784083374115.png"
+                }
+                alt="Fashion Editorial Collection Outfit"
+                fill
+                className="object-cover opacity-85 transition-all duration-700 transform hover:scale-102"
+                unoptimized
+              />
+            </div>
+          )}
 
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/30" />
