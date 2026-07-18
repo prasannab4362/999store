@@ -16,29 +16,28 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const isDark = background === "dark";
 
-  // Combo Loop Motif: Three interlocking loops representing MIX, MATCH, COMBO
+  // Interlocking Loops Motif: Black, blue (#315CFF), and sand (#D4C3A3) matching the brand logo artwork.
   const ComboLoop = () => (
     <svg
       className={cn("shrink-0 transition-transform group-hover:rotate-12 duration-300", {
-        "h-6 w-8": size === "sm",
-        "h-8 w-11": size === "md",
-        "h-12 w-16": size === "lg",
+        "h-6 w-6": size === "sm",
+        "h-8 w-8": size === "md",
+        "h-12 w-12": size === "lg",
       })}
-      viewBox="0 0 80 50"
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Loop 1: Mix */}
-      <circle cx="28" cy="25" r="18" stroke="#6D28D9" strokeWidth="4.5" strokeOpacity="0.85" />
-      {/* Loop 2: Match */}
-      <circle cx="52" cy="25" r="18" stroke="#FF5A5F" strokeWidth="4.5" strokeOpacity="0.85" />
-      {/* Interlocking Link Highlight */}
-      <path
-        d="M40 13C42 16 43 20 43 25C43 30 42 34 40 37"
-        stroke="#4C1D95"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-      />
+      {/* Top Circle: Black/Ink */}
+      <circle cx="50" cy="35" r="22" stroke="#111318" strokeWidth="6" strokeLinecap="round" />
+      {/* Left Bottom Circle: Electric Blue */}
+      <circle cx="36" cy="60" r="22" stroke="#315CFF" strokeWidth="6" strokeLinecap="round" />
+      {/* Right Bottom Circle: Sand/Beige */}
+      <circle cx="64" cy="60" r="22" stroke="#D4C3A3" strokeWidth="6" strokeLinecap="round" />
+      
+      {/* Interlocking Link overlap highlights */}
+      <path d="M 44 48 A 22 22 0 0 1 56 48" stroke="#111318" strokeWidth="6" strokeLinecap="round" />
+      <path d="M 50 48 A 22 22 0 0 1 50 64" stroke="#315CFF" strokeWidth="6" strokeLinecap="round" />
     </svg>
   );
 
