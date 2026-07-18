@@ -81,11 +81,11 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="flex overflow-x-auto pb-4 gap-6 snap-x snap-mandatory scrollbar-none sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:pb-0 sm:overflow-visible">
           {comboConfigs.map((config) => (
             <div
               key={config.id}
-              className="rounded-card border border-border-light bg-white p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group"
+              className="rounded-card border border-border-light bg-white p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow relative overflow-hidden group shrink-0 w-[240px] snap-center sm:w-auto sm:shrink"
             >
               <div className="space-y-4">
                 <span className={`inline-block text-[8px] sm:text-[9px] font-bold font-heading px-2 py-0.5 rounded-full ${config.themeMetadata?.bgClass} ${config.themeMetadata?.colorClass}`}>
@@ -107,7 +107,7 @@ export default function HomePage() {
               <Button
                 variant="secondary"
                 size="sm"
-                className="mt-6 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors uppercase font-bold tracking-wide"
+                className="mt-6 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors uppercase font-bold tracking-wide cursor-pointer"
                 onClick={() => handleStartCombo(config)}
               >
                 Choose {config.itemLimit} Items
