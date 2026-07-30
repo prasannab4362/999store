@@ -1,106 +1,201 @@
 import numpy as np
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
-# Mock catalog data representing seed products for 999 Combo Store
-SEED_PRODUCTS = [
+# Enriched product catalog representing real 999 Combo Store inventory
+SEED_CATALOG = [
     {
         "id": "var_101",
         "product_id": "prod_1",
-        "name": "Classic Slim Fit Cotton Shirt - White / M",
+        "name": "Classic Slim Fit Oxford Shirt",
         "category": "Men",
+        "sub_category": "Shirts",
+        "color": "White",
+        "available_sizes": ["S", "M", "L", "XL"],
         "price": 499,
         "stock_qty": 25,
-        "description": "Premium 100% cotton slim fit formal white shirt for men, size M. Breathable fabric."
+        "image_url": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&auto=format&fit=crop",
+        "short_description": "Premium 100% breathable cotton slim fit formal white shirt. Perfect for office or casual combo.",
+        "style_tags": ["Formal", "Casual", "Office", "Classic"],
+        "complementary_categories": ["Trousers", "Jeans", "Belts"]
     },
     {
         "id": "var_102",
         "product_id": "prod_1",
-        "name": "Classic Slim Fit Cotton Shirt - Black / L",
+        "name": "Classic Slim Fit Oxford Shirt",
         "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Black",
+        "available_sizes": ["M", "L", "XL"],
         "price": 499,
         "stock_qty": 18,
-        "description": "Black casual cotton shirt for men slim fit size L. Easy iron, double-stitched."
+        "image_url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&auto=format&fit=crop",
+        "short_description": "Sleek double-stitched black casual cotton shirt. Easy-iron wrinkle-resistant fabric.",
+        "style_tags": ["Casual", "Party", "Nightwear"],
+        "complementary_categories": ["Jeans", "Chinos", "Belts"]
     },
     {
         "id": "var_103",
         "product_id": "prod_2",
-        "name": "Chino Trousers - Navy Blue / 32",
+        "name": "Stretchable Chino Trousers",
         "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Navy Blue",
+        "available_sizes": ["30", "32", "34", "36"],
         "price": 699,
         "stock_qty": 12,
-        "description": "Stretchable navy blue chino trousers size 32 waist. Perfect combo pairing item."
+        "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&auto=format&fit=crop",
+        "short_description": "Flex-stretch navy blue chino trousers. Ideal pairing item for white or pastel shirts.",
+        "style_tags": ["Casual", "Office", "Smart Casual"],
+        "complementary_categories": ["Shirts", "T-Shirts", "Belts"]
     },
     {
         "id": "var_104",
         "product_id": "prod_3",
-        "name": "Graphic Print Oversized T-Shirt - Beige / L",
+        "name": "Streetwear Graphic Oversized Tee",
         "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "Beige",
+        "available_sizes": ["M", "L", "XL", "XXL"],
         "price": 399,
         "stock_qty": 30,
-        "description": "Streetwear style beige oversized graphic tee for men. Heavyweight 240 GSM cotton."
+        "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop",
+        "short_description": "Heavyweight 240 GSM organic cotton streetwear tee in trending beige tone.",
+        "style_tags": ["Casual", "Streetwear", "Daily Wear"],
+        "complementary_categories": ["Jeans", "Shorts", "Caps"]
     },
     {
         "id": "var_105",
         "product_id": "prod_4",
-        "name": "Floral Summer Dress - Yellow / S",
+        "name": "Floral Print Summer Midi Dress",
         "category": "Women",
+        "sub_category": "Dresses",
+        "color": "Yellow",
+        "available_sizes": ["XS", "S", "M"],
         "price": 599,
-        "stock_qty": 0,  # Out of stock example
-        "description": "Lightweight yellow floral print midi summer dress for women size S."
+        "stock_qty": 0,  # Out of stock
+        "image_url": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&auto=format&fit=crop",
+        "short_description": "Lightweight breathable yellow floral midi summer dress with adjustable waist tie.",
+        "style_tags": ["Casual", "Vacation", "Summer"],
+        "complementary_categories": ["Handbags", "Accessories"]
     },
     {
         "id": "var_106",
         "product_id": "prod_5",
-        "name": "High-Waist Denim Jeans - Light Blue / 28",
+        "name": "High-Waist Stretch Denim Jeans",
         "category": "Women",
+        "sub_category": "Jeans",
+        "color": "Light Blue",
+        "available_sizes": ["26", "28", "30", "32"],
         "price": 799,
         "stock_qty": 8,
-        "description": "Women high waist stretch light blue denim jeans size 28."
+        "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop",
+        "short_description": "Comfortable high waist stretch denim jeans in classic light blue wash.",
+        "style_tags": ["Casual", "Daily Wear", "Trending"],
+        "complementary_categories": ["Tops", "T-Shirts", "Jackets"]
     },
     {
         "id": "var_107",
         "product_id": "prod_6",
-        "name": "Leather Dress Belt - Tan / Free Size",
+        "name": "Genuine Leather Pin Buckle Belt",
         "category": "Accessories",
+        "sub_category": "Belts",
+        "color": "Tan Brown",
+        "available_sizes": ["Free Size"],
         "price": 299,
         "stock_qty": 40,
-        "description": "Genuine leather tan brown pin buckle belt for men and women."
+        "image_url": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=500&auto=format&fit=crop",
+        "short_description": "Handcrafted tan brown genuine leather belt with polished zinc buckle.",
+        "style_tags": ["Formal", "Casual", "Essential"],
+        "complementary_categories": ["Shirts", "Trousers", "Jeans"]
     }
 ]
 
-class VectorStoreRetriever:
+# Customer Profile Store (Memory for Returning Customers)
+CUSTOMER_PROFILES = {
+    "usr_returning_101": {
+        "user_id": "usr_returning_101",
+        "name": "Rahul Sharma",
+        "is_returning": True,
+        "preferred_size": "M",
+        "favorite_colors": ["White", "Navy Blue"],
+        "preferred_styles": ["Smart Casual", "Office"],
+        "purchase_history": ["Classic Slim Fit Oxford Shirt - White / M"],
+        "reward_points": 150
+    }
+}
+
+class CatalogRetriever:
     """
-    In-memory Vector Store retriever supporting cosine similarity for pgvector simulation / prototyping.
-    Uses lightweight TF-IDF / keyword similarity embedding fallback for rapid deterministic execution.
+    Dynamic RAG catalog retriever with similarity scoring, complementary matching, and user profile memory.
     """
     def __init__(self):
-        self.products = SEED_PRODUCTS
+        self.catalog = SEED_CATALOG
 
-    def search(self, query: str, category: str = None, top_k: int = 4) -> List[Dict[str, Any]]:
-        query_words = set(query.lower().split())
+    def search_catalog(self, query: str = "", category: Optional[str] = None, color: Optional[str] = None, size: Optional[str] = None, top_k: int = 4) -> List[Dict[str, Any]]:
+        query_words = set(query.lower().split()) if query else set()
         scored_results = []
         
-        for item in self.products:
-            if category and item["category"].lower() != category.lower():
+        for item in self.catalog:
+            # Filter checks
+            if category and category.lower() not in item["category"].lower() and category.lower() not in item["sub_category"].lower():
+                continue
+            if color and color.lower() not in item["color"].lower():
+                continue
+            if size and size not in item["available_sizes"]:
                 continue
                 
-            item_text = f"{item['name']} {item['category']} {item['description']}".lower()
+            item_text = f"{item['name']} {item['category']} {item['sub_category']} {item['color']} {' '.join(item['style_tags'])} {item['short_description']}".lower()
             item_words = set(item_text.split())
             
-            # Simple keyword match score calculation
-            overlap = len(query_words.intersection(item_words))
-            score = overlap / (len(query_words) + 0.1)
-            
+            # Score based on word overlap or match all if empty query
+            if query_words:
+                overlap = len(query_words.intersection(item_words))
+                score = overlap / (len(query_words) + 0.1)
+            else:
+                score = 1.0
+                
             scored_results.append((score, item))
             
-        # Sort by score descending
         scored_results.sort(key=lambda x: x[0], reverse=True)
         return [item for score, item in scored_results[:top_k]]
 
-    def get_by_id(self, variant_id: str) -> Dict[str, Any]:
-        for item in self.products:
+    def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
+        target = self.get_by_id(product_id)
+        if not target:
+            return []
+            
+        similar = []
+        for item in self.catalog:
+            if item["id"] != target["id"] and (item["sub_category"] == target["sub_category"] or item["category"] == target["category"]):
+                similar.append(item)
+        return similar[:limit]
+
+    def get_complementary_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
+        target = self.get_by_id(product_id)
+        if not target:
+            return []
+            
+        comp_categories = [c.lower() for c in target.get("complementary_categories", [])]
+        complements = []
+        for item in self.catalog:
+            if item["id"] != target["id"] and item["sub_category"].lower() in comp_categories:
+                complements.append(item)
+        return complements[:limit]
+
+    def get_by_id(self, variant_id: str) -> Optional[Dict[str, Any]]:
+        for item in self.catalog:
             if item["id"] == variant_id:
                 return item
         return None
 
-retriever = VectorStoreRetriever()
+    def get_customer_profile(self, user_id: str) -> Dict[str, Any]:
+        return CUSTOMER_PROFILES.get(user_id, {
+            "user_id": user_id,
+            "is_returning": False,
+            "preferred_size": None,
+            "favorite_colors": [],
+            "preferred_styles": [],
+            "purchase_history": []
+        })
+
+retriever = CatalogRetriever()

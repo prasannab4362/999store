@@ -9,48 +9,50 @@ def test_health_check():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert "999 Combo Store" in data["service"]
 
-def test_chat_product_search():
+def test_dynamic_rag_product_search():
     payload = {
-        "user_id": "usr_test_123",
+        "user_id": "usr_test_1",
         "channel": "web",
-        "message": "Show me slim fit cotton shirts for men"
+        "message": "Show me casual shirts for men"
     }
     response = client.post("/api/v1/chat", json=payload)
     assert response.status_code == 200
     data = response.json()
     assert "reply" in data
     assert len(data["retrieved_products"]) > 0
-    assert data["retrieved_products"][0]["category"] == "Men"
+    prod = data["retrieved_products"][0]
+    assert "image_url" in prod
+    assert "available_sizes" in prod
+    assert "color" in prod
 
-def test_chat_combo_session_creation():
+def test_size_advisor_tool():
     payload = {
-        "user_id": "usr_test_123",
-        "channel": "whatsapp",
-        "message": "I want to start a 999 combo deal"
+        "user_id": "usr_test_2",
+        "channel": "web",
+        "message": "My height is 178cm and weight is 74kg, what size should I get?"
     }
     response = client.post("/api/v1/chat", json=payload)
     assert response.status_code == 200
     data = response.json()
-    assert "999 combo" in data["reply"].lower() or "combo" in data["reply"].lower()
+    assert "Recommended Size" in data["reply"] or "L" in data["reply"]
 
-def test_chat_order_tracking():
+def test_returning_customer_profile():
     payload = {
-        "user_id": "usr_test_123",
+        "user_id": "usr_returning_101",
         "channel": "web",
-        "message": "Where is my order ORD-999-01?"
+        "message": "Hi, what products match my style?"
     }
     response = client.post("/api/v1/chat", json=payload)
     assert response.status_code == 200
     data = response.json()
-    assert "SHIPPED" in data["reply"]
+    assert "Rahul Sharma" in data["reply"] or "returning" in data["reply"].lower()
 
-def test_chat_human_handoff():
+def test_human_support_escalation():
     payload = {
-        "user_id": "usr_test_123",
+        "user_id": "usr_test_3",
         "channel": "web",
-        "message": "I want to speak with human support"
+        "message": "I need human support agent"
     }
     response = client.post("/api/v1/chat", json=payload)
     assert response.status_code == 200

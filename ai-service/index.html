@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>999 Combo Store - Combo Guru AI Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #0b0f19; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            font-weight: 700;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 960px) { main { grid-template-columns: 1fr; } }
+
+        .store-preview {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 1.25rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #1e1b4b, #312e81, #4338ca);
+            border: 1px solid #6366f1;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title { font-size: 2.25rem; font-weight: 900; color: #fb7185; letter-spacing: -0.025em; }
+        .hero-subtitle { color: #e0e7ff; font-size: 1.1rem; margin-top: 0.5rem; }
+
+        .prompt-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+        .chip {
+            background: #1f2937;
+            color: #cbd5e1;
+            border: 1px solid #374151;
+            padding: 0.6rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .chip:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Chat Widget Container */
+        .chat-container {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            height: 680px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #0b0f19;
+            padding: 1.25rem;
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-title { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; }
+        .status-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.25rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .message {
+            max-width: 90%;
+            padding: 0.9rem 1.1rem;
+            border-radius: 1rem;
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #0284c7;
+            color: #ffffff;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: #1f2937;
+            color: #f8fafc;
+            border-bottom-left-radius: 0.25rem;
+            border: 1px solid #374151;
+        }
+
+        /* Product Cards Payload Container */
+        .product-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .product-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .product-card:hover { transform: translateY(-3px); border-color: #38bdf8; }
+
+        .product-img { width: 100%; height: 130px; object-fit: cover; }
+        .product-info { padding: 0.6rem; display: flex; flex-direction: column; gap: 0.3rem; }
+        .product-name { font-size: 0.85rem; font-weight: 700; color: #f8fafc; }
+        .product-price { font-weight: 800; color: #f43f5e; font-size: 0.9rem; }
+        .product-sizes { font-size: 0.7rem; color: #94a3b8; }
+        .add-combo-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 0.4rem;
+            border-radius: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.4rem;
+        }
+
+        .handoff-alert {
+            background: #991b1b;
+            color: #fef2f2;
+            padding: 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            margin-top: 0.6rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            background: #0b0f19;
+            border-top: 1px solid #1f2937;
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 0.6rem;
+            padding: 0.8rem 1rem;
+            color: #f8fafc;
+            font-size: 0.9375rem;
+            outline: none;
+        }
+
+        .chat-input:focus { border-color: #38bdf8; }
+
+        .send-btn, .mic-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.6rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .mic-btn { background: #374151; padding: 0.8rem; }
+        .mic-btn.recording { background: #ef4444; animation: pulse 1s infinite; }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            🛍️ 999 Combo Store <span class="badge">Combo Guru AI</span>
+        </div>
+        <div style="font-size: 0.875rem; color: #94a3b8;">
+            FastAPI Dynamic Agent: <span style="color: #4ade80; font-weight: 700;">http://127.0.0.1:8000</span> (Python 3.14)
+        </div>
+    </header>
+
+    <main>
+        <section class="store-preview">
+            <div class="hero-banner">
+                <div class="hero-title">BUILD YOUR ₹999 COMBO</div>
+                <div class="hero-subtitle">Pick Any 2, 3, 5, 8 or 10 Items for ₹999 Fixed Price</div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; color: #f8fafc;">Dynamic AI Features (Click to Test):</h3>
+            <div class="prompt-chips">
+                <div class="chip" onclick="sendPrompt('Show me casual shirts for men')">👕 Browse Shirts</div>
+                <div class="chip" onclick="sendPrompt('I am 178cm tall and weight 74kg, what size should I wear?')">📏 Fit & Size Advisor</div>
+                <div class="chip" onclick="sendPrompt('What colors pair well with white shirt?')">🎨 Color Matcher</div>
+                <div class="chip" onclick="sendPrompt('I want to start a 3 item combo deal')">🛍️ Build ₹999 Combo</div>
+                <div class="chip" onclick="sendPrompt('Where is my order ORD-999-01?')">📦 Track Order</div>
+                <div class="chip" onclick="sendPrompt('I am returning customer usr_returning_101', 'usr_returning_101')">👤 Returning Customer Persona</div>
+                <div class="chip" onclick="sendPrompt('I need human support agent')">🤝 Support Handoff</div>
+            </div>
+        </section>
+
+        <section class="chat-container">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <span class="status-dot"></span> Combo Guru Assistant
+                </div>
+                <span style="font-size: 0.75rem; color: #94a3b8;">RAG + Tool Reasoning</span>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+👋 Welcome to 999 Combo Store! I am **Combo Guru**, your AI Fashion Shopping Assistant. 
+
+Ask me for product recommendations, outfit pairings, fit & size advice, or build your ₹999 combo deal!
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <button id="micBtn" class="mic-btn" onclick="toggleVoiceInput()" title="Voice Shopping">🎙️</button>
+                <input type="text" id="userInput" class="chat-input" placeholder="Ask Combo Guru (e.g. 'Show me shirts', 'My height is 175cm')..." onkeypress="handleKeyPress(event)" />
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+    </main>
+
+<script>
+    let currentUserId = "usr_guest_" + Math.random().toString(36).substring(7);
+    let currentThreadId = "thread_" + currentUserId;
+
+    function appendMessage(sender, text, handoff = false, products = []) {
+        const chatMessages = document.getElementById("chatMessages");
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `message ${sender}`;
+        msgDiv.textContent = text;
+
+        // Render Rich Product Cards if returned in payload
+        if (products && products.length > 0) {
+            const grid = document.createElement("div");
+            grid.className = "product-cards-grid";
+
+            products.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <img src="${p.image_url}" class="product-img" alt="${p.name}">
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div style="font-size: 0.75rem; color: #cbd5e1;">Color: ${p.color}</div>
+                        <div class="product-sizes">Sizes: ${p.available_sizes.join(", ")}</div>
+                        <div class="product-price">₹${p.price}</div>
+                        <button class="add-combo-btn" onclick="addToCombo('${p.name}')">+ Add to ₹999 Combo</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            msgDiv.appendChild(grid);
+        }
+
+        if (handoff) {
+            const alertDiv = document.createElement("div");
+            alertDiv.className = "handoff-alert";
+            alertDiv.textContent = "🚨 Human Support Specialist Alert Triggered";
+            msgDiv.appendChild(alertDiv);
+        }
+
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendMessage(overrideText = null, overrideUserId = null) {
+        const inputEl = document.getElementById("userInput");
+        const text = overrideText || inputEl.value.trim();
+        if (!text) return;
+
+        if (overrideUserId) {
+            currentUserId = overrideUserId;
+            currentThreadId = "thread_" + currentUserId;
+        }
+
+        appendMessage("user", text);
+        if (!overrideText) inputEl.value = "";
+
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/v1/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    user_id: currentUserId,
+                    thread_id: currentThreadId,
+                    channel: "web",
+                    message: text
+                })
+            });
+
+            const data = await response.json();
+            appendMessage("bot", data.reply, data.requires_human_handoff, data.retrieved_products);
+        } catch (err) {
+            appendMessage("bot", "⚠️ Could not connect to AI Agent Service. Ensure FastAPI is running on http://127.0.0.1:8000.");
+        }
+    }
+
+    function sendPrompt(text, userId = null) {
+        document.getElementById("userInput").value = text;
+        sendMessage(text, userId);
+    }
+
+    function addToCombo(itemName) {
+        sendPrompt(`Add ${itemName} to my combo`);
+    }
+
+    function handleKeyPress(e) { if (e.key === "Enter") sendMessage(); }
+
+    // Voice Shopping Web Speech API Integration
+    let recognition;
+    function toggleVoiceInput() {
+        const micBtn = document.getElementById("micBtn");
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            alert("Speech recognition is not supported in your browser. Please use Chrome.");
+            return;
+        }
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!recognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = "en-US";
+
+            recognition.onstart = () => { micBtn.classList.add("recording"); };
+            recognition.onend = () => { micBtn.classList.remove("recording"); };
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                document.getElementById("userInput").value = transcript;
+                sendMessage();
+            };
+        }
+        recognition.start();
+    }
+</script>
+</body>
+</html>
