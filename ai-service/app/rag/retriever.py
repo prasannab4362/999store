@@ -34,6 +34,21 @@ SEED_CATALOG = [
         "complementary_categories": ["Jeans", "Chinos", "Belts"]
     },
     {
+        "id": "var_108",
+        "product_id": "prod_7",
+        "name": "Pastel Pink Linen Casual Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Pink",
+        "available_sizes": ["S", "M", "L"],
+        "price": 499,
+        "stock_qty": 15,
+        "image_url": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=500&auto=format&fit=crop",
+        "short_description": "Lightweight pastel pink linen shirt for summer casual outings.",
+        "style_tags": ["Casual", "Summer", "Pastel"],
+        "complementary_categories": ["Trousers", "Jeans", "Shorts"]
+    },
+    {
         "id": "var_103",
         "product_id": "prod_2",
         "name": "Stretchable Chino Trousers",
@@ -110,7 +125,7 @@ SEED_CATALOG = [
     }
 ]
 
-# Customer Profile Store (Memory for Returning Customers)
+# Customer Profile Memory Store (Real-world purchase history and preferences)
 CUSTOMER_PROFILES = {
     "usr_returning_101": {
         "user_id": "usr_returning_101",
@@ -119,24 +134,51 @@ CUSTOMER_PROFILES = {
         "preferred_size": "M",
         "favorite_colors": ["White", "Navy Blue"],
         "preferred_styles": ["Smart Casual", "Office"],
-        "purchase_history": ["Classic Slim Fit Oxford Shirt - White / M"],
+        "last_purchased_items": [
+            {
+                "id": "var_101",
+                "name": "Classic Slim Fit Oxford Shirt - White / M",
+                "category": "Shirts",
+                "color": "White",
+                "price": 499,
+                "image_url": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&auto=format&fit=crop"
+            }
+        ],
         "reward_points": 150
     }
 }
 
 class CatalogRetriever:
     """
-    Dynamic RAG catalog retriever with similarity scoring, complementary matching, and user profile memory.
+    Dynamic RAG catalog retriever with category-exact filtering, outfit matching, and returning customer purchase history memory.
     """
     def __init__(self):
         self.catalog = SEED_CATALOG
 
     def search_catalog(self, query: str = "", category: Optional[str] = None, color: Optional[str] = None, size: Optional[str] = None, top_k: int = 4) -> List[Dict[str, Any]]:
-        query_words = set(query.lower().split()) if query else set()
-        scored_results = []
+        query_lower = query.lower().strip()
+        query_words = set(query_lower.split()) if query_lower else set()
         
+        # Category Intent Detection (Shirts vs T-Shirts vs Trousers vs Dresses vs Belts)
+        detected_subcat = None
+        if "t-shirt" in query_lower or "tshirt" in query_lower or "tee" in query_lower:
+            detected_subcat = "T-Shirts"
+        elif "shirt" in query_lower:
+            detected_subcat = "Shirts"
+        elif "trouser" in query_lower or "pant" in query_lower or "chino" in query_lower:
+            detected_subcat = "Trousers"
+        elif "jean" in query_lower or "denim" in query_lower:
+            detected_subcat = "Jeans"
+        elif "dress" in query_lower:
+            detected_subcat = "Dresses"
+        elif "belt" in query_lower:
+            detected_subcat = "Belts"
+
+        matches = []
         for item in self.catalog:
-            # Filter checks
+            # Filter by subcategory if intent detected or passed
+            if detected_subcat and item["sub_category"].lower() != detected_subcat.lower():
+                continue
             if category and category.lower() not in item["category"].lower() and category.lower() not in item["sub_category"].lower():
                 continue
             if color and color.lower() not in item["color"].lower():
@@ -147,17 +189,16 @@ class CatalogRetriever:
             item_text = f"{item['name']} {item['category']} {item['sub_category']} {item['color']} {' '.join(item['style_tags'])} {item['short_description']}".lower()
             item_words = set(item_text.split())
             
-            # Score based on word overlap or match all if empty query
             if query_words:
                 overlap = len(query_words.intersection(item_words))
                 score = overlap / (len(query_words) + 0.1)
             else:
                 score = 1.0
                 
-            scored_results.append((score, item))
+            matches.append((score, item))
             
-        scored_results.sort(key=lambda x: x[0], reverse=True)
-        return [item for score, item in scored_results[:top_k]]
+        matches.sort(key=lambda x: x[0], reverse=True)
+        return [item for score, item in matches[:top_k]]
 
     def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
         target = self.get_by_id(product_id)
@@ -166,7 +207,7 @@ class CatalogRetriever:
             
         similar = []
         for item in self.catalog:
-            if item["id"] != target["id"] and (item["sub_category"] == target["sub_category"] or item["category"] == target["category"]):
+            if item["id"] != target["id"] and item["sub_category"] == target["sub_category"]:
                 similar.append(item)
         return similar[:limit]
 
@@ -195,7 +236,7 @@ class CatalogRetriever:
             "preferred_size": None,
             "favorite_colors": [],
             "preferred_styles": [],
-            "purchase_history": []
+            "last_purchased_items": []
         })
 
 retriever = CatalogRetriever()
