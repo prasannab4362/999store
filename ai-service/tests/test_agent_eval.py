@@ -14,7 +14,7 @@ def test_dynamic_rag_product_search():
     payload = {
         "user_id": "usr_test_1",
         "channel": "web",
-        "message": "Show me casual shirts for men"
+        "message": "Show me white shirt size M"
     }
     response = client.post("/api/v1/chat", json=payload)
     assert response.status_code == 200
