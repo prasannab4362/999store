@@ -93,15 +93,6 @@ class DynamicLangGraphShoppingAgent:
             retrieved_products = prods
             
             if prods:
-                prod_list = []
-                for p in prods:
-                    status = f"In Stock ({p['stock_qty']} left)" if p['stock_qty'] > 0 else "OUT OF STOCK"
-                    sizes_str = ", ".join(p['available_sizes'])
-                    prod_list.append(f"• **{p['name']}** ({p['color']}) - ₹{p['price']}\n  - Sizes: [{sizes_str}] | Status: {status}\n  - {p['short_description']}")
-                
-                prod_text = "\n\n".join(prod_list)
-                
-                # Fetch similar & complementary items for first product
                 rec_res = get_recommendations_and_outfit_matches_tool.invoke({"product_id": prods[0]["id"]})
                 comp_names = [item["name"] for item in rec_res["complementary_outfit_matches"]]
                 
@@ -109,7 +100,7 @@ class DynamicLangGraphShoppingAgent:
                 if profile and profile.get("is_returning"):
                     greeting_prefix = f"Welcome back, **{profile['name']}**! Based on your preferred size ({profile['preferred_size']}) & favorite style:\n\n"
 
-                reply_parts.append(f"{greeting_prefix}✨ **Here are top matching items from our catalog**:\n\n{prod_text}\n\n💡 **Outfit Pairings & ₹999 Combo Recommendation**:\nComplete your 3-item combo for ₹999 by adding complementary items like: **{', '.join(comp_names)}**!")
+                reply_parts.append(f"{greeting_prefix}✨ **Here are top matching items from our catalog**:\n\n💡 **Outfit Pairings & ₹999 Combo Recommendation**:\nComplete your 3-item combo for ₹999 by adding complementary items like: **{', '.join(comp_names)}**!")
             else:
                 reply_parts.append("Hi! I am Combo Guru, your AI Fashion Assistant. I searched our catalog but couldn't find exact matches. Would you like to check our Men's or Women's ₹999 combo deals?")
 

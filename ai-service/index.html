@@ -151,7 +151,7 @@
             border: 1px solid #374151;
         }
 
-        /* Product Cards Payload Container */
+        /* Clean Product Cards Payload Container */
         .product-cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -170,11 +170,15 @@
         }
         .product-card:hover { transform: translateY(-3px); border-color: #38bdf8; }
 
-        .product-img { width: 100%; height: 130px; object-fit: cover; }
+        .product-img { width: 100%; height: 140px; object-fit: cover; }
         .product-info { padding: 0.6rem; display: flex; flex-direction: column; gap: 0.3rem; }
         .product-name { font-size: 0.85rem; font-weight: 700; color: #f8fafc; }
-        .product-price { font-weight: 800; color: #f43f5e; font-size: 0.9rem; }
-        .product-sizes { font-size: 0.7rem; color: #94a3b8; }
+        .product-desc { font-size: 0.75rem; color: #94a3b8; line-height: 1.3; }
+        .product-price { font-weight: 800; color: #f43f5e; font-size: 0.9rem; margin-top: 0.2rem; }
+        .product-meta { font-size: 0.7rem; color: #cbd5e1; display: flex; justify-content: space-between; }
+        .product-stock { font-size: 0.7rem; color: #4ade80; font-weight: 600; }
+        .product-stock.out { color: #f87171; }
+        
         .add-combo-btn {
             background: #0284c7;
             color: white;
@@ -297,21 +301,28 @@ Ask me for product recommendations, outfit pairings, fit & size advice, or build
         msgDiv.className = `message ${sender}`;
         msgDiv.textContent = text;
 
-        // Render Rich Product Cards if returned in payload
+        // Render Clean Product Card Visual Cards (Image on Top, Details Below)
         if (products && products.length > 0) {
             const grid = document.createElement("div");
             grid.className = "product-cards-grid";
 
             products.forEach(p => {
+                const isOut = p.stock_qty <= 0;
                 const card = document.createElement("div");
                 card.className = "product-card";
                 card.innerHTML = `
                     <img src="${p.image_url}" class="product-img" alt="${p.name}">
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
-                        <div style="font-size: 0.75rem; color: #cbd5e1;">Color: ${p.color}</div>
-                        <div class="product-sizes">Sizes: ${p.available_sizes.join(", ")}</div>
-                        <div class="product-price">₹${p.price}</div>
+                        <div class="product-meta">
+                            <span>Color: <b>${p.color}</b></span>
+                            <span>Sizes: <b>${p.available_sizes.join(", ")}</b></span>
+                        </div>
+                        <div class="product-desc">${p.short_description}</div>
+                        <div class="product-meta" style="margin-top: 0.3rem;">
+                            <span class="product-price">₹${p.price}</span>
+                            <span class="product-stock ${isOut ? 'out' : ''}">${isOut ? 'Out of Stock' : 'In Stock (' + p.stock_qty + ')'}</span>
+                        </div>
                         <button class="add-combo-btn" onclick="addToCombo('${p.name}')">+ Add to ₹999 Combo</button>
                     </div>
                 `;
