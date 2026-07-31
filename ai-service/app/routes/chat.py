@@ -14,6 +14,8 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     reply: str
     retrieved_products: List[Dict[str, Any]] = []
+    options: List[Dict[str, str]] = []
+    cart: List[Dict[str, Any]] = []
     requires_human_handoff: bool = False
     thread_id: str
 
@@ -33,7 +35,9 @@ async def chat_endpoint(request: ChatRequest):
     
     return ChatResponse(
         reply=result["reply"],
-        retrieved_products=result["retrieved_products"],
-        requires_human_handoff=result["requires_human_handoff"],
+        retrieved_products=result.get("retrieved_products", []),
+        options=result.get("options", []),
+        cart=result.get("cart", []),
+        requires_human_handoff=result.get("requires_human_handoff", False),
         thread_id=result["thread_id"]
     )

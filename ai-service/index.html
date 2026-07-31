@@ -39,6 +39,20 @@
             font-weight: 700;
         }
 
+        .cart-header-btn {
+            background: #1e293b;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
         main {
             flex: 1;
             padding: 2rem;
@@ -151,6 +165,29 @@
             border: 1px solid #374151;
         }
 
+        /* Interactive Dynamic Option Chips */
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .option-btn {
+            background: #1e293b;
+            color: #38bdf8;
+            border: 1px solid #0284c7;
+            padding: 0.45rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover {
+            background: #0284c7;
+            color: #ffffff;
+        }
+
         /* Clean Product Cards Payload Container */
         .product-cards-grid {
             display: grid;
@@ -243,9 +280,9 @@
         <div class="logo">
             🛍️ 999 Combo Store <span class="badge">Combo Guru AI</span>
         </div>
-        <div style="font-size: 0.875rem; color: #94a3b8;">
-            FastAPI Dynamic Agent: <span style="color: #4ade80; font-weight: 700;">http://127.0.0.1:8000</span> (Python 3.14)
-        </div>
+        <button class="cart-header-btn" onclick="sendPrompt('View my cart')">
+            🛒 Combo Cart (<span id="cartCount">0</span>)
+        </button>
     </header>
 
     <main>
@@ -255,15 +292,13 @@
                 <div class="hero-subtitle">Pick Any 2, 3, 5, 8 or 10 Items for ₹999 Fixed Price</div>
             </div>
 
-            <h3 style="font-size: 1.1rem; color: #f8fafc;">Dynamic AI Features (Click to Test):</h3>
+            <h3 style="font-size: 1.1rem; color: #f8fafc;">4-Step Guided Assistant (Test Quick Prompts):</h3>
             <div class="prompt-chips">
-                <div class="chip" onclick="sendPrompt('Show me casual shirts for men')">👕 Browse Shirts</div>
-                <div class="chip" onclick="sendPrompt('I am 178cm tall and weight 74kg, what size should I wear?')">📏 Fit & Size Advisor</div>
-                <div class="chip" onclick="sendPrompt('What colors pair well with white shirt?')">🎨 Color Matcher</div>
-                <div class="chip" onclick="sendPrompt('I want to start a 3 item combo deal')">🛍️ Build ₹999 Combo</div>
-                <div class="chip" onclick="sendPrompt('Where is my order ORD-999-01?')">📦 Track Order</div>
-                <div class="chip" onclick="sendPrompt('I am returning customer usr_returning_101', 'usr_returning_101')">👤 Returning Customer Persona</div>
-                <div class="chip" onclick="sendPrompt('I need human support agent')">🤝 Support Handoff</div>
+                <div class="chip" onclick="sendPrompt('Hi')">👋 Step 1: Greeting & Start</div>
+                <div class="chip" onclick="sendPrompt('I am looking for shirts')">👔 Step 2: Pick Category</div>
+                <div class="chip" onclick="sendPrompt('Show me white shirts')">🖼️ Step 3: View Products</div>
+                <div class="chip" onclick="sendPrompt('Add Classic Slim Fit Oxford Shirt to my combo')">🛒 Step 4: Add & Upsell</div>
+                <div class="chip" onclick="sendPrompt('View my cart')">💳 Cart Review & Pay</div>
             </div>
         </section>
 
@@ -272,20 +307,25 @@
                 <div class="chat-title">
                     <span class="status-dot"></span> Combo Guru Assistant
                 </div>
-                <span style="font-size: 0.75rem; color: #94a3b8;">RAG + Tool Reasoning</span>
+                <span style="font-size: 0.75rem; color: #94a3b8;">4-Step Interactive Flow</span>
             </div>
 
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot">
-👋 Welcome to 999 Combo Store! I am **Combo Guru**, your AI Fashion Shopping Assistant. 
+👋 **Welcome to 999 Combo Store!** I am **Combo Guru**, your AI Shopping Assistant. 
 
-Ask me for product recommendations, outfit pairings, fit & size advice, or build your ₹999 combo deal!
+What type of clothing are you looking for today? Select an option below or type your request!
+                    <div class="options-container">
+                        <button class="option-btn" onclick="sendPrompt('I am looking for shirts')">👔 Formal & Casual Shirts</button>
+                        <button class="option-btn" onclick="sendPrompt('I am looking for t-shirts')">👕 Streetwear T-Shirts</button>
+                        <button class="option-btn" onclick="sendPrompt('I am looking for trousers')">👖 Chinos & Trousers</button>
+                    </div>
                 </div>
             </div>
 
             <div class="chat-input-area">
                 <button id="micBtn" class="mic-btn" onclick="toggleVoiceInput()" title="Voice Shopping">🎙️</button>
-                <input type="text" id="userInput" class="chat-input" placeholder="Ask Combo Guru (e.g. 'Show me shirts', 'My height is 175cm')..." onkeypress="handleKeyPress(event)" />
+                <input type="text" id="userInput" class="chat-input" placeholder="Type or select an option below (e.g. 'Hi', 'White shirt M')..." onkeypress="handleKeyPress(event)" />
                 <button class="send-btn" onclick="sendMessage()">Send</button>
             </div>
         </section>
@@ -295,13 +335,18 @@ Ask me for product recommendations, outfit pairings, fit & size advice, or build
     let currentUserId = "usr_guest_" + Math.random().toString(36).substring(7);
     let currentThreadId = "thread_" + currentUserId;
 
-    function appendMessage(sender, text, handoff = false, products = []) {
+    function appendMessage(sender, text, handoff = false, products = [], options = [], cart = []) {
         const chatMessages = document.getElementById("chatMessages");
         const msgDiv = document.createElement("div");
         msgDiv.className = `message ${sender}`;
         msgDiv.textContent = text;
 
-        // Render Clean Product Card Visual Cards (Image on Top, Details Below)
+        // Update Cart Header Count
+        if (cart) {
+            document.getElementById("cartCount").textContent = cart.length;
+        }
+
+        // Render Clean Product Cards (Image + Details)
         if (products && products.length > 0) {
             const grid = document.createElement("div");
             grid.className = "product-cards-grid";
@@ -329,6 +374,20 @@ Ask me for product recommendations, outfit pairings, fit & size advice, or build
                 grid.appendChild(card);
             });
             msgDiv.appendChild(grid);
+        }
+
+        // Render Dynamic Interactive Option Buttons
+        if (options && options.length > 0) {
+            const optsContainer = document.createElement("div");
+            optsContainer.className = "options-container";
+            options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.textContent = opt.label;
+                btn.onclick = () => sendPrompt(opt.value);
+                optsContainer.appendChild(btn);
+            });
+            msgDiv.appendChild(optsContainer);
         }
 
         if (handoff) {
@@ -368,7 +427,7 @@ Ask me for product recommendations, outfit pairings, fit & size advice, or build
             });
 
             const data = await response.json();
-            appendMessage("bot", data.reply, data.requires_human_handoff, data.retrieved_products);
+            appendMessage("bot", data.reply, data.requires_human_handoff, data.retrieved_products, data.options, data.cart);
         } catch (err) {
             appendMessage("bot", "⚠️ Could not connect to AI Agent Service. Ensure FastAPI is running on http://127.0.0.1:8000.");
         }
