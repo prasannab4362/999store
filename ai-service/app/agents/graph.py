@@ -246,12 +246,16 @@ class DynamicLangGraphShoppingAgent:
                 {"label": "⚫ Black", "value": "Black"},
                 {"label": "🔵 Navy Blue", "value": "Navy Blue"},
                 {"label": "🌸 Pink", "value": "Pink"},
-                {"label": "🌾 Beige", "value": "Beige"}
+                {"label": "🌾 Beige", "value": "Beige"},
+                {"label": "🔘 Grey", "value": "Grey"},
+                {"label": "🫒 Olive Green", "value": "Olive Green"},
+                {"label": "🔴 Maroon", "value": "Maroon"},
+                {"label": "🩵 Sky Blue", "value": "Sky Blue"}
             ]
 
         # --- STEP 2d: COLOR SELECTED -> ASK 4TH PREFERENCE: BUDGET / PRICE RANGE ---
-        elif not is_direct_search and any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige"]) and not any(bd in msg_lower for bd in ["under", "500", "999", "1000", "budget", "price"]):
-            color_val = "White" if "white" in msg_lower else ("Black" if "black" in msg_lower else ("Navy Blue" if "blue" in msg_lower or "navy" in msg_lower else ("Pink" if "pink" in msg_lower else "Beige")))
+        elif not is_direct_search and any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige", "grey", "gray", "olive", "maroon", "sky blue"]) and not any(bd in msg_lower for bd in ["under", "500", "999", "1000", "budget", "price"]):
+            color_val = "White" if "white" in msg_lower else ("Black" if "black" in msg_lower else ("Navy Blue" if ("navy" in msg_lower or ("blue" in msg_lower and "sky" not in msg_lower)) else ("Sky Blue" if "sky" in msg_lower else ("Pink" if "pink" in msg_lower else ("Olive Green" if "olive" in msg_lower else ("Maroon" if "maroon" in msg_lower else ("Grey" if "grey" in msg_lower or "gray" in msg_lower else "Beige")))))))
             category = state.get("category", "Shirts")
             state["step"] = "AWAITING_BUDGET"
             state["color"] = color_val
@@ -269,9 +273,9 @@ class DynamicLangGraphShoppingAgent:
         else:
             # Extract color if present in message
             current_color = state.get("color")
-            for c in ["white", "black", "navy blue", "blue", "pink", "beige"]:
+            for c in ["sky blue", "navy blue", "olive green", "white", "black", "blue", "pink", "beige", "grey", "gray", "olive", "maroon"]:
                 if c in msg_lower:
-                    current_color = "Navy Blue" if c in ["navy blue", "blue"] else c.capitalize()
+                    current_color = "Sky Blue" if c == "sky blue" else ("Navy Blue" if c in ["navy blue", "blue"] else ("Olive Green" if c in ["olive green", "olive"] else ("Grey" if c in ["grey", "gray"] else ("Maroon" if c == "maroon" else c.capitalize()))))
                     state["color"] = current_color
                     break
 

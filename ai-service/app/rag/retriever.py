@@ -3,6 +3,7 @@ import numpy as np
 from typing import List, Dict, Any, Optional
 
 SEED_CATALOG = [
+    # ==================== MEN'S SHIRTS ====================
     {
         "id": "var_101",
         "product_id": "prod_1",
@@ -64,20 +65,112 @@ SEED_CATALOG = [
         "complementary_categories": ["Trousers", "Jeans", "Shorts"]
     },
     {
-        "id": "var_103",
-        "product_id": "prod_2",
-        "name": "Stretchable Chino Trousers",
+        "id": "var_110",
+        "product_id": "prod_9",
+        "name": "Beige Mandarin Collar Casual Shirt",
         "category": "Men",
-        "sub_category": "Trousers",
-        "color": "Navy Blue",
-        "available_sizes": ["30", "32", "34", "36"],
-        "price": 699,
-        "stock_qty": 12,
-        "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&auto=format&fit=crop",
-        "short_description": "Flex-stretch navy blue chino trousers. Ideal pairing item for white or pastel shirts.",
-        "style_tags": ["Casual", "Office", "Smart Casual", "Men"],
-        "complementary_categories": ["Shirts", "T-Shirts", "Belts"]
+        "sub_category": "Shirts",
+        "color": "Beige",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 549,
+        "stock_qty": 14,
+        "image_url": "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&auto=format&fit=crop",
+        "short_description": "Relaxed fit beige mandarin collar shirt in breathable cotton-linen blend. Great for brunch or weekend outings.",
+        "style_tags": ["Casual", "Summer", "Relaxed", "Men"],
+        "complementary_categories": ["Trousers", "Jeans", "Shorts"]
     },
+    {
+        "id": "var_111",
+        "product_id": "prod_10",
+        "name": "Sky Blue Spread Collar Formal Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Sky Blue",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 599,
+        "stock_qty": 22,
+        "image_url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop",
+        "short_description": "Crisp sky blue spread collar formal shirt. Wrinkle-free Egyptian cotton for boardroom confidence.",
+        "style_tags": ["Formal", "Office", "Business", "Men"],
+        "complementary_categories": ["Trousers", "Belts", "Ties"]
+    },
+    {
+        "id": "var_112",
+        "product_id": "prod_11",
+        "name": "Olive Green Utility Casual Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Olive Green",
+        "available_sizes": ["M", "L", "XL", "XXL"],
+        "price": 549,
+        "stock_qty": 16,
+        "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop",
+        "short_description": "Rugged olive green utility shirt with double chest pockets. Perfect for adventure and casual wear.",
+        "style_tags": ["Casual", "Utility", "Adventure", "Men"],
+        "complementary_categories": ["Jeans", "Shorts", "Belts"]
+    },
+    {
+        "id": "var_113",
+        "product_id": "prod_12",
+        "name": "Maroon Slim Fit Party Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Maroon",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 699,
+        "stock_qty": 10,
+        "image_url": "https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=500&auto=format&fit=crop",
+        "short_description": "Bold maroon slim fit satin-touch party shirt. Stand out at evening events and celebrations.",
+        "style_tags": ["Party", "Festive", "Evening", "Men"],
+        "complementary_categories": ["Trousers", "Belts", "Shoes"]
+    },
+    {
+        "id": "var_114",
+        "product_id": "prod_13",
+        "name": "Grey Checked Cotton Casual Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Grey",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 449,
+        "stock_qty": 28,
+        "image_url": "https://images.unsplash.com/photo-1588359348347-9bc6cbbb689e?w=500&auto=format&fit=crop",
+        "short_description": "Soft grey checked pattern cotton shirt. Versatile for layering or standalone casual look.",
+        "style_tags": ["Casual", "Layering", "Daily Wear", "Men"],
+        "complementary_categories": ["Jeans", "Trousers", "Jackets"]
+    },
+    {
+        "id": "var_115",
+        "product_id": "prod_14",
+        "name": "Premium White Formal Double Cuff Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "White",
+        "available_sizes": ["M", "L", "XL"],
+        "price": 799,
+        "stock_qty": 8,
+        "image_url": "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=500&auto=format&fit=crop",
+        "short_description": "Luxury premium white double-cuff formal shirt. 100% Supima cotton with French cuff detail.",
+        "style_tags": ["Formal", "Premium", "Office", "Wedding", "Men"],
+        "complementary_categories": ["Trousers", "Belts", "Cufflinks"]
+    },
+    {
+        "id": "var_116",
+        "product_id": "prod_15",
+        "name": "Floral Print Beach Casual Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Navy Blue",
+        "available_sizes": ["M", "L", "XL"],
+        "price": 399,
+        "stock_qty": 20,
+        "image_url": "https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990?w=500&auto=format&fit=crop",
+        "short_description": "Trendy navy blue floral print relaxed-fit beach shirt. Rayon fabric for maximum summer comfort.",
+        "style_tags": ["Casual", "Beach", "Summer", "Vacation", "Men"],
+        "complementary_categories": ["Shorts", "Sunglasses", "Sandals"]
+    },
+
+    # ==================== MEN'S T-SHIRTS ====================
     {
         "id": "var_104",
         "product_id": "prod_3",
@@ -94,6 +187,205 @@ SEED_CATALOG = [
         "complementary_categories": ["Jeans", "Shorts", "Caps"]
     },
     {
+        "id": "var_117",
+        "product_id": "prod_16",
+        "name": "Essential Round Neck Tee",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "Black",
+        "available_sizes": ["S", "M", "L", "XL", "XXL"],
+        "price": 299,
+        "stock_qty": 50,
+        "image_url": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop",
+        "short_description": "Everyday essential black round neck tee. 180 GSM bio-washed cotton for ultra-soft feel.",
+        "style_tags": ["Casual", "Daily Wear", "Essential", "Men"],
+        "complementary_categories": ["Jeans", "Shorts", "Jackets"]
+    },
+    {
+        "id": "var_118",
+        "product_id": "prod_16",
+        "name": "Essential Round Neck Tee",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "White",
+        "available_sizes": ["S", "M", "L", "XL", "XXL"],
+        "price": 299,
+        "stock_qty": 45,
+        "image_url": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&auto=format&fit=crop",
+        "short_description": "Classic white round neck tee. 180 GSM bio-washed cotton. Wardrobe essential for every man.",
+        "style_tags": ["Casual", "Daily Wear", "Essential", "Layering", "Men"],
+        "complementary_categories": ["Jeans", "Shorts", "Jackets"]
+    },
+    {
+        "id": "var_119",
+        "product_id": "prod_17",
+        "name": "Polo Sport Collar T-Shirt",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "Navy Blue",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 499,
+        "stock_qty": 22,
+        "image_url": "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=500&auto=format&fit=crop",
+        "short_description": "Smart navy blue polo tee with ribbed collar and button placket. Cotton piqué for breathable comfort.",
+        "style_tags": ["Casual", "Sport", "Smart Casual", "Men"],
+        "complementary_categories": ["Chinos", "Jeans", "Sneakers"]
+    },
+    {
+        "id": "var_120",
+        "product_id": "prod_18",
+        "name": "Acid Wash Vintage Oversized Tee",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "Grey",
+        "available_sizes": ["M", "L", "XL", "XXL"],
+        "price": 449,
+        "stock_qty": 18,
+        "image_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&auto=format&fit=crop",
+        "short_description": "Retro acid-wash grey oversized tee. Drop shoulders and relaxed fit for streetwear vibes.",
+        "style_tags": ["Streetwear", "Vintage", "Casual", "Trendy", "Men"],
+        "complementary_categories": ["Jeans", "Shorts", "Caps"]
+    },
+    {
+        "id": "var_121",
+        "product_id": "prod_19",
+        "name": "Olive Henley Neck Tee",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "Olive Green",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 399,
+        "stock_qty": 25,
+        "image_url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&auto=format&fit=crop",
+        "short_description": "Olive green henley neck tee with button placket. Soft slub cotton for a textured casual look.",
+        "style_tags": ["Casual", "Layering", "Smart Casual", "Men"],
+        "complementary_categories": ["Jeans", "Chinos", "Jackets"]
+    },
+    {
+        "id": "var_130",
+        "product_id": "prod_26",
+        "name": "Striped Crew Neck Tee",
+        "category": "Men",
+        "sub_category": "T-Shirts",
+        "color": "White",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 349,
+        "stock_qty": 35,
+        "image_url": "https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&auto=format&fit=crop",
+        "short_description": "White crew neck tee with navy horizontal stripes. Nautical-inspired casual summer essential.",
+        "style_tags": ["Casual", "Summer", "Nautical", "Men"],
+        "complementary_categories": ["Shorts", "Jeans", "Sneakers"]
+    },
+
+    # ==================== MEN'S TROUSERS & CHINOS ====================
+    {
+        "id": "var_103",
+        "product_id": "prod_2",
+        "name": "Stretchable Chino Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Navy Blue",
+        "available_sizes": ["30", "32", "34", "36"],
+        "price": 699,
+        "stock_qty": 12,
+        "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&auto=format&fit=crop",
+        "short_description": "Flex-stretch navy blue chino trousers. Ideal pairing item for white or pastel shirts.",
+        "style_tags": ["Casual", "Office", "Smart Casual", "Men"],
+        "complementary_categories": ["Shirts", "T-Shirts", "Belts"]
+    },
+    {
+        "id": "var_122",
+        "product_id": "prod_20",
+        "name": "Slim Fit Formal Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Black",
+        "available_sizes": ["28", "30", "32", "34", "36"],
+        "price": 699,
+        "stock_qty": 20,
+        "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop",
+        "short_description": "Sharp black slim-fit formal trousers. Flat front with pressed crease for a polished boardroom look.",
+        "style_tags": ["Formal", "Office", "Business", "Men"],
+        "complementary_categories": ["Shirts", "Belts", "Shoes"]
+    },
+    {
+        "id": "var_123",
+        "product_id": "prod_21",
+        "name": "Relaxed Fit Cotton Chinos",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Beige",
+        "available_sizes": ["30", "32", "34", "36"],
+        "price": 599,
+        "stock_qty": 18,
+        "image_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=500&auto=format&fit=crop",
+        "short_description": "Comfortable beige relaxed-fit cotton chinos. Elasticated waistband for all-day ease.",
+        "style_tags": ["Casual", "Relaxed", "Weekend", "Men"],
+        "complementary_categories": ["Shirts", "T-Shirts", "Sneakers"]
+    },
+    {
+        "id": "var_124",
+        "product_id": "prod_22",
+        "name": "Tapered Fit Smart Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Grey",
+        "available_sizes": ["28", "30", "32", "34"],
+        "price": 749,
+        "stock_qty": 14,
+        "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop",
+        "short_description": "Modern grey tapered-fit smart trousers. Versatile for office-to-dinner transitions.",
+        "style_tags": ["Smart Casual", "Office", "Versatile", "Men"],
+        "complementary_categories": ["Shirts", "Belts", "Loafers"]
+    },
+    {
+        "id": "var_125",
+        "product_id": "prod_23",
+        "name": "Cargo Utility Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Olive Green",
+        "available_sizes": ["30", "32", "34", "36", "38"],
+        "price": 799,
+        "stock_qty": 10,
+        "image_url": "https://images.unsplash.com/photo-1517438476312-10d79c077509?w=500&auto=format&fit=crop",
+        "short_description": "Tactical olive green cargo trousers with 6-pocket design. Durable twill cotton for rugged outdoor wear.",
+        "style_tags": ["Casual", "Utility", "Adventure", "Outdoor", "Men"],
+        "complementary_categories": ["T-Shirts", "Jackets", "Boots"]
+    },
+    {
+        "id": "var_126",
+        "product_id": "prod_24",
+        "name": "Slim Fit Jogger Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "Black",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 499,
+        "stock_qty": 30,
+        "image_url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500&auto=format&fit=crop",
+        "short_description": "Athleisure black slim-fit jogger trousers with zippered ankles. Stretch fabric for gym-to-street comfort.",
+        "style_tags": ["Casual", "Athleisure", "Sport", "Men"],
+        "complementary_categories": ["T-Shirts", "Sneakers", "Hoodies"]
+    },
+    {
+        "id": "var_127",
+        "product_id": "prod_2",
+        "name": "Stretchable Chino Trousers",
+        "category": "Men",
+        "sub_category": "Trousers",
+        "color": "White",
+        "available_sizes": ["30", "32", "34"],
+        "price": 699,
+        "stock_qty": 8,
+        "image_url": "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=500&auto=format&fit=crop",
+        "short_description": "Clean white flex-stretch chino trousers. A bold summer staple for the fashion-forward man.",
+        "style_tags": ["Casual", "Summer", "Smart Casual", "Men"],
+        "complementary_categories": ["Shirts", "T-Shirts", "Belts"]
+    },
+
+    # ==================== WOMEN'S ====================
+    {
         "id": "var_105",
         "product_id": "prod_4",
         "name": "Floral Print Summer Midi Dress",
@@ -102,7 +394,7 @@ SEED_CATALOG = [
         "color": "Yellow",
         "available_sizes": ["XS", "S", "M"],
         "price": 599,
-        "stock_qty": 0,  # Out of stock
+        "stock_qty": 0,
         "image_url": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&auto=format&fit=crop",
         "short_description": "Lightweight breathable yellow floral midi summer dress with adjustable waist tie.",
         "style_tags": ["Casual", "Vacation", "Summer", "Women"],
@@ -123,6 +415,8 @@ SEED_CATALOG = [
         "style_tags": ["Casual", "Daily Wear", "Trending", "Women"],
         "complementary_categories": ["Tops", "T-Shirts", "Jackets"]
     },
+
+    # ==================== ACCESSORIES ====================
     {
         "id": "var_107",
         "product_id": "prod_6",
@@ -137,6 +431,21 @@ SEED_CATALOG = [
         "short_description": "Handcrafted tan brown genuine leather belt with polished zinc buckle.",
         "style_tags": ["Formal", "Casual", "Essential", "Men"],
         "complementary_categories": ["Shirts", "Trousers", "Jeans"]
+    },
+    {
+        "id": "var_128",
+        "product_id": "prod_25",
+        "name": "Classic Black Leather Belt",
+        "category": "Accessories",
+        "sub_category": "Belts",
+        "color": "Black",
+        "available_sizes": ["Free Size"],
+        "price": 349,
+        "stock_qty": 35,
+        "image_url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop",
+        "short_description": "Sleek black genuine leather belt with brushed nickel buckle. Reversible design for dual styling.",
+        "style_tags": ["Formal", "Casual", "Essential", "Men"],
+        "complementary_categories": ["Shirts", "Trousers", "Shoes"]
     }
 ]
 
@@ -183,9 +492,9 @@ class CatalogRetriever:
 
         # Auto-extract parameters from query text if not explicitly passed
         if not color:
-            for c in ["white", "black", "navy blue", "blue", "pink", "beige", "yellow", "tan"]:
+            for c in ["sky blue", "navy blue", "olive green", "white", "black", "blue", "pink", "beige", "yellow", "tan", "grey", "gray", "olive", "maroon"]:
                 if c in query_lower:
-                    color = "Navy Blue" if c in ["navy blue", "blue", "navy"] else c.capitalize()
+                    color = "Sky Blue" if c == "sky blue" else ("Navy Blue" if c in ["navy blue", "blue", "navy"] else ("Olive Green" if c in ["olive green", "olive"] else ("Grey" if c in ["grey", "gray"] else ("Maroon" if c == "maroon" else c.capitalize()))))
                     break
 
         if not size:
