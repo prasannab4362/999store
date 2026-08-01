@@ -1,3 +1,4 @@
+import re
 import numpy as np
 from typing import List, Dict, Any, Optional
 
@@ -148,14 +149,65 @@ CUSTOMER_PROFILES = {
 
 class CatalogRetriever:
     """
-    Dynamic RAG catalog retriever.
+    Dynamic RAG catalog retriever supporting attribute filtering, tag matching, and text relevance scoring.
     """
     def __init__(self):
         self.catalog = SEED_CATALOG
 
-    def search_catalog(self, query: str = "", category: Optional[str] = None, color: Optional[str] = None, size: Optional[str] = None, top_k: int = 4) -> List[Dict[str, Any]]:
-        # Always return seed catalog items for product display
-        return list(self.catalog[:top_k])
+    def search_catalog(
+        self,
+        query: str = "",
+        category: Optional[str] = None,
+        color: Optional[str] = None,
+        size: Optional[str] = None,
+        price_max: Optional[float] = None,
+        top_k: int = 4
+    ) -> List[Dict[str, Any]]:
+        query_lower = query.lower() if query else ""
+        results = []
+
+        for item in self.catalog:
+            score = 0
+            
+            # Dynamic category matching
+            if category:
+                cat_lower = category.lower()
+                if cat_lower in item["category"].lower() or cat_lower in item["sub_category"].lower():
+                    score += 4
+
+            # Dynamic color matching
+            if color and color.lower() in item["color"].lower():
+                score += 4
+
+            # Dynamic size matching
+            if size and any(s.lower() == size.lower() for s in item["available_sizes"]):
+                score += 3
+
+            # Dynamic price range matching
+            if price_max and item["price"] <= price_max:
+                score += 2
+
+            # Dynamic text query token matching
+            if query_lower:
+                tokens = [t for t in re.findall(r'\b\w+\b', query_lower) if len(t) > 2]
+                for token in tokens:
+                    if token in item["name"].lower():
+                        score += 3
+                    if token in item["short_description"].lower():
+                        score += 2
+                    if token in item["color"].lower():
+                        score += 3
+                    if any(token in tag.lower() for tag in item.get("style_tags", [])):
+                        score += 2
+                    if token in item["sub_category"].lower():
+                        score += 3
+
+            if score > 0 or not query_lower:
+                results.append((score, item))
+
+        results.sort(key=lambda x: x[0], reverse=True)
+        matched_items = [item for score, item in results]
+        return matched_items[:top_k] if matched_items else list(self.catalog[:top_k])
 
     def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
         target = self.get_by_id(product_id)
