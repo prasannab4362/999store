@@ -181,7 +181,7 @@ class DynamicLangGraphShoppingAgent:
 
         # --- STEP 2a: CATEGORY SELECTION -> ASK 1ST PREFERENCE: STYLE (Casual or Formal) ---
         elif not is_direct_search and any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["casual", "formal", "party"]):
-            category = "Shirts" if "shirt" in msg_lower else ("T-Shirts" if "t-shirt" in msg_lower else ("Trousers" if "trouser" in msg_lower else ("Dresses" if "dress" in msg_lower else "Accessories")))
+            category = "T-Shirts" if ("t-shirt" in msg_lower or "tshirt" in msg_lower) else ("Shirts" if "shirt" in msg_lower else ("Trousers" if ("trouser" in msg_lower or "chino" in msg_lower) else ("Dresses" if "dress" in msg_lower else "Accessories")))
             state["step"] = "AWAITING_STYLE"
             state["category"] = category
             self.user_states[user_id] = state

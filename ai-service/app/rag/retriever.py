@@ -504,18 +504,43 @@ class CatalogRetriever:
                     break
 
         if not category:
-            for cat in ["shirt", "t-shirt", "trouser", "dress", "jean", "belt"]:
+            # Note: "t-shirt" must be checked BEFORE "shirt" to prevent false substring matches
+            for cat in ["t-shirt", "tshirt", "shirt", "trouser", "chino", "dress", "jean", "belt"]:
                 if cat in query_lower:
-                    category = "Shirts" if cat == "shirt" else ("T-Shirts" if cat == "t-shirt" else ("Trousers" if cat == "trouser" else ("Dresses" if cat == "dress" else ("Jeans" if cat == "jean" else "Belts"))))
+                    if cat in ["t-shirt", "tshirt"]:
+                        category = "T-Shirts"
+                    elif cat == "shirt":
+                        category = "Shirts"
+                    elif cat in ["trouser", "chino"]:
+                        category = "Trousers"
+                    elif cat == "dress":
+                        category = "Dresses"
+                    elif cat == "jean":
+                        category = "Jeans"
+                    elif cat == "belt":
+                        category = "Belts"
                     break
 
         filtered_items = []
         for item in self.catalog:
-            # Category strict filter
+            # Category strict filter (Exact sub_category matching to prevent "Shirts" from matching "T-Shirts")
             if category:
-                cat_l = category.lower()
-                if cat_l not in item["category"].lower() and cat_l not in item["sub_category"].lower() and item["sub_category"].lower() not in cat_l:
-                    continue
+                cat_l = category.lower().strip()
+                item_sub_l = item["sub_category"].lower().strip()
+                item_cat_l = item["category"].lower().strip()
+
+                if cat_l in ["shirt", "shirts"]:
+                    if item_sub_l != "shirts":
+                        continue
+                elif cat_l in ["t-shirt", "t-shirts", "tshirt", "tshirts"]:
+                    if item_sub_l != "t-shirts":
+                        continue
+                elif cat_l in ["trouser", "trousers", "chino", "chinos"]:
+                    if item_sub_l != "trousers":
+                        continue
+                else:
+                    if cat_l not in item_cat_l and cat_l not in item_sub_l:
+                        continue
 
             # Color strict filter
             if color:
@@ -539,11 +564,18 @@ class CatalogRetriever:
         if filtered_items:
             return filtered_items[:top_k]
 
-        # Partial fallback if 0 exact matches exist for the combined filter
+        # Category-safe fallback: If exact color/size match is not in stock, stay strictly within the requested category!
         fallback_items = []
         for item in self.catalog:
-            if category and (category.lower() in item["category"].lower() or category.lower() in item["sub_category"].lower()):
-                fallback_items.append(item)
+            if category:
+                cat_l = category.lower().strip()
+                item_sub_l = item["sub_category"].lower().strip()
+                if cat_l in ["shirt", "shirts"] and item_sub_l == "shirts":
+                    fallback_items.append(item)
+                elif cat_l in ["t-shirt", "t-shirts"] and item_sub_l == "t-shirts":
+                    fallback_items.append(item)
+                elif cat_l in ["trouser", "trousers"] and item_sub_l == "trousers":
+                    fallback_items.append(item)
             elif color and color.lower() in item["color"].lower():
                 fallback_items.append(item)
         
