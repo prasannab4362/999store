@@ -415,7 +415,7 @@ Who are you shopping for today?
         }
 
         appendMessage("user", text);
-        if (!overrideText) inputEl.value = "";
+        inputEl.value = "";
 
         try {
             const response = await fetch("http://127.0.0.1:8000/api/v1/chat", {
@@ -437,7 +437,6 @@ Who are you shopping for today?
     }
 
     function sendPrompt(text, userId = null) {
-        document.getElementById("userInput").value = text;
         sendMessage(text, userId);
     }
 
