@@ -34,19 +34,19 @@ SYSTEM GOALS & PERSONALITY:
 CONVERSATION FLOW MANDATE:
 1. Greeting: Welcome warmly and ask target audience (Men / Women / Accessories).
 2. Category Selection: Ask for desired category (Shirts, T-Shirts, Trousers, Dresses).
-3. Dynamic Preference Collection (Style → Size → Color → Budget):
+3. Step-by-Step Requirement Collection:
    - Ask Style preference (Casual/Formal).
    - Ask Size (S, M, L, XL or Size Advisor).
    - Ask Preferred Color (White, Black, Navy Blue, Pink, Beige).
    - Ask Budget Range (Under ₹500, ₹500 - ₹999, ₹1000+).
-   Do NOT display product cards during preference collection.
+   Do NOT display product cards during requirement collection.
 4. RAG Product Recommendation: Execute RAG catalog search and render visual product cards once preferences are gathered or when a direct multi-attribute request is sent.
 5. Cart & Combo Deal: Guide 3-for-₹999 combo deal upsell and checkout.
 """
 
 class DynamicLangGraphShoppingAgent:
     """
-    Production-ready AI Shopping Assistant for 999 Store enforcing non-hardcoded dynamic conversation routing:
+    Production-ready AI Shopping Assistant for 999 Store enforcing sequential shopping journey:
     Greeting → Category Selection → Step-by-Step Requirement Collection → RAG Catalog Search & Product Cards → Cart & Combo Offer
     """
     def __init__(self):
@@ -70,13 +70,18 @@ class DynamicLangGraphShoppingAgent:
 
         profile = get_customer_profile_memory_tool.invoke({"user_id": user_id})
 
-        # --- SUPPORT HANDOFF ESCALATION ---
+        is_direct_search = (
+            any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige"]) and
+            any(sz in msg_lower for sz in ["size", "small", "medium", "large", "xl", "s", "m", "l"])
+        ) or any(bd in msg_lower for bd in ["under", "500", "999", "1000", "over 1000", "budget", "price range"])
+
+        # --- 1. SUPPORT HANDOFF ESCALATION ---
         if any(w in msg_lower for w in ["human", "support", "agent", "person", "escalate", "help me talk to human"]):
             esc_res = escalate_to_human_support_tool.invoke({"reason": message})
             requires_human_handoff = True
             reply_text = f"🤝 {esc_res['message']}"
 
-        # --- ORDER TRACKING & RETURNS ---
+        # --- 2. ORDER TRACKING & RETURNS ---
         elif any(w in msg_lower for w in ["order", "track", "ord-", "status", "delivery"]):
             order_res = lookup_order_status_tool.invoke({"order_id": "ORD-999-01", "user_id": user_id})
             reply_text = f"📦 **Order Status for `{order_res['order_id']}`**:\n- Status: **{order_res['status']}**\n- Carrier: {order_res.get('carrier', 'BlueDart Express')}\n- Estimated Delivery: **{order_res['estimated_delivery']}**\n- Tracking No: `{order_res.get('tracking_number', 'BD-999-88219')}`"
@@ -85,8 +90,8 @@ class DynamicLangGraphShoppingAgent:
                 {"label": "🤝 Contact Support", "value": "I need human support agent"}
             ]
 
-        # --- CART MANAGEMENT: ADD TO CART & COMBO UPSELL ---
-        elif msg_lower.startswith("add ") and ("to combo" in msg_lower or "cart" in msg_lower):
+        # --- 3. CART MANAGEMENT: ADD TO CART & COMBO UPSELL ---
+        elif msg_lower.startswith("add ") or "to combo" in msg_lower or "to cart" in msg_lower:
             item_name = message.replace("Add ", "").replace(" to my combo", "").replace(" to combo", "").replace(" to cart", "").strip()
             found_item = retriever.search_catalog(query=item_name)
             added_product = found_item[0] if found_item else {"name": item_name, "price": 499, "color": "Selected", "available_sizes": ["M"]}
@@ -98,7 +103,7 @@ class DynamicLangGraphShoppingAgent:
             if cart_count == 1:
                 reply_text = f"🛒 **Added '{added_product['name']}' to your Cart!**\n\n🎉 **₹999 Combo Special Offer**:\nYou have 1 item in your cart. Pick **2 more items** in the same price range to complete your **3-item combo for just ₹999**!\n\nWhat would you like to add next?"
                 options = [
-                    {"label": "👔 Add 2 More Shirts", "value": "Casual Shirts"},
+                    {"label": "👔 Add 2 More Shirts", "value": "I need shirts"},
                     {"label": "👖 Add Trousers", "value": "I need trousers"},
                     {"label": "🛍️ Review Cart & Pay", "value": "View my cart"}
                 ]
@@ -110,7 +115,7 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "👕 Add More Items", "value": "I need shirts"}
                 ]
 
-        # --- CART MANAGEMENT: VIEW CART & CHECKOUT ---
+        # --- 4. CART MANAGEMENT: VIEW CART & CHECKOUT ---
         elif any(w in msg_lower for w in ["view my cart", "review cart", "cart", "checkout"]):
             if not cart:
                 reply_text = "🛒 Your cart is currently empty! Let's pick some stylish outfits for your ₹999 combo bundle."
@@ -130,13 +135,13 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "➕ Add More Items", "value": "I need shirts"}
                 ]
 
-        # Payment Confirmation
+        # --- 5. PAYMENT CONFIRMATION ---
         elif "proceeding to checkout" in msg_lower or ("pay" in msg_lower and len(cart) > 0):
             reply_text = "💳 **Redirecting to Secure Payment Gateway...**\n\nThank you for shopping with **999 Store**! Your order confirmation will be sent via SMS & WhatsApp."
             options = [{"label": "🛍️ Start New Shopping Journey", "value": "Hi"}]
             self.user_carts[user_id] = []
 
-        # --- STEP 1: GREETING (Exact word token matching) ---
+        # --- STEP 1: GREETING ---
         elif set(["hi", "hello", "hey", "start", "welcome"]).intersection(msg_words) or any(phrase in msg_lower for phrase in ["good morning", "good evening"]):
             state["step"] = "AWAITING_TARGET"
             self.user_states[user_id] = state
@@ -174,14 +179,8 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "🛍️ All Accessories", "value": "Show me accessories"}
                 ]
 
-        # Check for multi-attribute specific search (e.g. "white shirt size M", "under 500", "500 - 999", or budget selected)
-        is_direct_search = (
-            any(cl in msg_lower for cl in ["white", "black", "blue", "pink", "beige"]) and
-            any(sz in msg_lower for sz in ["size", "small", "medium", "large", "xl", "s", "m", "l"])
-        ) or any(bd in msg_lower for bd in ["under", "500", "999", "1000", "over 1000", "budget", "price range"])
-
         # --- STEP 2a: CATEGORY SELECTION -> ASK 1ST PREFERENCE: STYLE (Casual or Formal) ---
-        if not is_direct_search and any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["casual", "formal", "party"]):
+        elif not is_direct_search and any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["casual", "formal", "party"]):
             category = "Shirts" if "shirt" in msg_lower else ("T-Shirts" if "t-shirt" in msg_lower else ("Trousers" if "trouser" in msg_lower else ("Dresses" if "dress" in msg_lower else "Accessories")))
             state["step"] = "AWAITING_STYLE"
             state["category"] = category
@@ -225,11 +224,11 @@ class DynamicLangGraphShoppingAgent:
             retrieved_products = []
             reply_text = f"📏 **AI Size & Fit Advisor Recommendation**:\n- Recommended Size: **{rec_size}** ({size_res['fit_description']})\n- Tip: {size_res['tip']}\n\nThird, what is your **preferred color** for {category}?"
             options = [
-                {"label": "⚪ White", "value": f"White Size {rec_size}"},
-                {"label": "⚫ Black", "value": f"Black Size {rec_size}"},
-                {"label": "🔵 Navy Blue", "value": f"Navy Blue Size {rec_size}"},
-                {"label": "🌸 Pink", "value": f"Pink Size {rec_size}"},
-                {"label": "🌾 Beige", "value": f"Beige Size {rec_size}"}
+                {"label": "⚪ White", "value": "White"},
+                {"label": "⚫ Black", "value": "Black"},
+                {"label": "🔵 Navy Blue", "value": "Navy Blue"},
+                {"label": "🌸 Pink", "value": "Pink"},
+                {"label": "🌾 Beige", "value": "Beige"}
             ]
 
         # --- STEP 2c: SIZE SELECTED -> ASK 3RD PREFERENCE: COLOR ---
@@ -267,7 +266,15 @@ class DynamicLangGraphShoppingAgent:
             ]
 
         # --- STEP 3: DIRECT MULTI-ATTRIBUTE SEARCH OR BUDGET SELECTED -> EXECUTE RAG RETRIEVAL & SHOW PRODUCT CARDS ---
-        elif is_direct_search or state.get("step") == "AWAITING_BUDGET" or reply_text == "":
+        else:
+            # Extract color if present in message
+            current_color = state.get("color")
+            for c in ["white", "black", "navy blue", "blue", "pink", "beige"]:
+                if c in msg_lower:
+                    current_color = "Navy Blue" if c in ["navy blue", "blue"] else c.capitalize()
+                    state["color"] = current_color
+                    break
+
             state["step"] = "SHOWING_PRODUCTS"
             self.user_states[user_id] = state
             
@@ -275,7 +282,7 @@ class DynamicLangGraphShoppingAgent:
             prods = retriever.search_catalog(
                 query=message,
                 category=state.get("category"),
-                color=state.get("color"),
+                color=current_color,
                 size=state.get("size")
             )
             retrieved_products = prods

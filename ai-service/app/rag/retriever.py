@@ -34,6 +34,21 @@ SEED_CATALOG = [
         "complementary_categories": ["Jeans", "Chinos", "Belts"]
     },
     {
+        "id": "var_109",
+        "product_id": "prod_8",
+        "name": "Classic Navy Blue Oxford Shirt",
+        "category": "Men",
+        "sub_category": "Shirts",
+        "color": "Navy Blue",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "price": 499,
+        "stock_qty": 20,
+        "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&auto=format&fit=crop",
+        "short_description": "Versatile navy blue cotton oxford shirt for formal or casual combo outfits.",
+        "style_tags": ["Formal", "Casual", "Office", "Classic", "Men"],
+        "complementary_categories": ["Trousers", "Jeans", "Belts"]
+    },
+    {
         "id": "var_108",
         "product_id": "prod_7",
         "name": "Pastel Pink Linen Casual Shirt",
