@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Dict, Any, List, TypedDict, Optional
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
 from app.rag.retriever import retriever
@@ -53,6 +54,7 @@ class DynamicLangGraphShoppingAgent:
         history.append(HumanMessage(content=message))
         
         msg_lower = message.lower().strip()
+        msg_words = set(re.findall(r'\b\w+\b', msg_lower))
         cart = self.user_carts.get(user_id, [])
         state = self.user_states.get(user_id, {"step": "INIT", "category": None, "target": None})
         
@@ -129,8 +131,8 @@ class DynamicLangGraphShoppingAgent:
             options = [{"label": "🛍️ Start New Shopping Journey", "value": "Hi"}]
             self.user_carts[user_id] = []
 
-        # --- STEP 1: GREETING ---
-        elif any(w in msg_lower for w in ["hi", "hello", "hey", "start", "welcome", "good morning", "good evening"]):
+        # --- STEP 1: GREETING (Word-level matching using regex word boundaries) ---
+        elif set(["hi", "hello", "hey", "start", "welcome"]).intersection(msg_words) or any(phrase in msg_lower for phrase in ["good morning", "good evening"]):
             state["step"] = "AWAITING_TARGET"
             self.user_states[user_id] = state
             
@@ -168,7 +170,7 @@ class DynamicLangGraphShoppingAgent:
                 ]
 
         # --- STEP 2: CATEGORY SELECTION -> REQUIREMENT COLLECTION (NO PRODUCT CARDS SHOWN YET) ---
-        elif any(cat in msg_lower for cat in ["i need shirts", "i want shirts", "show me shirts", "shirts", "i need t-shirts", "i want t-shirts", "t-shirts", "i need trousers", "trousers", "dresses", "jeans", "belts"]) and not any(spec in msg_lower for spec in ["white", "black", "blue", "pink", "beige", "size", "under", "casual", "formal", "slim"]):
+        elif any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["white", "black", "blue", "pink", "beige", "size", "under", "casual", "formal", "slim"]):
             category = "Shirts" if "shirt" in msg_lower else ("T-Shirts" if "t-shirt" in msg_lower else ("Trousers" if "trouser" in msg_lower else ("Dresses" if "dress" in msg_lower else "Accessories")))
             state["step"] = "AWAITING_REQUIREMENTS"
             state["category"] = category
