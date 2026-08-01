@@ -72,7 +72,7 @@ SEED_CATALOG = [
         "sub_category": "Shirts",
         "color": "Beige",
         "available_sizes": ["S", "M", "L", "XL"],
-        "price": 549,
+        "price": 499,
         "stock_qty": 14,
         "image_url": "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&auto=format&fit=crop",
         "short_description": "Relaxed fit beige mandarin collar shirt in breathable cotton-linen blend. Great for brunch or weekend outings.",
@@ -87,7 +87,7 @@ SEED_CATALOG = [
         "sub_category": "Shirts",
         "color": "Sky Blue",
         "available_sizes": ["S", "M", "L", "XL"],
-        "price": 599,
+        "price": 499,
         "stock_qty": 22,
         "image_url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop",
         "short_description": "Crisp sky blue spread collar formal shirt. Wrinkle-free Egyptian cotton for boardroom confidence.",
@@ -102,7 +102,7 @@ SEED_CATALOG = [
         "sub_category": "Shirts",
         "color": "Olive Green",
         "available_sizes": ["M", "L", "XL", "XXL"],
-        "price": 549,
+        "price": 499,
         "stock_qty": 16,
         "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop",
         "short_description": "Rugged olive green utility shirt with double chest pockets. Perfect for adventure and casual wear.",
@@ -117,7 +117,7 @@ SEED_CATALOG = [
         "sub_category": "Shirts",
         "color": "Maroon",
         "available_sizes": ["S", "M", "L", "XL"],
-        "price": 699,
+        "price": 499,
         "stock_qty": 10,
         "image_url": "https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=500&auto=format&fit=crop",
         "short_description": "Bold maroon slim fit satin-touch party shirt. Stand out at evening events and celebrations.",
@@ -147,7 +147,7 @@ SEED_CATALOG = [
         "sub_category": "Shirts",
         "color": "White",
         "available_sizes": ["M", "L", "XL"],
-        "price": 799,
+        "price": 499,
         "stock_qty": 8,
         "image_url": "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=500&auto=format&fit=crop",
         "short_description": "Luxury premium white double-cuff formal shirt. 100% Supima cotton with French cuff detail.",
@@ -301,7 +301,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Navy Blue",
         "available_sizes": ["30", "32", "34", "36"],
-        "price": 699,
+        "price": 499,
         "stock_qty": 12,
         "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&auto=format&fit=crop",
         "short_description": "Flex-stretch navy blue chino trousers. Ideal pairing item for white or pastel shirts.",
@@ -316,7 +316,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Black",
         "available_sizes": ["28", "30", "32", "34", "36"],
-        "price": 699,
+        "price": 499,
         "stock_qty": 20,
         "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop",
         "short_description": "Sharp black slim-fit formal trousers. Flat front with pressed crease for a polished boardroom look.",
@@ -331,7 +331,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Beige",
         "available_sizes": ["30", "32", "34", "36"],
-        "price": 599,
+        "price": 499,
         "stock_qty": 18,
         "image_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=500&auto=format&fit=crop",
         "short_description": "Comfortable beige relaxed-fit cotton chinos. Elasticated waistband for all-day ease.",
@@ -346,7 +346,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Grey",
         "available_sizes": ["28", "30", "32", "34"],
-        "price": 749,
+        "price": 499,
         "stock_qty": 14,
         "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop",
         "short_description": "Modern grey tapered-fit smart trousers. Versatile for office-to-dinner transitions.",
@@ -361,7 +361,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Olive Green",
         "available_sizes": ["30", "32", "34", "36", "38"],
-        "price": 799,
+        "price": 499,
         "stock_qty": 10,
         "image_url": "https://images.unsplash.com/photo-1517438476312-10d79c077509?w=500&auto=format&fit=crop",
         "short_description": "Tactical olive green cargo trousers with 6-pocket design. Durable twill cotton for rugged outdoor wear.",
@@ -376,7 +376,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "White",
         "available_sizes": ["30", "32", "34"],
-        "price": 699,
+        "price": 499,
         "stock_qty": 8,
         "image_url": "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=500&auto=format&fit=crop",
         "short_description": "Clean white flex-stretch chino trousers. A bold summer staple for the fashion-forward man.",
@@ -391,7 +391,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Pink",
         "available_sizes": ["30", "32", "34"],
-        "price": 649,
+        "price": 499,
         "stock_qty": 12,
         "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&auto=format&fit=crop",
         "short_description": "Soft pastel pink stretch chinos for a statement smart-casual ensemble.",
@@ -406,7 +406,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Sky Blue",
         "available_sizes": ["30", "32", "34", "36"],
-        "price": 699,
+        "price": 499,
         "stock_qty": 16,
         "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop",
         "short_description": "Tailored sky blue formal trousers for crisp business and summer wedding outfits.",
@@ -421,7 +421,7 @@ SEED_CATALOG = [
         "sub_category": "Trousers",
         "color": "Maroon",
         "available_sizes": ["30", "32", "34", "36"],
-        "price": 749,
+        "price": 499,
         "stock_qty": 14,
         "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop",
         "short_description": "Rich burgundy maroon dress trousers with flat-front tailoring for evening celebrations.",
@@ -605,26 +605,41 @@ class CatalogRetriever:
 
             filtered_items.append(item)
 
-        # If strict filtering found exact matching items, return them!
+        # Tier 1: Exact matches for Category + Color + Size + Price Max
         if filtered_items:
             return filtered_items[:top_k]
 
-        # Category-safe fallback: If exact color/size match is not in stock, stay strictly within the requested category!
-        fallback_items = []
+        # Tier 2 Fallback: Relax price constraint FIRST to guarantee exact Category + Color image match!
+        color_color_items = []
         for item in self.catalog:
             if category:
                 cat_l = category.lower().strip()
                 item_sub_l = item["sub_category"].lower().strip()
-                if cat_l in ["shirt", "shirts"] and item_sub_l == "shirts":
-                    fallback_items.append(item)
-                elif cat_l in ["t-shirt", "t-shirts"] and item_sub_l == "t-shirts":
-                    fallback_items.append(item)
-                elif cat_l in ["trouser", "trousers"] and item_sub_l == "trousers":
-                    fallback_items.append(item)
-            elif color and color.lower() in item["color"].lower():
-                fallback_items.append(item)
-        
-        return fallback_items[:top_k] if fallback_items else list(self.catalog[:top_k])
+                match_cat = (cat_l in ["shirt", "shirts"] and item_sub_l == "shirts") or \
+                            (cat_l in ["t-shirt", "t-shirts"] and item_sub_l == "t-shirts") or \
+                            (cat_l in ["trouser", "trousers"] and item_sub_l == "trousers")
+            else:
+                match_cat = True
+
+            if match_cat and color:
+                if color.lower() in item["color"].lower():
+                    color_color_items.append(item)
+
+        if color_color_items:
+            return color_color_items[:top_k]
+
+        # Tier 3 Fallback: Stay strictly inside category
+        category_items = []
+        for item in self.catalog:
+            if category:
+                cat_l = category.lower().strip()
+                item_sub_l = item["sub_category"].lower().strip()
+                if (cat_l in ["shirt", "shirts"] and item_sub_l == "shirts") or \
+                   (cat_l in ["t-shirt", "t-shirts"] and item_sub_l == "t-shirts") or \
+                   (cat_l in ["trouser", "trousers"] and item_sub_l == "trousers"):
+                    category_items.append(item)
+
+        return category_items[:top_k] if category_items else list(self.catalog[:top_k])
 
     def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
         target = self.get_by_id(product_id)
