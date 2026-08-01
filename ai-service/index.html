@@ -292,11 +292,12 @@
                 <div class="hero-subtitle">Pick Any 2, 3, 5, 8 or 10 Items for ₹999 Fixed Price</div>
             </div>
 
-            <h3 style="font-size: 1.1rem; color: #f8fafc;">4-Step Guided Assistant (Test Quick Prompts):</h3>
+            <h3 style="font-size: 1.1rem; color: #f8fafc;">Sequential Shopping Flow (Test Quick Prompts):</h3>
             <div class="prompt-chips">
-                <div class="chip" onclick="sendPrompt('Hi')">👋 Step 1: Greeting & Start</div>
-                <div class="chip" onclick="sendPrompt('I am looking for shirts')">👔 Step 2: Pick Category</div>
-                <div class="chip" onclick="sendPrompt('Show me white shirts')">🖼️ Step 3: View Products</div>
+                <div class="chip" onclick="sendPrompt('Hi')">👋 Step 1: Greeting</div>
+                <div class="chip" onclick="sendPrompt('I am shopping for Men')">👨 Step 1b: Pick Target</div>
+                <div class="chip" onclick="sendPrompt('I need shirts')">👔 Step 2: Category Requirements</div>
+                <div class="chip" onclick="sendPrompt('White casual shirt size M')">🖼️ Step 3: View Products</div>
                 <div class="chip" onclick="sendPrompt('Add Classic Slim Fit Oxford Shirt to my combo')">🛒 Step 4: Add & Upsell</div>
                 <div class="chip" onclick="sendPrompt('View my cart')">💳 Cart Review & Pay</div>
             </div>
@@ -307,18 +308,20 @@
                 <div class="chat-title">
                     <span class="status-dot"></span> Combo Guru Assistant
                 </div>
-                <span style="font-size: 0.75rem; color: #94a3b8;">4-Step Interactive Flow</span>
+                <span style="font-size: 0.75rem; color: #94a3b8;">AI Shopping Flow</span>
             </div>
 
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot">
-👋 **Welcome to 999 Combo Store!** I am **Combo Guru**, your AI Shopping Assistant. 
+Hello 👋 Welcome to **999 Store**!
 
-What type of clothing are you looking for today? Select an option below or type your request!
+I'm your **AI Shopping Assistant**. I'll help you find the perfect outfit.
+
+Who are you shopping for today?
                     <div class="options-container">
-                        <button class="option-btn" onclick="sendPrompt('I am looking for shirts')">👔 Formal & Casual Shirts</button>
-                        <button class="option-btn" onclick="sendPrompt('I am looking for t-shirts')">👕 Streetwear T-Shirts</button>
-                        <button class="option-btn" onclick="sendPrompt('I am looking for trousers')">👖 Chinos & Trousers</button>
+                        <button class="option-btn" onclick="sendPrompt('I am shopping for Men')">👨 Men</button>
+                        <button class="option-btn" onclick="sendPrompt('I am shopping for Women')">👩 Women</button>
+                        <button class="option-btn" onclick="sendPrompt('Show me accessories')">🎒 Accessories</button>
                     </div>
                 </div>
             </div>
