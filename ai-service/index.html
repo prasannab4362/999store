@@ -358,13 +358,16 @@ Who are you shopping for today?
                 const isOut = p.stock_qty <= 0;
                 const card = document.createElement("div");
                 card.className = "product-card";
+                const displaySize = p.selected_size || (p.available_sizes ? p.available_sizes[0] : 'Free Size');
+                const displayColor = p.selected_color || p.color;
+
                 card.innerHTML = `
                     <img src="${p.image_url}" class="product-img" alt="${p.name}">
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-meta">
-                            <span>Color: <b>${p.color}</b></span>
-                            <span>Sizes: <b>${p.available_sizes.join(", ")}</b></span>
+                            <span>Color: <b>${displayColor}</b></span>
+                            <span>Size: <b>${displaySize}</b></span>
                         </div>
                         <div class="product-desc">${p.short_description}</div>
                         <div class="product-meta" style="margin-top: 0.3rem;">

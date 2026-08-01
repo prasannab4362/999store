@@ -304,7 +304,16 @@ class DynamicLangGraphShoppingAgent:
                 size=state.get("size"),
                 price_max=price_max
             )
-            retrieved_products = prods
+
+            # Format products with exact customer-selected attributes
+            formatted_prods = []
+            for p in prods:
+                p_copy = dict(p)
+                p_copy["selected_size"] = state.get("size") if state.get("size") else (p["available_sizes"][0] if p.get("available_sizes") else "M")
+                p_copy["selected_color"] = current_color if current_color else p.get("color", "Standard")
+                formatted_prods.append(p_copy)
+
+            retrieved_products = formatted_prods
             
             if not retrieved_products:
                 reply_text = "😔 **No exact matches found** for your preferences. Here are some similar items you might like:"
@@ -313,7 +322,13 @@ class DynamicLangGraphShoppingAgent:
                     query=message,
                     category=state.get("category")
                 )
-                retrieved_products = prods_fallback
+                formatted_fallback = []
+                for p in prods_fallback:
+                    p_copy = dict(p)
+                    p_copy["selected_size"] = state.get("size") if state.get("size") else (p["available_sizes"][0] if p.get("available_sizes") else "M")
+                    p_copy["selected_color"] = current_color if current_color else p.get("color", "Standard")
+                    formatted_fallback.append(p_copy)
+                retrieved_products = formatted_fallback
             else:
                 reply_text = "✨ **Here are top matching products based on your preferences**:\n\nClick **'+ Add to ₹999 Combo'** on any product below to build your combo deal!"
             
