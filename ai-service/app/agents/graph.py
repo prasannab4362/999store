@@ -115,7 +115,13 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "👕 Add More Items", "value": "I need shirts"}
                 ]
 
-        # --- 4. CART MANAGEMENT: VIEW CART & CHECKOUT ---
+        # --- 4. PAYMENT CONFIRMATION (must be checked BEFORE cart view because "checkout" is a substring) ---
+        elif "proceeding to checkout" in msg_lower or ("pay" in msg_lower and len(cart) > 0):
+            reply_text = "💳 **Redirecting to Secure Payment Gateway...**\n\nThank you for shopping with **999 Store**! Your order confirmation will be sent via SMS & WhatsApp."
+            options = [{"label": "🛍️ Start New Shopping Journey", "value": "Hi"}]
+            self.user_carts[user_id] = []
+
+        # --- 5. CART MANAGEMENT: VIEW CART & CHECKOUT ---
         elif any(w in msg_lower for w in ["view my cart", "review cart", "cart", "checkout"]):
             if not cart:
                 reply_text = "🛒 Your cart is currently empty! Let's pick some stylish outfits for your ₹999 combo bundle."
@@ -134,12 +140,6 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "💳 Proceed to Checkout (₹999)", "value": "Proceeding to checkout payment"},
                     {"label": "➕ Add More Items", "value": "I need shirts"}
                 ]
-
-        # --- 5. PAYMENT CONFIRMATION ---
-        elif "proceeding to checkout" in msg_lower or ("pay" in msg_lower and len(cart) > 0):
-            reply_text = "💳 **Redirecting to Secure Payment Gateway...**\n\nThank you for shopping with **999 Store**! Your order confirmation will be sent via SMS & WhatsApp."
-            options = [{"label": "🛍️ Start New Shopping Journey", "value": "Hi"}]
-            self.user_carts[user_id] = []
 
         # --- STEP 1: GREETING ---
         elif set(["hi", "hello", "hey", "start", "welcome"]).intersection(msg_words) or any(phrase in msg_lower for phrase in ["good morning", "good evening"]):
@@ -275,6 +275,20 @@ class DynamicLangGraphShoppingAgent:
                     state["color"] = current_color
                     break
 
+            # Extract price_max from budget selection
+            price_max = None
+            if "under" in msg_lower and "500" in msg_lower:
+                price_max = 500
+            elif "500" in msg_lower and "999" in msg_lower:
+                price_max = 999
+            elif "over" in msg_lower and "1000" in msg_lower:
+                price_max = 99999  # No upper limit
+            elif "under" in msg_lower:
+                # Try to extract number after "under"
+                nums = re.findall(r'\d+', msg_lower)
+                if nums:
+                    price_max = int(nums[0])
+
             state["step"] = "SHOWING_PRODUCTS"
             self.user_states[user_id] = state
             
@@ -283,11 +297,22 @@ class DynamicLangGraphShoppingAgent:
                 query=message,
                 category=state.get("category"),
                 color=current_color,
-                size=state.get("size")
+                size=state.get("size"),
+                price_max=price_max
             )
             retrieved_products = prods
             
-            reply_text = "✨ **Here are top matching products based on your preferences**:\n\nClick **'+ Add to ₹999 Combo'** on any product below to build your combo deal!"
+            if not retrieved_products:
+                reply_text = "😔 **No exact matches found** for your preferences. Here are some similar items you might like:"
+                # Fallback: search with fewer filters
+                prods_fallback = retriever.search_catalog(
+                    query=message,
+                    category=state.get("category")
+                )
+                retrieved_products = prods_fallback
+            else:
+                reply_text = "✨ **Here are top matching products based on your preferences**:\n\nClick **'+ Add to ₹999 Combo'** on any product below to build your combo deal!"
+            
             options = [
                 {"label": "🛍️ Review Cart & Pay", "value": "View my cart"},
                 {"label": "🎨 Color Pairing Advice", "value": "What colors pair well with white shirt"},
