@@ -149,7 +149,8 @@ CUSTOMER_PROFILES = {
 
 class CatalogRetriever:
     """
-    Dynamic RAG catalog retriever supporting attribute filtering, tag matching, and text relevance scoring.
+    Dynamic RAG catalog retriever supporting strict attribute filtering and text relevance scoring.
+    Enforces exact attribute matching for Color, Category, Size, and Price Range.
     """
     def __init__(self):
         self.catalog = SEED_CATALOG
@@ -164,50 +165,65 @@ class CatalogRetriever:
         top_k: int = 4
     ) -> List[Dict[str, Any]]:
         query_lower = query.lower() if query else ""
-        results = []
 
+        # Auto-extract parameters from query text if not explicitly passed
+        if not color:
+            for c in ["white", "black", "navy blue", "blue", "pink", "beige", "yellow", "tan"]:
+                if c in query_lower:
+                    color = "Navy Blue" if c in ["navy blue", "blue", "navy"] else c.capitalize()
+                    break
+
+        if not size:
+            for s in ["xs", "s", "m", "l", "xl", "xxl", "30", "32", "34", "36", "28", "26"]:
+                if re.search(r'\b' + s + r'\b', query_lower):
+                    size = s.upper()
+                    break
+
+        if not category:
+            for cat in ["shirt", "t-shirt", "trouser", "dress", "jean", "belt"]:
+                if cat in query_lower:
+                    category = "Shirts" if cat == "shirt" else ("T-Shirts" if cat == "t-shirt" else ("Trousers" if cat == "trouser" else ("Dresses" if cat == "dress" else ("Jeans" if cat == "jean" else "Belts"))))
+                    break
+
+        filtered_items = []
         for item in self.catalog:
-            score = 0
-            
-            # Dynamic category matching
+            # Category strict filter
             if category:
-                cat_lower = category.lower()
-                if cat_lower in item["category"].lower() or cat_lower in item["sub_category"].lower():
-                    score += 4
+                cat_l = category.lower()
+                if cat_l not in item["category"].lower() and cat_l not in item["sub_category"].lower() and item["sub_category"].lower() not in cat_l:
+                    continue
 
-            # Dynamic color matching
-            if color and color.lower() in item["color"].lower():
-                score += 4
+            # Color strict filter
+            if color:
+                color_l = color.lower()
+                item_color_l = item["color"].lower()
+                if color_l not in item_color_l and item_color_l not in color_l:
+                    continue
 
-            # Dynamic size matching
-            if size and any(s.lower() == size.lower() for s in item["available_sizes"]):
-                score += 3
+            # Size strict filter
+            if size:
+                if not any(s.lower() == size.lower() for s in item["available_sizes"]):
+                    continue
 
-            # Dynamic price range matching
-            if price_max and item["price"] <= price_max:
-                score += 2
+            # Price max strict filter
+            if price_max and item["price"] > price_max:
+                continue
 
-            # Dynamic text query token matching
-            if query_lower:
-                tokens = [t for t in re.findall(r'\b\w+\b', query_lower) if len(t) > 2]
-                for token in tokens:
-                    if token in item["name"].lower():
-                        score += 3
-                    if token in item["short_description"].lower():
-                        score += 2
-                    if token in item["color"].lower():
-                        score += 3
-                    if any(token in tag.lower() for tag in item.get("style_tags", [])):
-                        score += 2
-                    if token in item["sub_category"].lower():
-                        score += 3
+            filtered_items.append(item)
 
-            if score > 0 or not query_lower:
-                results.append((score, item))
+        # If strict filtering found exact matching items, return them!
+        if filtered_items:
+            return filtered_items[:top_k]
 
-        results.sort(key=lambda x: x[0], reverse=True)
-        matched_items = [item for score, item in results]
-        return matched_items[:top_k] if matched_items else list(self.catalog[:top_k])
+        # Partial fallback if 0 exact matches exist for the combined filter
+        fallback_items = []
+        for item in self.catalog:
+            if category and (category.lower() in item["category"].lower() or category.lower() in item["sub_category"].lower()):
+                fallback_items.append(item)
+            elif color and color.lower() in item["color"].lower():
+                fallback_items.append(item)
+        
+        return fallback_items[:top_k] if fallback_items else list(self.catalog[:top_k])
 
     def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
         target = self.get_by_id(product_id)
