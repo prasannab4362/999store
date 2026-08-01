@@ -34,15 +34,20 @@ SYSTEM GOALS & PERSONALITY:
 CONVERSATION FLOW MANDATE:
 1. Greeting: Welcome warmly and ask target audience (Men / Women / Accessories).
 2. Category Selection: Ask for desired category (Shirts, T-Shirts, Trousers, Dresses).
-3. Product Requirement Collection: When category is selected, collect budget range, size, preferred color, and style preference (casual/formal) BEFORE displaying products. Do NOT return products in this step.
-4. RAG Product Recommendation: Execute RAG search and display visual product cards only when requirement details are provided.
+3. Step-by-Step Requirement Collection:
+   - 1st: Ask Style preference (Casual or Formal).
+   - 2nd: Ask Size (S, M, L, XL or Size Advisor).
+   - 3rd: Ask Preferred Color (White, Black, Navy Blue, Pink, Beige).
+   - 4th: Ask Budget / Price Range (Under ₹500, ₹500 - ₹999, ₹1000+).
+   Do NOT display product cards during requirement collection.
+4. RAG Product Recommendation: Execute RAG search and display visual product cards only after requirements are gathered or when specific details are provided.
 5. Cart & Combo Deal: Guide 3-for-₹999 combo deal upsell and checkout.
 """
 
 class DynamicLangGraphShoppingAgent:
     """
     Production-ready AI Shopping Assistant for 999 Store enforcing sequential shopping journey:
-    Greeting → Category Selection → Requirement Collection → RAG Search & Product Cards → Cart & Combo Offer
+    Greeting → Category Selection → Step-by-Step Requirement Collection (Style → Size → Color → Budget) → RAG Search & Product Cards → Cart & Combo Offer
     """
     def __init__(self):
         self.checkpoints: Dict[str, List[BaseMessage]] = {}
@@ -56,7 +61,7 @@ class DynamicLangGraphShoppingAgent:
         msg_lower = message.lower().strip()
         msg_words = set(re.findall(r'\b\w+\b', msg_lower))
         cart = self.user_carts.get(user_id, [])
-        state = self.user_states.get(user_id, {"step": "INIT", "category": None, "target": None})
+        state = self.user_states.get(user_id, {"step": "INIT", "category": None, "target": None, "style": None, "size": None, "color": None, "budget": None})
         
         retrieved_products = []
         options = []
@@ -93,8 +98,8 @@ class DynamicLangGraphShoppingAgent:
             if cart_count == 1:
                 reply_text = f"🛒 **Added '{added_product['name']}' to your Cart!**\n\n🎉 **₹999 Combo Special Offer**:\nYou have 1 item in your cart. Pick **2 more items** in the same price range to complete your **3-item combo for just ₹999**!\n\nWhat would you like to add next?"
                 options = [
-                    {"label": "👔 Add 2 More Shirts", "value": "White casual shirt size M"},
-                    {"label": "👖 Add Trousers", "value": "Navy blue trousers size 32"},
+                    {"label": "👔 Add 2 More Shirts", "value": "Casual Shirts"},
+                    {"label": "👖 Add Trousers", "value": "I need trousers"},
                     {"label": "🛍️ Review Cart & Pay", "value": "View my cart"}
                 ]
             else:
@@ -131,7 +136,7 @@ class DynamicLangGraphShoppingAgent:
             options = [{"label": "🛍️ Start New Shopping Journey", "value": "Hi"}]
             self.user_carts[user_id] = []
 
-        # --- STEP 1: GREETING (Word-level matching using regex word boundaries) ---
+        # --- STEP 1: GREETING (Exact word token matching) ---
         elif set(["hi", "hello", "hey", "start", "welcome"]).intersection(msg_words) or any(phrase in msg_lower for phrase in ["good morning", "good evening"]):
             state["step"] = "AWAITING_TARGET"
             self.user_states[user_id] = state
@@ -169,39 +174,93 @@ class DynamicLangGraphShoppingAgent:
                     {"label": "🛍️ All Accessories", "value": "Show me accessories"}
                 ]
 
-        # --- STEP 2: CATEGORY SELECTION -> REQUIREMENT COLLECTION (NO PRODUCT CARDS SHOWN YET) ---
-        elif any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["white", "black", "blue", "pink", "beige", "size", "under", "casual", "formal", "slim"]):
+        # --- STEP 2a: CATEGORY SELECTION -> ASK 1ST PREFERENCE: STYLE (Casual or Formal) ---
+        elif any(cat in msg_lower for cat in ["i need shirt", "i need shirts", "i want shirt", "i want shirts", "show me shirt", "show me shirts", "shirt", "shirts", "i need t-shirt", "i need t-shirts", "i want t-shirt", "i want t-shirts", "t-shirt", "t-shirts", "i need trouser", "i need trousers", "trouser", "trousers", "dress", "dresses", "jean", "jeans", "belt", "belts"]) and not any(spec in msg_lower for spec in ["casual", "formal", "party", "size", "white", "black", "blue", "pink", "beige", "under", "500", "999"]):
             category = "Shirts" if "shirt" in msg_lower else ("T-Shirts" if "t-shirt" in msg_lower else ("Trousers" if "trouser" in msg_lower else ("Dresses" if "dress" in msg_lower else "Accessories")))
-            state["step"] = "AWAITING_REQUIREMENTS"
+            state["step"] = "AWAITING_STYLE"
             state["category"] = category
             self.user_states[user_id] = state
             
-            # Explicitly clear products so product cards are NOT rendered prematurely
             retrieved_products = []
-            
-            reply_text = f"Great! I can help you find **{category}**. Could you please tell me:\n\n1. Your budget range?\n2. Your size (S, M, L, XL)?\n3. Preferred color?\n4. Do you prefer casual or formal {category.lower()}?"
+            reply_text = f"Great! Let's find your perfect **{category}**.\n\nFirst, do you prefer **Casual** or **Formal** {category.lower()}?"
             options = [
-                {"label": "⚪ White Casual / Size M (₹499)", "value": "White casual shirt size M"},
-                {"label": "⚫ Black Formal / Size L (₹499)", "value": "Black formal shirt size L"},
-                {"label": "🔵 Navy Blue / Size L (₹699)", "value": "Navy blue trousers size L"},
+                {"label": "👔 Casual", "value": "Casual Shirts" if category == "Shirts" else f"Casual {category}"},
+                {"label": "💼 Formal", "value": "Formal Shirts" if category == "Shirts" else f"Formal {category}"},
+                {"label": "✨ Party / Festive", "value": f"Party Wear {category}"}
+            ]
+
+        # --- STEP 2b: STYLE SELECTED -> ASK 2ND PREFERENCE: SIZE ---
+        elif any(st in msg_lower for st in ["casual", "formal", "party wear"]) and not any(sz in msg_lower for sz in ["size", "small", "medium", "large", "xl", "white", "black", "blue", "pink", "beige"]):
+            style = "Casual" if "casual" in msg_lower else ("Formal" if "formal" in msg_lower else "Party Wear")
+            category = state.get("category", "Shirts")
+            state["step"] = "AWAITING_SIZE"
+            state["style"] = style
+            self.user_states[user_id] = state
+
+            retrieved_products = []
+            reply_text = f"Got it, **{style} {category}**!\n\nSecond, what **size** do you wear?"
+            options = [
+                {"label": "S (Small)", "value": "Size S"},
+                {"label": "M (Medium)", "value": "Size M"},
+                {"label": "L (Large)", "value": "Size L"},
+                {"label": "XL (Extra Large)", "value": "Size XL"},
                 {"label": "📏 Size & Fit Advisor", "value": "Help me pick my size"}
             ]
 
-        # --- STEP 2 AUX: SIZE ADVISOR TOOL ---
+        # --- STEP 2b AUX: SIZE ADVISOR TOOL ---
         elif any(w in msg_lower for w in ["size advisor", "pick my size", "height", "weight", "measurement", "what size should i get"]):
             size_res = calculate_size_recommendation_tool.invoke({"height_cm": 175, "weight_kg": 70})
             category = state.get("category", "Shirts")
-            state["step"] = "AWAITING_REQUIREMENTS"
+            rec_size = size_res['recommended_size']
+            state["step"] = "AWAITING_COLOR"
+            state["size"] = rec_size
             self.user_states[user_id] = state
             
             retrieved_products = []
-            reply_text = f"📏 **AI Size & Fit Advisor Recommendation**:\n- Recommended Size: **{size_res['recommended_size']}** ({size_res['fit_description']})\n- Tip: {size_res['tip']}\n\nNow please tell me your preferred color and style (casual/formal) for **{category}**:"
+            reply_text = f"📏 **AI Size & Fit Advisor Recommendation**:\n- Recommended Size: **{rec_size}** ({size_res['fit_description']})\n- Tip: {size_res['tip']}\n\nThird, what is your **preferred color** for {category}?"
             options = [
-                {"label": f"⚪ White Casual (Size {size_res['recommended_size']})", "value": f"White casual shirt size {size_res['recommended_size']}"},
-                {"label": f"⚫ Black Formal (Size {size_res['recommended_size']})", "value": f"Black formal shirt size {size_res['recommended_size']}"}
+                {"label": "⚪ White", "value": f"White Size {rec_size}"},
+                {"label": "⚫ Black", "value": f"Black Size {rec_size}"},
+                {"label": "🔵 Navy Blue", "value": f"Navy Blue Size {rec_size}"},
+                {"label": "🌸 Pink", "value": f"Pink Size {rec_size}"},
+                {"label": "🌾 Beige", "value": f"Beige Size {rec_size}"}
             ]
 
-        # --- STEP 3: PRODUCT REQUIREMENTS PROVIDED -> RAG RETRIEVAL & SHOW PRODUCT CARDS ---
+        # --- STEP 2c: SIZE SELECTED -> ASK 3RD PREFERENCE: COLOR ---
+        elif any(sz in msg_lower for sz in ["size s", "size m", "size l", "size xl", "small", "medium", "large"]) and not any(cl in msg_lower for cl in ["white", "black", "blue", "navy", "pink", "beige"]):
+            size_val = "M" if "size m" in msg_lower or "medium" in msg_lower else ("L" if "size l" in msg_lower or "large" in msg_lower else ("S" if "size s" in msg_lower or "small" in msg_lower else "XL"))
+            category = state.get("category", "Shirts")
+            state["step"] = "AWAITING_COLOR"
+            state["size"] = size_val
+            self.user_states[user_id] = state
+
+            retrieved_products = []
+            reply_text = f"Perfect, **Size {size_val}**!\n\nThird, what is your **preferred color**?"
+            options = [
+                {"label": "⚪ White", "value": "White"},
+                {"label": "⚫ Black", "value": "Black"},
+                {"label": "🔵 Navy Blue", "value": "Navy Blue"},
+                {"label": "🌸 Pink", "value": "Pink"},
+                {"label": "🌾 Beige", "value": "Beige"}
+            ]
+
+        # --- STEP 2d: COLOR SELECTED -> ASK 4TH PREFERENCE: BUDGET / PRICE RANGE ---
+        elif any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige"]) and not any(bd in msg_lower for bd in ["under", "500", "999", "1000", "budget", "price"]):
+            color_val = "White" if "white" in msg_lower else ("Black" if "black" in msg_lower else ("Navy Blue" if "blue" in msg_lower or "navy" in msg_lower else ("Pink" if "pink" in msg_lower else "Beige")))
+            category = state.get("category", "Shirts")
+            state["step"] = "AWAITING_BUDGET"
+            state["color"] = color_val
+            self.user_states[user_id] = state
+
+            retrieved_products = []
+            reply_text = f"Awesome, **{color_val}**!\n\nFourth, what is your **budget / price range**?"
+            options = [
+                {"label": "💰 Under ₹500", "value": "Under ₹500"},
+                {"label": "🏷️ ₹500 - ₹999", "value": "₹500 - ₹999"},
+                {"label": "🌟 ₹1000+ Premium", "value": "Over ₹1000"}
+            ]
+
+        # --- STEP 3: ALL REQUIREMENTS GATHERED OR DIRECT SEARCH -> RAG RETRIEVAL & SHOW PRODUCT CARDS ---
         else:
             state["step"] = "SHOWING_PRODUCTS"
             self.user_states[user_id] = state
@@ -210,10 +269,11 @@ class DynamicLangGraphShoppingAgent:
             prods = retriever.search_catalog(query=message)
             retrieved_products = prods
             
-            reply_text = "✨ **Here are top matching products based on your preferences**:\n\nClick **'+ Add to ₹999 Combo'** on any product below to add it to your 3-item combo deal!"
+            reply_text = "✨ **Here are top matching products based on your preferences**:\n\nClick **'+ Add to ₹999 Combo'** on any product below to build your combo deal!"
             options = [
                 {"label": "🛍️ Review Cart & Pay", "value": "View my cart"},
-                {"label": "🎨 Color Pairing Advice", "value": "What colors pair well with white shirt"}
+                {"label": "🎨 Color Pairing Advice", "value": "What colors pair well with white shirt"},
+                {"label": "👕 Browse More Items", "value": "I need shirts"}
             ]
 
         final_reply = reply_text
