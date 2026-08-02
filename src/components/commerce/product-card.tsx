@@ -171,20 +171,20 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   return (
-    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light/60 bg-white overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 h-full min-w-0 w-full", className)}>
-      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-neutral overflow-hidden shrink-0">
-        {/* Badges - Hidden/Simplified on Mobile */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
+    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light/60 bg-white overflow-hidden shadow-xs hover:shadow-xl hover:border-black/10 transition-apple duration-500 h-full min-w-0 w-full", className)}>
+      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden shrink-0">
+        {/* Badges - Apple Minimalist */}
+        <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
           {product.newArrival && (
-            <Badge className="bg-brand-primary border-transparent text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider">
-              <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1 fill-current" />
+            <Badge className="bg-black/80 backdrop-blur-md border-transparent text-[8px] sm:text-[9px] px-2 py-0.5 tracking-widest uppercase font-ui font-bold text-white rounded-full">
+              <Sparkles className="h-2.5 w-2.5 mr-1 text-amber-400 fill-current" />
               NEW
             </Badge>
           )}
           {product.trending && (
-            <Badge variant="accent" className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider hidden sm:inline-flex">
-              <Flame className="h-3 w-3 mr-1 fill-current" />
-              TRENDING
+            <Badge className="bg-brand-accent/90 backdrop-blur-md border-transparent text-[8px] sm:text-[9px] px-2 py-0.5 tracking-widest uppercase font-ui font-bold text-white rounded-full hidden sm:inline-flex">
+              <Flame className="h-2.5 w-2.5 mr-1 text-white fill-current" />
+              HOT
             </Badge>
           )}
         </div>
@@ -193,12 +193,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <button
           onClick={handleWishlist}
           className={cn(
-            "absolute top-2 right-2 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 rounded-full shadow-xs bg-white/90 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light/40",
+            "absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 p-2 rounded-full shadow-xs apple-glass hover:bg-white active:scale-90 transition-apple cursor-pointer border border-white/40",
             isWishlisted ? "text-red-500 fill-current" : "text-text-secondary hover:text-red-500"
           )}
           aria-label="Toggle Wishlist"
         >
-          <Heart className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
+          <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
 
         {/* Front image */}
@@ -207,7 +207,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover transition-all duration-500 group-hover:scale-102 group-hover:opacity-0"
+          className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
           onError={() => setFrontError(true)}
           unoptimized={frontImage?.startsWith("data:") || false}
         />
@@ -217,45 +217,45 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={`${product.name} alternate view`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover absolute inset-0 opacity-0 transition-all duration-500 group-hover:scale-102 group-hover:opacity-100"
+          className="object-cover absolute inset-0 opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
           onError={() => setBackError(true)}
           unoptimized={backImage?.startsWith("data:") || false}
         />
 
         {/* Video indicator */}
         {hasVideo && (
-          <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-black/60 text-white rounded-full p-1 sm:p-1.5 flex items-center justify-center pointer-events-none">
-            <Video className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+          <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 apple-glass text-text-primary rounded-full p-1.5 flex items-center justify-center pointer-events-none border border-white/40">
+            <Video className="h-3 w-3" />
           </div>
         )}
       </Link>
 
       {/* Info & CTA details */}
-      <div className="p-2 sm:p-4 flex flex-col justify-between flex-1 min-w-0 w-full">
+      <div className="p-3 sm:p-4 flex flex-col justify-between flex-1 min-w-0 w-full bg-white">
         <div className="space-y-1 min-w-0">
           <div className="flex items-center justify-between text-[9px] sm:text-xs">
-            <span className="uppercase font-bold text-brand-primary tracking-wider truncate max-w-[70%]">
+            <span className="uppercase font-bold text-text-muted font-ui tracking-widest truncate max-w-[70%]">
               {product.brandName || "999 EDIT"}
             </span>
-            <span className="text-text-secondary flex items-center gap-0.5 font-semibold sm:ml-auto shrink-0">
+            <span className="text-text-secondary flex items-center gap-0.5 font-bold font-mono sm:ml-auto shrink-0">
               ★ {product.rating}
             </span>
           </div>
-          <Link href={`/products/${product.slug}`} className="block hover:text-brand-primary">
-            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2.5rem] sm:min-h-0 sm:truncate">
+          <Link href={`/products/${product.slug}`} className="block hover:text-brand-primary transition-colors">
+            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2.25rem] sm:min-h-0 sm:truncate tracking-tight">
               {product.name}
             </h3>
           </Link>
         </div>
 
-        {/* Colors & Sizes count - Hidden/Simplified on Mobile */}
-        <div className="hidden sm:flex items-center justify-between text-xs text-text-secondary mt-1">
+        {/* Colors & Sizes count */}
+        <div className="hidden sm:flex items-center justify-between text-xs text-text-secondary mt-2">
           <div className="flex gap-1.5 items-center">
             {colors.slice(0, 3).map((col) => (
               <span
                 key={col.name}
-                className={cn("h-3 w-3 rounded-full border border-border-medium block cursor-pointer", {
-                  "ring-1 ring-brand-primary": selectedColor === col.name,
+                className={cn("h-3 w-3 rounded-full border border-border-light block cursor-pointer transition-transform hover:scale-110", {
+                  "ring-2 ring-brand-primary ring-offset-1": selectedColor === col.name,
                 })}
                 style={{ backgroundColor: col.hex }}
                 onClick={(e) => {
@@ -266,34 +266,34 @@ export function ProductCard({ product, className }: ProductCardProps) {
               />
             ))}
             {colors.length > 3 && (
-              <span className="text-[9px] text-text-muted font-bold">+{colors.length - 3}</span>
+              <span className="text-[9px] text-text-muted font-bold font-mono">+{colors.length - 3}</span>
             )}
           </div>
-          <span className="text-[10px] text-text-muted shrink-0">
-            {availableSizes.length} sizes available
+          <span className="text-[10px] text-text-muted font-ui font-medium shrink-0">
+            {availableSizes.length} sizes
           </span>
         </div>
 
         {/* Mobile size/color line */}
-        <div className="sm:hidden text-[10px] text-text-muted mt-1 leading-tight font-medium">
+        <div className="sm:hidden text-[10px] text-text-muted mt-1 leading-tight font-medium font-ui">
           {availableSizes.length} sizes · {colors.length} colors
         </div>
 
         {/* Pricing / Action */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 mt-2 border-t border-border-light gap-2 shrink-0">
+        <div className="flex items-center justify-between pt-2.5 mt-2 border-t border-border-light/60 gap-2 shrink-0">
           <div className="flex flex-col">
-            <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
+            <span className="text-[11px] font-extrabold text-brand-primary uppercase tracking-wider leading-none font-mono">
               ₹999 COMBO
             </span>
-            <span className="text-[8px] uppercase font-bold text-text-muted mt-1 leading-none">
-              AVAILABLE IN {product.comboTierIds?.map(t => t.replace("combo-", "")).join(" · ") || "ALL"}
+            <span className="text-[8px] uppercase font-bold text-text-muted mt-0.5 leading-none font-ui">
+              FLAT PRICE
             </span>
           </div>
-          <div className="flex gap-1.5 w-full sm:w-auto">
-            <Button size="sm" variant="outline" className="h-7 sm:h-8 px-2 cursor-pointer flex-1 sm:flex-none justify-center" onClick={() => setQuickViewOpen(true)}>
+          <div className="flex gap-1.5">
+            <Button size="sm" variant="outline" className="h-7 sm:h-8 px-2 cursor-pointer rounded-full border-border-light hover:bg-bg-secondary transition-apple" onClick={() => setQuickViewOpen(true)}>
               <Eye className="h-3.5 w-3.5" />
             </Button>
-            <Button size="sm" className="h-7 sm:h-8 px-3 gap-1 cursor-pointer font-bold uppercase tracking-wider text-[10px] flex-grow sm:flex-none justify-center" onClick={handleAddAction}>
+            <Button size="sm" className="h-7 sm:h-8 px-3 gap-1 cursor-pointer font-bold uppercase tracking-wider text-[10px] rounded-full bg-black text-white hover:bg-brand-primary transition-apple" onClick={handleAddAction}>
               <Plus className="h-3 w-3" />
               <span>Add</span>
             </Button>
