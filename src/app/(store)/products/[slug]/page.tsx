@@ -367,38 +367,38 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+          <div className="flex flex-col gap-3 pt-4 sm:flex-row">
             <Button
               size="lg"
-              className="flex-1 gap-2 h-12 text-xs font-bold tracking-wider uppercase cursor-pointer bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg border-transparent transition-smooth active:scale-98"
+              className="w-full sm:flex-1 gap-2 h-14 text-sm font-extrabold tracking-wider uppercase cursor-pointer bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg border-transparent transition-smooth active:scale-98"
               onClick={handleAddAction}
               disabled={!!activeCombo && (!selectedColor || !selectedSize || !selectedVariant || !isVariantAvailable(selectedVariant))}
             >
-              <Plus className="h-4.5 w-4.5" />
+              <Plus className="h-5 w-5 animate-pulse" />
               <span>{activeCombo ? `Add to ${activeCombo.comboName}` : "Choose Combo to Begin"}</span>
             </Button>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3 justify-center sm:justify-start">
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 w-12 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95"
+                className="h-14 w-14 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95 shrink-0"
                 onClick={() => {
                   toggleWishlist(slug);
                   toast.success(isWishlisted ? "Removed from wishlist." : "Added to wishlist.");
                 }}
                 aria-label="Toggle Wishlist"
               >
-                <Heart className={cn("h-5 w-5", isWishlisted ? "text-red-500 fill-current" : "text-text-secondary")} />
+                <Heart className={cn("h-5.5 w-5.5", isWishlisted ? "text-red-500 fill-current" : "text-text-secondary")} />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 w-12 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95"
+                className="h-14 w-14 p-0 cursor-pointer rounded-lg border-border-light hover:bg-bg-secondary transition-smooth active:scale-95 shrink-0"
                 onClick={handleShare}
                 aria-label="Share Link"
               >
-                <Share2 className="h-5 w-5 text-text-secondary" />
+                <Share2 className="h-5.5 w-5.5 text-text-secondary" />
               </Button>
             </div>
           </div>
