@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -28,8 +28,8 @@ export default function CollectionsPage() {
               src={getPlaceholderSvg(coll.name, 600, 450, "F3F4F6", "0F9D58")}
               alt={coll.name}
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover group-hover:scale-103 transition-transform duration-300"
-              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6 space-y-2">
               <h3 className="font-heading font-extrabold text-xl text-white uppercase">{coll.name}</h3>

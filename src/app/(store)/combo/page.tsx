@@ -48,13 +48,31 @@ export default function ComboSelectionPage() {
               <p className="text-sm text-text-secondary leading-relaxed">{config.description}</p>
             </div>
 
-            <Button
-              size="lg"
-              className="mt-8 w-full group-hover:bg-brand-primary group-hover:text-white transition-colors cursor-pointer"
-              onClick={() => handleStart(config)}
-            >
-              Start Building
-            </Button>
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              <Button
+                size="sm"
+                className="w-full font-bold uppercase text-[11px] tracking-wider cursor-pointer"
+                onClick={() => {
+                  startCombo(config, "men");
+                  toast.success(`Started ${config.name} for Men!`);
+                  router.push("/products?gender=men");
+                }}
+              >
+                Men's
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full font-bold uppercase text-[11px] tracking-wider border-brand-accent text-brand-accent hover:bg-brand-accent/10 cursor-pointer"
+                onClick={() => {
+                  startCombo(config, "women");
+                  toast.success(`Started ${config.name} for Women!`);
+                  router.push("/products?gender=women");
+                }}
+              >
+                Women's
+              </Button>
+            </div>
           </div>
         ))}
       </div>

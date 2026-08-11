@@ -50,8 +50,8 @@ export default function WishlistPage() {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8 font-body">
       <div className="flex items-center justify-between border-b border-border-light pb-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-text-primary tracking-tight">
-            MY WISHLIST
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-heading text-text-primary tracking-tight">
+            My Wishlist
           </h1>
           <p className="text-xs text-text-secondary">
             Your saved styles ({wishlistedProducts.length} items)

@@ -13,7 +13,7 @@ export const mockReviews: Review[] = [
   {
     id: "rev-1",
     productId: "prod-m-shirt-1",
-    customerName: "Arun Kumar",
+    customerName: "Prasanna",
     rating: 5,
     comment: "The emerald check shirt fits perfectly! The fabric is high-quality combed cotton and feels premium. Added it to my 3-item combo and couldn't be happier.",
     date: "2026-06-12",

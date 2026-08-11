@@ -66,26 +66,6 @@ export default function AccountAddressesPage() {
 
       const storedSession = JSON.parse(localStorage.getItem("999-store-session") || "null");
       setSession(storedSession);
-      if (storedSession && stored.length === 0) {
-        // Prepopulate with a default address if empty
-        const defaultAddr: SavedAddress = {
-          id: "addr-default",
-          fullName: storedSession.name,
-          phone: storedSession.phone,
-          addressLine1: "123 High Street, T-Nagar",
-          addressLine2: "Apartment 4B",
-          landmark: "Opposite Post Office",
-          city: "Chennai",
-          district: "Chennai",
-          state: "Tamil Nadu",
-          pinCode: "600017",
-          type: "home",
-          isDefault: true,
-        };
-        const initList = [defaultAddr];
-        localStorage.setItem("999-store-addresses", JSON.stringify(initList));
-        setAddresses(initList);
-      }
     }
   }, []);
 

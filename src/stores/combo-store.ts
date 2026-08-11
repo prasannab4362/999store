@@ -6,7 +6,8 @@ import { validateComboSlots } from "@/features/combo/utils/combo-validation";
 
 export interface ComboStoreState {
   activeCombo: ActiveCombo | null;
-  startCombo: (config: ComboConfig) => void;
+  startCombo: (config: ComboConfig, category?: string) => void;
+  loadComboForEditing: (cartGroup: import("@/types/cart").CartComboGroup) => void;
   addItem: (item: Omit<ComboSelectedItem, "lineId">) => ComboActionResult;
   addItemToSlot: (slotId: string, item: Omit<ComboSelectedItem, "lineId">) => ComboActionResult;
   updateItemVariant: (slotId: string, variant: ProductVariant) => ComboActionResult;
@@ -25,7 +26,28 @@ export const useComboStore = create<ComboStoreState>()(
 
       setHydrated: (state) => set({ isHydrated: state }),
 
-      startCombo: (config) => {
+      loadComboForEditing: (cartGroup) => {
+        const slots: ComboSlot[] = Array.from({ length: cartGroup.itemLimit }, (_, i) => ({
+          slotId: `slot-${i + 1}`,
+          position: i + 1,
+          item: cartGroup.items[i] ? { ...cartGroup.items[i] } : null,
+        }));
+
+        set({
+          activeCombo: {
+            comboId: cartGroup.comboId,
+            comboSlug: cartGroup.comboSlug,
+            comboName: cartGroup.comboName,
+            itemLimit: cartGroup.itemLimit,
+            basePriceMinor: cartGroup.basePriceMinor,
+            editingGroupId: cartGroup.id,
+            slots,
+            startedAt: new Date().toISOString(),
+          },
+        });
+      },
+
+      startCombo: (config, category) => {
         const slots: ComboSlot[] = Array.from({ length: config.itemLimit }, (_, i) => ({
           slotId: `slot-${i + 1}`,
           position: i + 1,
@@ -39,6 +61,7 @@ export const useComboStore = create<ComboStoreState>()(
             comboName: config.name,
             itemLimit: config.itemLimit,
             basePriceMinor: config.basePriceMinor,
+            selectedCategory: category,
             slots,
             startedAt: new Date().toISOString(),
           },
@@ -196,20 +219,7 @@ export const useComboStore = create<ComboStoreState>()(
       },
 
       resetCombo: () => {
-        const { activeCombo } = get();
-        if (!activeCombo) return;
-
-        const updatedSlots = activeCombo.slots.map((slot) => ({
-          ...slot,
-          item: null,
-        }));
-
-        set({
-          activeCombo: {
-            ...activeCombo,
-            slots: updatedSlots,
-          },
-        });
+        set({ activeCombo: null });
       },
     }),
     {

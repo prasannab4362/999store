@@ -22,7 +22,7 @@ import {
 } from "../ui/dialog";
 import { comboConfigs } from "@/config/combo";
 import { formatCurrency } from "@/features/checkout/utils/calculate-order-totals";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export interface ProductCardProps {
   product: Product;
@@ -31,6 +31,20 @@ export interface ProductCardProps {
 
 export function ProductCard({ product, className }: ProductCardProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Determine current page/category context (Men or Women) from route or searchParams
+  const currentCategory = React.useMemo(() => {
+    const genderParam = searchParams ? searchParams.get("gender") : null;
+    if (genderParam === "men" || genderParam === "women") {
+      return genderParam;
+    }
+    if (pathname?.includes("/men")) return "men";
+    if (pathname?.includes("/women")) return "women";
+    return undefined;
+  }, [pathname, searchParams]);
+
   const [selectedColor, setSelectedColor] = React.useState<string | null>(null);
   const [selectedSize, setSelectedSize] = React.useState<string | null>(null);
   const [quickViewOpen, setQuickViewOpen] = React.useState(false);
@@ -38,7 +52,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const [comboSelectOpen, setComboSelectOpen] = React.useState(false);
 
   // Stores
-  const { activeCombo } = useActiveComboDetails();
+  const { activeCombo, isComplete } = useActiveComboDetails();
   const startCombo = useComboStore((state) => state.startCombo);
   const addItem = useComboStore((state) => state.addItem);
 
@@ -99,6 +113,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (isComplete) {
+      toast.error("Your combo is already full! Please review it in the combo builder.");
+      return;
+    }
+
     if (!activeCombo) {
       // 1. Open combo selection modal
       setComboSelectOpen(true);
@@ -110,10 +129,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   const handleSelectComboTier = (config: any) => {
-    startCombo(config);
+    startCombo(config, currentCategory);
     setComboSelectOpen(false);
     toast.success(`Started building your ${config.name}!`);
-    // Then open variant selector for the item
+    if (pathname?.startsWith("/combo/")) {
+      router.push(`/combo/${config.slug}`);
+    }
+    // Then open variant selector for user confirmation
     setVariantModalOpen(true);
   };
 
@@ -171,20 +193,21 @@ export function ProductCard({ product, className }: ProductCardProps) {
   };
 
   return (
-    <div className={cn("group flex flex-col justify-between rounded-card border border-border-light/60 bg-white overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 h-full min-w-0 w-full", className)}>
-      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-neutral overflow-hidden shrink-0">
-        {/* Badges - Hidden/Simplified on Mobile */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
+    <div className={cn("group flex flex-col justify-between rounded-[24px] bg-white overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-all duration-[400ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-[4px] h-full min-w-0 w-full", className)}>
+      <Link href={`/products/${product.slug}`} className="block relative aspect-[4/5] bg-bg-secondary overflow-hidden shrink-0 rounded-t-[24px]">
+        
+        {/* Badges */}
+        <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 flex flex-col gap-1.5">
           {product.newArrival && (
-            <Badge className="bg-brand-primary border-transparent text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider">
-              <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1 fill-current" />
-              NEW
+            <Badge className="bg-[#1D1D1F]/80 backdrop-blur-xl text-white border-transparent text-[9px] px-2 py-0.5 font-medium tracking-wide">
+              <Sparkles className="h-2.5 w-2.5 mr-1" />
+              New
             </Badge>
           )}
           {product.trending && (
-            <Badge variant="accent" className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 tracking-wider hidden sm:inline-flex">
-              <Flame className="h-3 w-3 mr-1 fill-current" />
-              TRENDING
+            <Badge variant="accent" className="bg-[#D4AF37] text-[#1D1D1F] border-transparent text-[9px] px-2 py-0.5 font-medium tracking-wide hidden sm:inline-flex">
+              <Flame className="h-2.5 w-2.5 mr-1" />
+              Trending
             </Badge>
           )}
         </div>
@@ -193,12 +216,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <button
           onClick={handleWishlist}
           className={cn(
-            "absolute top-2 right-2 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 rounded-full shadow-xs bg-white/90 hover:bg-white active:scale-90 transition-all cursor-pointer border border-border-light/40",
-            isWishlisted ? "text-red-500 fill-current" : "text-text-secondary hover:text-red-500"
+            "absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 p-2 sm:p-2.5 rounded-full bg-white/80 backdrop-blur-xl hover:bg-white active:scale-95 transition-premium cursor-pointer shadow-[var(--shadow-sm)]",
+            isWishlisted ? "text-red-500" : "text-text-muted hover:text-red-500"
           )}
           aria-label="Toggle Wishlist"
         >
-          <Heart className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
+          <Heart className="h-4 w-4" />
         </button>
 
         {/* Front image */}
@@ -207,7 +230,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover transition-all duration-500 group-hover:scale-102 group-hover:opacity-0"
+          className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105 group-hover:opacity-0"
           onError={() => setFrontError(true)}
           unoptimized={frontImage?.startsWith("data:") || false}
         />
@@ -217,45 +240,46 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={`${product.name} alternate view`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover absolute inset-0 opacity-0 transition-all duration-500 group-hover:scale-102 group-hover:opacity-100"
+          className="object-cover absolute inset-0 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105 group-hover:opacity-100"
           onError={() => setBackError(true)}
           unoptimized={backImage?.startsWith("data:") || false}
         />
 
         {/* Video indicator */}
         {hasVideo && (
-          <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-black/60 text-white rounded-full p-1 sm:p-1.5 flex items-center justify-center pointer-events-none">
+          <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-black/50 backdrop-blur-md text-white rounded-full p-1.5 sm:p-2 flex items-center justify-center pointer-events-none shadow-[var(--shadow-sm)]">
             <Video className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
           </div>
         )}
       </Link>
 
       {/* Info & CTA details */}
-      <div className="p-2 sm:p-4 flex flex-col justify-between flex-1 min-w-0 w-full">
-        <div className="space-y-1 min-w-0">
-          <div className="flex items-center justify-between text-[9px] sm:text-xs">
-            <span className="uppercase font-bold text-brand-primary tracking-wider truncate max-w-[70%]">
-              {product.brandName || "999 EDIT"}
+      <div className="p-3.5 sm:p-5 flex flex-col justify-between flex-1 min-w-0 w-full bg-white z-10">
+        <div className="space-y-1.5 min-w-0">
+          <div className="flex items-center justify-between text-[11px]">
+            <span className="font-normal font-ui text-text-muted truncate max-w-[70%]">
+              {product.brandName || "999 Edit"}
             </span>
-            <span className="text-text-secondary flex items-center gap-0.5 font-semibold sm:ml-auto shrink-0">
+            <span className="text-text-muted flex items-center gap-0.5 text-[11px] shrink-0">
               ★ {product.rating}
             </span>
           </div>
-          <Link href={`/products/${product.slug}`} className="block hover:text-brand-primary">
-            <h3 className="font-heading font-semibold text-xs sm:text-sm text-text-primary line-clamp-2 min-h-[2.5rem] sm:min-h-0 sm:truncate">
+          <Link href={`/products/${product.slug}`} className="block hover:text-text-secondary transition-colors">
+            <h3 className="font-ui font-semibold text-[17px] text-text-primary line-clamp-2 min-h-[2.5rem] sm:min-h-0 sm:truncate tracking-[-0.015em] leading-[1.5] antialiased">
               {product.name}
             </h3>
           </Link>
         </div>
 
-        {/* Colors & Sizes count - Hidden/Simplified on Mobile */}
-        <div className="hidden sm:flex items-center justify-between text-xs text-text-secondary mt-1">
+        {/* Colors & Sizes count */}
+        <div className="hidden sm:flex items-center justify-between text-xs text-text-secondary mt-3 font-ui">
           <div className="flex gap-1.5 items-center">
             {colors.slice(0, 3).map((col) => (
               <span
                 key={col.name}
-                className={cn("h-3 w-3 rounded-full border border-border-medium block cursor-pointer", {
-                  "ring-1 ring-brand-primary": selectedColor === col.name,
+                className={cn("h-4 w-4 rounded-full border block cursor-pointer transition-transform hover:scale-110", {
+                  "ring-1 ring-text-primary ring-offset-1 border-transparent": selectedColor === col.name,
+                  "border-border-medium": selectedColor !== col.name
                 })}
                 style={{ backgroundColor: col.hex }}
                 onClick={(e) => {
@@ -266,36 +290,52 @@ export function ProductCard({ product, className }: ProductCardProps) {
               />
             ))}
             {colors.length > 3 && (
-              <span className="text-[9px] text-text-muted font-bold">+{colors.length - 3}</span>
+              <span className="text-[10px] text-text-muted font-normal ml-1">+{colors.length - 3}</span>
             )}
           </div>
-          <span className="text-[10px] text-text-muted shrink-0">
-            {availableSizes.length} sizes available
+          <span className="text-[11px] font-ui font-medium text-text-muted shrink-0">
+            {availableSizes.length} Sizes
           </span>
         </div>
 
         {/* Mobile size/color line */}
-        <div className="sm:hidden text-[10px] text-text-muted mt-1 leading-tight font-medium">
-          {availableSizes.length} sizes · {colors.length} colors
+        <div className="sm:hidden text-[10px] text-text-muted mt-2 leading-tight font-ui font-medium">
+          {availableSizes.length} Sizes · {colors.length} Colors
         </div>
 
         {/* Pricing / Action */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 mt-2 border-t border-border-light gap-2 shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 mt-3 border-t border-border-medium/40 gap-3 shrink-0">
           <div className="flex flex-col">
-            <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider leading-none">
-              ₹999 COMBO
+            <span className="text-base sm:text-lg font-semibold font-heading text-text-primary tabular-nums tracking-[-0.02em] leading-none antialiased">
+              ₹999
             </span>
-            <span className="text-[8px] uppercase font-bold text-text-muted mt-1 leading-none">
-              AVAILABLE IN {product.comboTierIds?.map(t => t.replace("combo-", "")).join(" · ") || "ALL"}
+            <span className="text-[10px] text-text-muted mt-1 leading-none font-normal">
+              Tier {product.comboTierIds?.map(t => t.replace("combo-", "")).join(", ") || "All"}
             </span>
           </div>
-          <div className="flex gap-1.5 w-full sm:w-auto">
-            <Button size="sm" variant="outline" className="h-7 sm:h-8 px-2 cursor-pointer flex-1 sm:flex-none justify-center" onClick={() => setQuickViewOpen(true)}>
-              <Eye className="h-3.5 w-3.5" />
+          <div className="flex gap-2 w-full sm:w-auto">
+            <Button size="sm" variant="outline" className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg border-border-medium/60 text-text-muted hover:text-text-primary hover:bg-bg-secondary cursor-pointer flex-1 sm:flex-none justify-center transition-premium group/eye" onClick={() => setQuickViewOpen(true)}>
+              <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover/eye:scale-105 transition-transform" />
             </Button>
-            <Button size="sm" className="h-7 sm:h-8 px-3 gap-1 cursor-pointer font-bold uppercase tracking-wider text-[10px] flex-grow sm:flex-none justify-center" onClick={handleAddAction}>
-              <Plus className="h-3 w-3" />
-              <span>Add</span>
+            <Button
+              size="sm"
+              disabled={isComplete}
+              className={cn(
+                "h-9 sm:h-10 px-5 sm:px-6 gap-1.5 font-semibold font-ui text-[14px] rounded-full flex-grow sm:flex-none justify-center transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group/add hover:-translate-y-[2px] hover:scale-[1.02]",
+                isComplete
+                  ? "bg-bg-secondary text-text-muted cursor-not-allowed"
+                  : "bg-[#1D1D1F] text-white hover:bg-[#2C2C2E] shadow-sm cursor-pointer"
+              )}
+              onClick={handleAddAction}
+            >
+              {isComplete ? (
+                <span>Full</span>
+              ) : (
+                <>
+                  <Plus className="h-3.5 w-3.5 group-hover/add:rotate-90 transition-transform duration-300" />
+                  <span>Add</span>
+                </>
+              )}
             </Button>
           </div>
         </div>
@@ -305,25 +345,28 @@ export function ProductCard({ product, className }: ProductCardProps) {
           1. MODAL: COMBO TIER SELECTION (If no active combo)
           ==================================================== */}
       <Dialog open={comboSelectOpen} onOpenChange={setComboSelectOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md font-body">
           <DialogHeader>
-            <DialogTitle>Choose Your Combo Size</DialogTitle>
-            <DialogDescription>
-              To add products, you first need to choose a combo size. Any combo tier currently costs a base price of **₹999**.
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] text-[11px] font-semibold tracking-wider uppercase mb-1 w-fit">
+              Step 1 of 2
+            </div>
+            <DialogTitle className="font-heading font-semibold text-xl text-text-primary tracking-tight">Please select your combo first to continue.</DialogTitle>
+            <DialogDescription className="text-sm text-text-secondary pt-1 leading-relaxed font-ui">
+              To add products, please select a combo first. All tiers share a flat base price of <strong>₹999</strong>.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-3 py-4">
+          <div className="grid gap-2 py-4">
             {comboConfigs.map((config) => (
               <button
                 key={config.id}
                 onClick={() => handleSelectComboTier(config)}
-                className="w-full text-left flex items-center justify-between p-4 border border-border-light hover:border-brand-primary rounded-card hover:bg-brand-primary-soft transition-colors cursor-pointer"
+                className="w-full text-left flex items-center justify-between p-4 bg-bg-secondary hover:bg-bg-tertiary rounded-xl transition-all cursor-pointer group"
               >
                 <div>
-                  <h4 className="font-heading font-bold text-sm text-text-primary">{config.name}</h4>
-                  <p className="text-xs text-text-secondary">{config.description}</p>
+                  <h4 className="font-heading font-semibold text-sm text-text-primary">{config.name}</h4>
+                  <p className="text-[13px] text-text-secondary mt-0.5">{config.description}</p>
                 </div>
-                <span className="font-heading font-bold text-brand-primary">₹999</span>
+                <span className="font-heading font-semibold text-[#D4AF37] text-base">₹999</span>
               </button>
             ))}
           </div>
@@ -334,18 +377,18 @@ export function ProductCard({ product, className }: ProductCardProps) {
           2. MODAL: VARIANT SELECTION (If combo is active)
           ==================================================== */}
       <Dialog open={variantModalOpen} onOpenChange={setVariantModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md font-body">
           <DialogHeader>
-            <DialogTitle>Select Style & Size</DialogTitle>
-            <DialogDescription>
-              Choose a color and size before adding **{product.shortName}** to your {activeCombo?.comboName}.
+            <DialogTitle className="font-heading font-semibold text-lg text-text-primary tracking-tight">Select Style & Size</DialogTitle>
+            <DialogDescription className="text-sm text-text-secondary pt-1 leading-relaxed">
+              Choose a color and size before adding <strong>{product.shortName}</strong> to your {activeCombo?.comboName}.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-6 py-4">
+          <div className="space-y-5 py-4">
             {/* Color Select */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-text-primary uppercase tracking-wider block">
-                Color: {selectedColor}
+            <div className="space-y-2.5">
+              <label className="text-xs font-medium text-text-primary block">
+                Color: <span className="text-text-secondary">{selectedColor}</span>
               </label>
               <div className="flex gap-2">
                 {colors.map((col) => (
@@ -353,11 +396,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                     key={col.name}
                     onClick={() => {
                       setSelectedColor(col.name);
-                      setSelectedSize(null); // Reset size on color change
+                      setSelectedSize(null);
                     }}
                     className={cn(
-                      "p-1 rounded-full border border-border-light transition-all cursor-pointer",
-                      selectedColor === col.name ? "ring-2 ring-brand-primary" : "hover:scale-105"
+                      "p-1 rounded-full border transition-all cursor-pointer",
+                      selectedColor === col.name ? "ring-2 ring-[#D4AF37] ring-offset-1 border-[#D4AF37]/50" : "border-[#E8E0D0] hover:scale-105"
                     )}
                   >
                     <span className="block h-6 w-6 rounded-full" style={{ backgroundColor: col.hex }} />
@@ -367,9 +410,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
             </div>
 
             {/* Size Select */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-text-primary uppercase tracking-wider block">
-                Size: {selectedSize || "Select size"}
+            <div className="space-y-2.5">
+              <label className="text-xs font-medium text-text-primary block">
+                Size: <span className="text-text-secondary">{selectedSize || "Select size"}</span>
               </label>
               <div className="flex flex-wrap gap-2">
                 {availableSizes.map((sz) => {
@@ -384,10 +427,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
                       disabled={!isAvailable}
                       onClick={() => setSelectedSize(sz)}
                       className={cn(
-                        "h-10 px-4 rounded-control border text-xs font-semibold font-heading transition-all cursor-pointer disabled:opacity-40 disabled:pointer-events-none",
+                        "h-10 px-4 rounded-lg border text-xs font-medium font-ui transition-premium cursor-pointer disabled:opacity-40 disabled:pointer-events-none",
                         selectedSize === sz
-                          ? "border-brand-primary bg-brand-primary-soft text-brand-primary"
-                          : "border-border-light bg-transparent hover:bg-bg-secondary text-text-secondary"
+                          ? "border-text-primary bg-text-primary text-white"
+                          : "border-border-medium bg-transparent hover:bg-bg-secondary text-text-secondary"
                       )}
                     >
                       {sz}
@@ -399,20 +442,26 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
             {/* In Stock Badge */}
             {selectedVariant && (
-              <div className="text-xs font-semibold">
+              <div className="text-xs font-medium">
                 {isVariantAvailable(selectedVariant) ? (
-                  <span className="text-emerald-700">✓ In Stock ({selectedVariant.stock} available)</span>
+                  <span className="text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 inline-flex items-center gap-1.5">
+                    <Check className="h-3.5 w-3.5" /> In Stock ({selectedVariant.stock} available)
+                  </span>
                 ) : (
-                  <span className="text-red-600">✗ Out of Stock</span>
+                  <span className="text-red-600 bg-red-50 px-3 py-1.5 rounded-full border border-red-100">✗ Out of Stock</span>
                 )}
               </div>
             )}
           </div>
-          <div className="flex justify-end gap-3 border-t border-border-light pt-4">
+          <div className="flex justify-end gap-3 border-t border-border-medium/40 pt-4">
             <DialogClose asChild>
-              <Button variant="ghost">Cancel</Button>
+              <Button variant="ghost" className="font-medium text-sm text-text-secondary hover:text-text-primary">Cancel</Button>
             </DialogClose>
-            <Button onClick={handleConfirmAdd} disabled={!selectedSize || !selectedVariant || !isVariantAvailable(selectedVariant)}>
+            <Button
+              onClick={handleConfirmAdd}
+              disabled={!selectedSize || !selectedVariant || !isVariantAvailable(selectedVariant)}
+              className="bg-[#1D1D1F] text-white hover:bg-[#2C2C2E] font-medium text-sm shadow-[var(--shadow-sm)] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               Add to Combo
             </Button>
           </div>
@@ -423,41 +472,48 @@ export function ProductCard({ product, className }: ProductCardProps) {
           3. MODAL: QUICK VIEW DIALOG
           ==================================================== */}
       <Dialog open={quickViewOpen} onOpenChange={setQuickViewOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl font-body">
           <DialogHeader>
-            <DialogTitle>{product.name}</DialogTitle>
-            <DialogDescription>Code: {product.productCode} | Brand: {product.subcategory}</DialogDescription>
+            <DialogTitle className="font-heading font-semibold text-lg text-text-primary tracking-tight">{product.name}</DialogTitle>
+            <DialogDescription className="text-sm text-text-secondary">Code: {product.productCode} · {product.subcategory}</DialogDescription>
           </DialogHeader>
           <div className="grid md:grid-cols-2 gap-6 py-4">
-            <div className="relative aspect-[3/4] bg-bg-secondary rounded-card overflow-hidden">
-              <Image src={frontImage} alt={product.name} fill className="object-cover" unoptimized />
+            <div className="relative aspect-[3/4] bg-bg-secondary rounded-xl overflow-hidden">
+              <Image src={frontImage} alt={product.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
-                <span className="text-xs text-brand-primary font-bold font-heading bg-brand-primary-soft px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] text-[#D4AF37] font-medium bg-bg-secondary px-2.5 py-1 rounded-full inline-block">
                   Combo Eligible
                 </span>
-                <p className="text-xs text-text-secondary leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {product.description}
                 </p>
-                <div className="grid grid-cols-2 gap-2 text-xs border-y border-border-light py-3 text-text-secondary">
-                  <div><strong>Fabric:</strong> {product.fabric}</div>
-                  <div><strong>Fit:</strong> {product.fit}</div>
-                  <div><strong>Pattern:</strong> {product.pattern}</div>
-                  {product.sleeve && <div><strong>Sleeve:</strong> {product.sleeve}</div>}
+                <div className="grid grid-cols-2 gap-2 text-sm border-y border-border-medium/40 py-3 text-text-secondary">
+                  <div><strong className="text-text-primary font-medium">Fabric:</strong> {product.fabric}</div>
+                  <div><strong className="text-text-primary font-medium">Fit:</strong> {product.fit}</div>
+                  <div><strong className="text-text-primary font-medium">Pattern:</strong> {product.pattern}</div>
+                  {product.sleeve && <div><strong className="text-text-primary font-medium">Sleeve:</strong> {product.sleeve}</div>}
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex flex-col">
-                  <span className="text-[10px] text-text-muted">Combo Price</span>
-                  <span className="text-xl font-bold font-heading text-brand-primary">₹999</span>
+                  <span className="text-xs text-text-muted font-normal">Combo Price</span>
+                  <span className="text-2xl font-semibold font-heading text-[#D4AF37]">₹999</span>
                 </div>
                 <div className="flex gap-2">
-                  <Button className="flex-1 cursor-pointer" onClick={(e) => { setQuickViewOpen(false); handleAddAction(e); }}>
+                  <Button
+                    className="flex-1 cursor-pointer bg-[#1D1D1F] text-white hover:bg-[#2C2C2E] font-medium text-sm shadow-[var(--shadow-sm)] transition-all"
+                    onClick={(e) => { setQuickViewOpen(false); handleAddAction(e); }}
+                  >
                     Add to Combo
                   </Button>
-                  <Button variant="outline" className="cursor-pointer" onClick={() => { setQuickViewOpen(false); router.push(`/products/${product.slug}`); }}>
+                  <Button
+                    variant="outline"
+                    className="cursor-pointer border-border-medium/60 hover:bg-bg-secondary font-medium text-sm transition-all"
+                    onClick={() => { setQuickViewOpen(false); router.push(`/products/${product.slug}`); }}
+                  >
                     Full Details
                   </Button>
                 </div>

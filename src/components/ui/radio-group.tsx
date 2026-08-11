@@ -1,6 +1,14 @@
 import * as React from "react";
 import { cn } from "@/lib/utils/cn";
 
+interface RadioGroupContextValue {
+  value?: string;
+  onValueChange?: (value: string) => void;
+  name?: string;
+}
+
+const RadioGroupContext = React.createContext<RadioGroupContextValue>({});
+
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: string;
   onValueChange?: (value: string) => void;
@@ -12,20 +20,11 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const radioGroupName = React.useMemo(() => name || `radio-group-${Math.random()}`, [name]);
 
     return (
-      <div ref={ref} className={cn("grid gap-2", className)} {...props}>
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-              // @ts-ignore
-              checked: child.props.value === value,
-              // @ts-ignore
-              onChange: () => onValueChange?.(child.props.value),
-              name: radioGroupName,
-            });
-          }
-          return child;
-        })}
-      </div>
+      <RadioGroupContext.Provider value={{ value, onValueChange, name: radioGroupName }}>
+        <div ref={ref} className={cn("grid gap-3", className)} {...props}>
+          {children}
+        </div>
+      </RadioGroupContext.Provider>
     );
   }
 );
@@ -37,25 +36,35 @@ export interface RadioGroupItemProps extends React.InputHTMLAttributes<HTMLInput
 
 export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
   ({ className, checked, onChange, name, value, children, ...props }, ref) => {
+    const context = React.useContext(RadioGroupContext);
     const id = React.useId();
+
+    const isChecked = checked ?? (context.value === value);
+    const radioName = name ?? context.name;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e);
+      context.onValueChange?.(value);
+    };
+
     return (
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-3 group">
         <input
           type="radio"
           id={id}
           ref={ref}
-          name={name}
+          name={radioName}
           value={value}
-          checked={checked}
-          onChange={onChange}
+          checked={isChecked}
+          onChange={handleChange}
           className={cn(
-            "h-4 w-4 border border-border-medium text-brand-primary focus:ring-brand-primary accent-brand-primary cursor-pointer",
+            "appearance-none h-5 w-5 rounded-full border border-border-medium bg-transparent checked:border-[6px] checked:border-brand-primary transition-premium focus-visible:outline-none focus-visible:shadow-focus cursor-pointer group-hover:border-text-secondary checked:group-hover:border-brand-primary",
             className
           )}
           {...props}
         />
         {children && (
-          <label htmlFor={id} className="text-sm font-medium text-text-primary cursor-pointer font-body">
+          <label htmlFor={id} className="text-sm font-medium text-text-primary cursor-pointer font-ui">
             {children}
           </label>
         )}

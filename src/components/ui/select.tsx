@@ -19,14 +19,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full items-center justify-between rounded-control border border-border-light bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary disabled:cursor-not-allowed disabled:opacity-50 font-body text-text-primary cursor-pointer",
+      "flex h-11 w-full items-center justify-between rounded-[var(--radius-control)] border border-border-medium bg-transparent px-4 py-2 text-sm transition-premium focus:outline-none focus:shadow-focus disabled:cursor-not-allowed disabled:opacity-50 font-ui text-text-primary hover:border-text-secondary cursor-pointer",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <ChevronDown className="h-4 w-4 opacity-50 transition-transform duration-[var(--duration-normal)] data-[state=open]:rotate-180" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -40,9 +40,9 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 min-w-[8rem] overflow-hidden rounded-control border border-border-light bg-white text-text-primary shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 popper-content",
+        "relative z-50 min-w-[8rem] overflow-hidden rounded-[var(--radius-md)] border border-border-medium bg-white text-text-primary shadow-[var(--shadow-lg)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 popper-content",
         position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+          "data-[side=bottom]:translate-y-2 data-[side=left]:-translate-x-2 data-[side=right]:translate-x-2 data-[side=top]:-translate-y-2",
         className
       )}
       position={position}
@@ -50,7 +50,7 @@ const SelectContent = React.forwardRef<
     >
       <SelectPrimitive.Viewport
         className={cn(
-          "p-1",
+          "p-1.5",
           position === "popper" &&
             "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}
@@ -68,7 +68,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn("py-1.5 pl-8 pr-2 text-xs font-semibold font-heading text-text-secondary", className)}
+    className={cn("py-1.5 pl-8 pr-2 text-[13px] font-semibold font-ui text-text-secondary", className)}
     {...props}
   />
 ));
@@ -81,7 +81,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-bg-secondary focus:text-text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50 font-body cursor-pointer",
+      "relative flex w-full select-none items-center rounded-[var(--radius-sm)] py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-bg-secondary focus:text-text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50 font-body cursor-pointer transition-premium",
       className
     )}
     {...props}
@@ -103,7 +103,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-border-light", className)}
+    className={cn("-mx-1 my-1 h-px bg-border-medium", className)}
     {...props}
   />
 ));

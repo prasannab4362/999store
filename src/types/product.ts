@@ -121,6 +121,8 @@ export interface ActiveCombo {
   comboName: string;
   itemLimit: number;
   basePriceMinor: number;
+  selectedCategory?: string;
+  editingGroupId?: string;
   slots: ComboSlot[];
   startedAt?: string;
 }

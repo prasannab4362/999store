@@ -82,4 +82,7 @@ export const products: Product[] = rawProducts.map((p, idx) => {
   };
 });
 
+// Pre-computed slices — avoids full-array iteration at render time
+export const featuredProducts: Product[] = products.filter((p) => p.featured).slice(0, 4);
+
 export type { Product };
