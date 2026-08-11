@@ -6,7 +6,7 @@ import { useComboStore, useActiveComboDetails } from "@/stores/combo-store";
 import { useCartStore } from "@/stores/cart-store";
 import { Button } from "@/components/ui/button";
 import { PolicyNotice } from "@/components/commerce/policy-notice";
-import { Trash2, AlertTriangle, ArrowLeft, ShoppingCart, CheckCircle2 } from "lucide-react";
+import { Trash2, AlertTriangle, ArrowLeft, ShoppingCart, CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
