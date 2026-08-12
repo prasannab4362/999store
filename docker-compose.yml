@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: 999store-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PROJECT_NAME=999 Combo Store - AI Agent Service
+      - PORT=8000
+    volumes:
+      - ./ai-service/data:/app/data
+    restart: always
+
+  frontend:
+    image: python:3.11-slim
+    container_name: 999store-frontend
+    working_dir: /app
+    volumes:
+      - ./ai-service:/app
+    ports:
+      - "3000:3000"
+    command: python -m http.server 3000 --bind 0.0.0.0
+    restart: always
