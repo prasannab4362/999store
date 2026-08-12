@@ -77,8 +77,8 @@ class DynamicLangGraphShoppingAgent:
         profile = get_customer_profile_memory_tool.invoke({"user_id": user_id})
 
         is_direct_search = (
-            any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige"]) and
-            any(sz in msg_lower for sz in ["size", "small", "medium", "large", "xl", "s", "m", "l"])
+            any(cl in msg_lower for cl in ["white", "black", "navy blue", "blue", "pink", "beige", "grey", "gray", "olive", "maroon", "sky blue"]) and
+            bool(re.search(r'\b(size|small|medium|large|xl|s|m|l)\b', msg_lower))
         ) or any(bd in msg_lower for bd in ["under", "500", "999", "1000", "over 1000", "budget", "price range"])
 
         # --- 1. SUPPORT HANDOFF ESCALATION ---
@@ -285,6 +285,15 @@ class DynamicLangGraphShoppingAgent:
                     state["color"] = current_color
                     break
 
+            # Extract size if present in message
+            current_size = state.get("size")
+            if not current_size:
+                for s in ["xs", "s", "m", "l", "xl", "xxl", "30", "32", "34", "36"]:
+                    if re.search(r'\b' + s + r'\b', msg_lower):
+                        current_size = s.upper()
+                        state["size"] = current_size
+                        break
+
             # Extract price_max from budget selection
             price_max = None
             if "under" in msg_lower and "500" in msg_lower:
@@ -307,7 +316,7 @@ class DynamicLangGraphShoppingAgent:
                 query=message,
                 category=state.get("category"),
                 color=current_color,
-                size=state.get("size"),
+                size=current_size,
                 price_max=price_max
             )
 
@@ -315,7 +324,7 @@ class DynamicLangGraphShoppingAgent:
             formatted_prods = []
             for p in prods:
                 p_copy = dict(p)
-                p_copy["selected_size"] = state.get("size") if state.get("size") else (p["available_sizes"][0] if p.get("available_sizes") else "M")
+                p_copy["selected_size"] = current_size if current_size else (p["available_sizes"][0] if p.get("available_sizes") else "M")
                 p_copy["selected_color"] = current_color if current_color else p.get("color", "Standard")
                 formatted_prods.append(p_copy)
 

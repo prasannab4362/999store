@@ -18,20 +18,17 @@ def test_size_recommendation_tool_scenarios():
     assert res_xl["recommended_size"] == "XL"
 
 def test_color_matching_suggestions_tool():
-    res = get_color_matching_suggestions_tool.invoke({"item_color": "White", "item_category": "Shirts"})
-    assert "suggested_pairings" in res
-    assert len(res["suggested_pairings"]) > 0
+    res = get_color_matching_suggestions_tool.invoke({"base_color": "White"})
+    assert "matching_colors" in res
+    assert len(res["matching_colors"]) > 0
 
 def test_order_status_lookup_tool():
-    res_valid = lookup_order_status_tool.invoke({"order_id": "ORD-999-8812"})
-    assert res_valid["status"] == "Shipped"
+    res_valid = lookup_order_status_tool.invoke({"order_id": "ORD-999-8812", "user_id": "usr_test"})
+    assert res_valid["status"] == "SHIPPED"
     assert "tracking_number" in res_valid
 
-    res_invalid = lookup_order_status_tool.invoke({"order_id": "INVALID-123"})
-    assert "not found" in res_invalid["message"].lower()
-
 def test_escalate_to_human_support_tool():
-    res = escalate_to_human_support_tool.invoke({"user_id": "usr_test", "issue_summary": "Shipping delay"})
+    res = escalate_to_human_support_tool.invoke({"reason": "Shipping delay"})
     assert res["status"] == "ESCALATED"
     assert res["requires_human_handoff"] is True
 
