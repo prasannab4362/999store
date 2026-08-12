@@ -162,7 +162,7 @@ class DynamicLangGraphShoppingAgent:
 
         # --- STEP 1b: TARGET SELECTION (Men / Women / Accessories) ---
         elif any(target in msg_lower for target in ["shopping for men", "shopping for women", "accessories"]):
-            target_group = "Men" if "men" in msg_lower else ("Women" if "women" in msg_lower else "Accessories")
+            target_group = "Women" if "women" in msg_lower else ("Men" if "men" in msg_lower else "Accessories")
             state["step"] = "AWAITING_CATEGORY"
             state["target"] = target_group
             self.user_states[user_id] = state
