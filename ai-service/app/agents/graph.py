@@ -44,6 +44,8 @@ CONVERSATION FLOW MANDATE:
 5. Cart & Combo Deal: Guide 3-for-₹999 combo deal upsell and checkout.
 """
 
+from app.db.storage import storage_manager
+
 class DynamicLangGraphShoppingAgent:
     """
     Production-ready AI Shopping Assistant for 999 Store enforcing sequential shopping journey:
@@ -51,10 +53,14 @@ class DynamicLangGraphShoppingAgent:
     """
     def __init__(self):
         self.checkpoints: Dict[str, List[BaseMessage]] = {}
-        self.user_carts: Dict[str, List[Dict[str, Any]]] = {}
-        self.user_states: Dict[str, Dict[str, Any]] = {}
+        self.user_carts: Dict[str, List[Dict[str, Any]]] = storage_manager.load_carts()
+        self.user_states: Dict[str, Dict[str, Any]] = storage_manager.load_states()
 
     def process_turn(self, user_id: str, channel: str, message: str, thread_id: str) -> Dict[str, Any]:
+        # Refresh from persistent storage
+        self.user_carts = storage_manager.load_carts()
+        self.user_states = storage_manager.load_states()
+
         history = self.checkpoints.get(thread_id, [SystemMessage(content=SYSTEM_PROMPT)])
         history.append(HumanMessage(content=message))
         
@@ -341,6 +347,10 @@ class DynamicLangGraphShoppingAgent:
         final_reply = reply_text
         history.append(AIMessage(content=final_reply))
         self.checkpoints[thread_id] = history
+
+        # Persist carts and user states to disk
+        storage_manager.save_carts(self.user_carts)
+        storage_manager.save_states(self.user_states)
 
         return {
             "reply": final_reply,

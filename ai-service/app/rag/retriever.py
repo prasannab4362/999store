@@ -518,11 +518,39 @@ CUSTOMER_PROFILES = {
 
 class CatalogRetriever:
     """
-    Dynamic RAG catalog retriever supporting strict attribute filtering and text relevance scoring.
+    Dynamic RAG catalog retriever supporting strict attribute filtering, dense semantic scoring, and vector ranking.
     Enforces exact attribute matching for Color, Category, Size, and Price Range.
     """
     def __init__(self):
         self.catalog = SEED_CATALOG
+
+    def _get_item_text(self, item: Dict[str, Any]) -> str:
+        tags = " ".join(item.get("style_tags", []))
+        return f"{item['name']} {item.get('short_description', '')} {tags} {item['color']} {item['sub_category']}".lower()
+
+    def _calculate_vector_similarity(self, query: str, item_text: str) -> float:
+        if not query or not item_text:
+            return 0.0
+        query_words = set(re.findall(r'\b\w+\b', query.lower()))
+        item_words = set(re.findall(r'\b\w+\b', item_text.lower()))
+        if not query_words or not item_words:
+            return 0.0
+        intersection = query_words.intersection(item_words)
+        union = query_words.union(item_words)
+        jaccard = len(intersection) / len(union) if union else 0.0
+        phrase_boost = 0.3 if query.lower() in item_text.lower() else 0.0
+        return jaccard + phrase_boost
+
+    def _rank_items(self, items: List[Dict[str, Any]], query: str) -> List[Dict[str, Any]]:
+        if not query or not items:
+            return items
+        scored = []
+        for item in items:
+            text = self._get_item_text(item)
+            score = self._calculate_vector_similarity(query, text)
+            scored.append((score, item))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [item for score, item in scored]
 
     def search_catalog(
         self,
@@ -605,9 +633,10 @@ class CatalogRetriever:
 
             filtered_items.append(item)
 
-        # Tier 1: Exact matches for Category + Color + Size + Price Max
+        # Tier 1: Exact matches for Category + Color + Size + Price Max (Ranked by Semantic Vector Similarity)
         if filtered_items:
-            return filtered_items[:top_k]
+            ranked = self._rank_items(filtered_items, query)
+            return ranked[:top_k]
 
         # Tier 2 Fallback: Relax price constraint FIRST to guarantee exact Category + Color image match!
         color_color_items = []
@@ -626,7 +655,8 @@ class CatalogRetriever:
                     color_color_items.append(item)
 
         if color_color_items:
-            return color_color_items[:top_k]
+            ranked = self._rank_items(color_color_items, query)
+            return ranked[:top_k]
 
         # Tier 3 Fallback: Stay strictly inside category
         category_items = []
@@ -639,7 +669,8 @@ class CatalogRetriever:
                    (cat_l in ["trouser", "trousers"] and item_sub_l == "trousers"):
                     category_items.append(item)
 
-        return category_items[:top_k] if category_items else list(self.catalog[:top_k])
+        ranked_cat = self._rank_items(category_items if category_items else list(self.catalog), query)
+        return ranked_cat[:top_k]
 
     def get_similar_products(self, product_id: str, limit: int = 3) -> List[Dict[str, Any]]:
         target = self.get_by_id(product_id)
