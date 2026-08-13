@@ -333,19 +333,13 @@ table, th, td {
   box-shadow: var(--shadow-md);
 }
 
-/* 3s Shimmer */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+/* Shimmer Loader animation */
+@keyframes loader-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
 }
 .animate-shimmer {
-  animation: shimmer 3s infinite linear;
-  background: linear-gradient(to right, var(--color-bg-secondary) 4%, var(--color-bg-tertiary) 25%, var(--color-bg-secondary) 36%);
-  background-size: 1000px 100%;
+  animation: loader-slide 1.5s infinite ease-in-out;
 }
 
 /* Global Layout spacing */

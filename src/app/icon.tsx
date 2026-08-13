@@ -14,47 +14,20 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#111318",
+          background: "#1D1D1F",
           borderRadius: "8px",
-          position: "relative",
+          border: "1.5px solid #D4AF37",
+          color: "#D4AF37",
+          fontSize: "14px",
+          fontWeight: 900,
+          fontFamily: "sans-serif",
+          letterSpacing: "-0.5px",
         }}
       >
-        {/* Simplified V2 Brand Interlocking circles representation */}
-        <div
-          style={{
-            position: "absolute",
-            width: "14px",
-            height: "14px",
-            borderRadius: "50%",
-            border: "2px solid #315CFF",
-            left: "4px",
-            bottom: "4px",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "14px",
-            height: "14px",
-            borderRadius: "50%",
-            border: "2px solid #D4C3A3",
-            right: "4px",
-            bottom: "4px",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "14px",
-            height: "14px",
-            borderRadius: "50%",
-            border: "2px solid #FFFFFF",
-            top: "4px",
-            left: "9px",
-          }}
-        />
+        999
       </div>
     ),
     { ...size }
   );
 }
+
