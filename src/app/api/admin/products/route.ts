@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
           fit: product.fit,
           pattern: product.pattern,
           description: product.description,
+          comboTierIds: body.comboTierIds ?? ["combo-10", "combo-8", "combo-5", "combo-3", "combo-2"],
           variants: {
             create: product.variants.map((v: any) => ({
               id: v.id,
