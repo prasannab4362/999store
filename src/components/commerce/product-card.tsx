@@ -313,15 +313,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
               Tier {product.comboTierIds?.map(t => t.replace("combo-", "")).join(", ") || "All"}
             </span>
           </div>
-          <div className="flex gap-2 w-full sm:w-auto">
-            <Button size="sm" variant="outline" className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg border-border-medium/60 text-text-muted hover:text-text-primary hover:bg-bg-secondary cursor-pointer flex-1 sm:flex-none justify-center transition-premium group/eye" onClick={() => setQuickViewOpen(true)}>
-              <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover/eye:scale-105 transition-transform" />
-            </Button>
+          <div className="w-full sm:w-auto">
             <Button
               size="sm"
               disabled={isComplete}
               className={cn(
-                "h-9 sm:h-10 px-5 sm:px-6 gap-1.5 font-semibold font-ui text-[14px] rounded-full flex-grow sm:flex-none justify-center transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group/add hover:-translate-y-[2px] hover:scale-[1.02]",
+                "h-9 sm:h-10 px-5 sm:px-6 gap-1.5 font-semibold font-ui text-[14px] rounded-full w-full sm:w-auto justify-center transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group/add hover:-translate-y-[2px] hover:scale-[1.02]",
                 isComplete
                   ? "bg-bg-secondary text-text-muted cursor-not-allowed"
                   : "bg-[#1D1D1F] text-white hover:bg-[#2C2C2E] shadow-sm cursor-pointer"

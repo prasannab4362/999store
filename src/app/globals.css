@@ -6,10 +6,10 @@
   --bg-secondary: #F5F5F7;
   --border-light: #D2D2D7;
 
-  --apple-font-stack: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-space: var(--apple-font-stack);
-  --font-manrope: var(--apple-font-stack);
-  --font-inter: var(--apple-font-stack);
+  --font-heading: var(--font-outfit), "Outfit", -apple-system, sans-serif;
+  --font-body: var(--font-jakarta), "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-ui: var(--font-jakarta), "Plus Jakarta Sans", -apple-system, sans-serif;
+  --apple-font-stack: var(--font-body);
 }
 
 @theme {
