@@ -15,8 +15,8 @@ import { motion } from "framer-motion";
 
 // Zod schema
 const trackSchema = z.object({
-  orderId: z.string().min(4, "Enter a valid order ID"),
-  phone: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian mobile number"),
+  orderId: z.string().min(3, "Enter a valid order ID or Order Number"),
+  phone: z.string().optional(),
 });
 
 type TrackFormValues = z.infer<typeof trackSchema>;
