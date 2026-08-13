@@ -15,8 +15,6 @@ import { CategoryEntryDialog } from "../commerce/category-entry-dialog";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/men", label: "Men" },
-  { href: "/women", label: "Women" },
   { href: "/combo", label: "Combo Builder" },
   { href: "/new-arrivals", label: "New Arrivals" },
   { href: "/offers", label: "Offers" },
@@ -149,17 +147,10 @@ export function SiteHeader() {
                 );
               }
 
-              const isMen = link.href === "/men";
-              const isWomen = link.href === "/women";
-
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => {
-                    if (isMen) handleCategoryNavClick(e, "men");
-                    if (isWomen) handleCategoryNavClick(e, "women");
-                  }}
                   className={cn(
                     "relative z-10 px-4 py-2 text-[12px] font-medium font-ui tracking-[-0.011em] transition-all duration-300 rounded-full antialiased normal-case hover:bg-[rgba(0,0,0,0.04)]",
                     isActive ? "text-text-primary font-semibold" : "text-text-secondary hover:text-text-primary"
