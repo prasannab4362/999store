@@ -169,7 +169,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
     });
 
     if (result.success) {
-      toast.success(`Added ${product.shortName} (${selectedSize} / ${selectedColor}) to your combo!`);
       setVariantModalOpen(false);
       setSelectedSize(null);
     } else {

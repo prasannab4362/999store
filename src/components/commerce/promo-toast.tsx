@@ -119,11 +119,11 @@ export function PromoToast() {
     <AnimatePresence>
       <motion.div
         key={notification.id}
-        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        initial={{ opacity: 0, y: -20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+        exit={{ opacity: 0, y: -20, scale: 0.95 }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 max-w-sm w-[calc(100vw-2rem)] font-body pointer-events-auto select-none"
+        className="fixed top-20 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 z-50 max-w-sm w-[92vw] sm:w-80 font-body pointer-events-auto select-none"
       >
         <div className="relative rounded-2xl bg-[#1D1D1F]/95 backdrop-blur-xl border border-white/15 text-white p-4 shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex items-start gap-3.5 overflow-hidden group">
           {/* Accent glow strip */}

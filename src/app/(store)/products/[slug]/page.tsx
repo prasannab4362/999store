@@ -157,7 +157,6 @@ export default function ProductDetailPage() {
     });
 
     if (result.success) {
-      toast.success(`Added ${product.shortName} (${selectedSize} / ${selectedColor}) to your combo!`);
       setSelectedSize(null);
     } else {
       if (result.error === "COMBO_FULL") {
