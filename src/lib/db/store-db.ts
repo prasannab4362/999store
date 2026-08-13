@@ -201,6 +201,58 @@ export class StoreBackendDB {
     }
   }
 
+  static addProduct(productData: any) {
+    const newId = `prod-${Date.now()}`;
+    const slug = productData.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const code = `${productData.gender === "women" ? "WS" : "MS"}-${Math.floor(100 + Math.random() * 900)}`;
+
+    const formattedProduct = {
+      id: newId,
+      slug,
+      productCode: code,
+      name: productData.name,
+      shortName: productData.name.split(" ").slice(0, 3).join(" "),
+      brandName: "999 Edit",
+      category: "clothing",
+      subcategory: productData.subcategory || "Shirts",
+      gender: productData.gender || "men",
+      fabric: productData.fabric || "100% Cotton",
+      fit: productData.fit || "Regular Fit",
+      pattern: "Solid",
+      description: productData.description || "Premium fashion style eligible for 999 Combo package.",
+      rating: 4.8,
+      reviewCount: 1,
+      pricing: {
+        priceMinor: 0,
+        flatRateRule: "INCLUDED_IN_999_COMBO",
+      },
+      media: [
+        { id: `m-${Date.now()}-1`, url: productData.imageUrl, viewType: "front" as const, alt: productData.name },
+      ],
+      variants: (productData.variants || []).map((v: any, idx: number) => ({
+        id: `var-${Date.now()}-${idx}`,
+        sku: `${code}-${v.size}-${v.colorName.toUpperCase()}`,
+        color: { name: v.colorName, hex: v.colorHex },
+        size: v.size,
+        stock: v.stock,
+        enabled: true,
+      })),
+      combos: [
+        { comboId: "combo-10", comboName: "10 Picks Combo", minItemsRequired: 10, flatRatePriceMinor: 99900 },
+        { comboId: "combo-8", comboName: "8 Picks Combo", minItemsRequired: 8, flatRatePriceMinor: 99900 },
+        { comboId: "combo-5", comboName: "5 Picks Combo", minItemsRequired: 5, flatRatePriceMinor: 99900 },
+        { comboId: "combo-3", comboName: "3 Picks Combo", minItemsRequired: 3, flatRatePriceMinor: 99900 },
+        { comboId: "combo-2", comboName: "2 Picks Combo", minItemsRequired: 2, flatRatePriceMinor: 99900 },
+      ],
+      tags: ["New Arrival", "Combo Item"],
+      totalStock: (productData.variants || []).reduce((acc: number, v: any) => acc + (v.stock || 0), 0),
+    };
+
+    mockInventory.unshift(formattedProduct as any);
+    products.unshift(formattedProduct as any);
+    return formattedProduct;
+  }
+
   static createOrder(newOrderData: Omit<AdminOrder, "id" | "orderNumber" | "createdAt">): AdminOrder {
     const id = `ord-${Date.now()}`;
     const orderNumber = `999-ORD-${Math.floor(10000 + Math.random() * 90000)}`;

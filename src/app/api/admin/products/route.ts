@@ -34,3 +34,16 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const product = StoreBackendDB.addProduct(body);
+    return NextResponse.json({ success: true, product });
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: "Failed to create new product in database." },
+      { status: 500 }
+    );
+  }
+}

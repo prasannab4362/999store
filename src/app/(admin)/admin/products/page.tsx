@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Search, PackageCheck, AlertCircle, Edit3, Save, Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -69,6 +70,14 @@ export default function AdminProductsPage() {
             Manage catalog stock levels, sizes, color swatches, and combo package eligibility.
           </p>
         </div>
+
+        <Link
+          href="/admin/products/new"
+          className="h-10 px-5 rounded-2xl bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-400/20 hover:scale-105 transition-all cursor-pointer w-fit"
+        >
+          <Plus className="h-4 w-4" />
+          <span>Add New Product</span>
+        </Link>
       </div>
 
       {/* Search Bar */}

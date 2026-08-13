@@ -1,0 +1,134 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  RAZORPAY
+  UPI
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Product {
+  id              String           @id @default(cuid())
+  slug            String           @unique
+  productCode     String           @unique
+  name            String
+  shortName       String
+  brandName       String           @default("999 Edit")
+  category        String           @default("clothing")
+  subcategory     String           // "Shirts", "Tops", "Jeans", "Leggings"
+  gender          String           // "men" | "women" | "unisex"
+  fabric          String
+  fit             String
+  pattern         String
+  description     String
+  rating          Float            @default(4.5)
+  reviewCount     Int              @default(12)
+  newArrival      Boolean          @default(false)
+  trending        Boolean          @default(false)
+  variants        ProductVariant[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model ProductVariant {
+  id              String      @id @default(cuid())
+  productId       String
+  product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku             String      @unique
+  colorName       String
+  colorHex        String
+  size            String
+  stock           Int         @default(50)
+  enabled         Boolean     @default(true)
+  orderItems      OrderItem[]
+}
+
+model ComboTierConfig {
+  id              String   @id
+  slug            String   @unique
+  name            String
+  itemLimit       Int
+  basePriceMinor  Int      @default(99900)
+  active          Boolean  @default(true)
+}
+
+model Order {
+  id              String            @id @default(cuid())
+  orderNumber     String            @unique
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  deliveryAddress String
+  city            String
+  state           String
+  pincode         String
+  paymentMethod   PaymentMethod     @default(COD)
+  paymentStatus   PaymentStatus     @default(PENDING)
+  orderStatus     OrderStatus       @default(PENDING)
+  subtotalMinor   Int               @default(99900)
+  deliveryFeeMinor Int              @default(0)
+  discountMinor   Int               @default(0)
+  totalMinor      Int               @default(99900)
+  trackingNumber  String?
+  comboGroups     OrderComboGroup[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model OrderComboGroup {
+  id             String      @id @default(cuid())
+  orderId        String
+  order          Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  comboId        String
+  comboName      String
+  itemLimit      Int
+  basePriceMinor Int         @default(99900)
+  items          OrderItem[]
+}
+
+model OrderItem {
+  id                String          @id @default(cuid())
+  comboGroupId      String
+  comboGroup        OrderComboGroup @relation(fields: [comboGroupId], references: [id], onDelete: Cascade)
+  productId         String
+  variantId         String
+  variant           ProductVariant  @relation(fields: [variantId], references: [id])
+  productName       String
+  productCode       String
+  colorName         String
+  colorHex          String
+  size              String
+  image             String
+}
+
+model PincodeLookup {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  city           String
+  state          String
+  isDeliverable  Boolean  @default(true)
+  codAvailable   Boolean  @default(true)
+  estimatedDays  Int      @default(3)
+}
