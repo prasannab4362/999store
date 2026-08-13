@@ -180,7 +180,7 @@ export function SiteHeader() {
 
           {/* Action Triggers */}
           <div className="flex items-center space-x-0.5 sm:space-x-1">
-            {activeCombo && (
+            {activeCombo ? (
               <Link
                 href={`/combo/${activeCombo.comboSlug}`}
                 className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-bg-secondary border border-border-medium/50 text-xs font-ui font-medium text-text-primary hover:bg-border-light transition-premium mr-1"
@@ -192,6 +192,14 @@ export function SiteHeader() {
                 ) : (
                   <span className="text-[10px] text-text-muted font-normal ml-0.5">({remainingCount} left)</span>
                 )}
+              </Link>
+            ) : (
+              <Link
+                href="/combo"
+                className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1D1D1F] text-white text-xs font-ui font-semibold hover:bg-[#2C2C2E] transition-premium mr-1 border border-[#D4AF37]/40 shadow-xs"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                <span>Select Package</span>
               </Link>
             )}
 

@@ -343,26 +343,31 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <Dialog open={comboSelectOpen} onOpenChange={setComboSelectOpen}>
         <DialogContent className="max-w-md font-body">
           <DialogHeader>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] text-[11px] font-semibold tracking-wider uppercase mb-1 w-fit">
-              Step 1 of 2
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] text-[11px] font-bold tracking-wider uppercase mb-1 w-fit border border-[#D4AF37]/30">
+              Step 1 of 2 · Select Package
             </div>
-            <DialogTitle className="font-heading font-semibold text-xl text-text-primary tracking-tight">Please select your combo first to continue.</DialogTitle>
-            <DialogDescription className="text-sm text-text-secondary pt-1 leading-relaxed font-ui">
-              To add products, please select a combo first. All tiers share a flat base price of <strong>₹999</strong>.
+            <DialogTitle className="font-heading font-extrabold text-xl text-text-primary tracking-tight">Which combo package would you like to select?</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary pt-1 leading-relaxed font-ui">
+              To add <strong>{product.shortName}</strong>, please select your combo package below. All tiers share a flat base price of <strong className="text-[#D4AF37]">₹999</strong>.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-2 py-4">
+          <div className="grid gap-2.5 py-3">
             {comboConfigs.map((config) => (
               <button
                 key={config.id}
                 onClick={() => handleSelectComboTier(config)}
-                className="w-full text-left flex items-center justify-between p-4 bg-bg-secondary hover:bg-bg-tertiary rounded-xl transition-all cursor-pointer group"
+                className="w-full text-left flex items-center justify-between p-3.5 bg-bg-secondary hover:bg-[#1D1D1F] hover:text-white rounded-2xl transition-all cursor-pointer group border border-border-medium/40 shadow-xs"
               >
                 <div>
-                  <h4 className="font-heading font-semibold text-sm text-text-primary">{config.name}</h4>
-                  <p className="text-[13px] text-text-secondary mt-0.5">{config.description}</p>
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h4 className="font-heading font-bold text-sm text-text-primary group-hover:text-white">{config.name}</h4>
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/20 text-[#D4AF37] group-hover:text-amber-300 border border-[#D4AF37]/30">
+                      {config.badge}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-text-secondary group-hover:text-gray-300 font-ui">{config.description}</p>
                 </div>
-                <span className="font-heading font-semibold text-[#D4AF37] text-base">₹999</span>
+                <span className="font-heading font-black text-[#D4AF37] group-hover:text-amber-300 text-base shrink-0 ml-3">₹999</span>
               </button>
             ))}
           </div>
