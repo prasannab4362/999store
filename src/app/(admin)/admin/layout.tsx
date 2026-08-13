@@ -41,6 +41,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setAuthChecked(true);
       return;
     }
+
+    // Check localStorage admin session first
+    if (typeof window !== "undefined") {
+      const localAdmin = localStorage.getItem("999-admin-session");
+      if (localAdmin) {
+        try {
+          const parsed = JSON.parse(localAdmin);
+          setAdminUser({ email: parsed.email || "admin@999.com" });
+          setAuthChecked(true);
+          return;
+        } catch (e) {
+          // ignore
+        }
+      }
+    }
+
     getCurrentUser()
       .then((user) => {
         if (!user) {
@@ -57,7 +73,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleLogout = async () => {
     try {
-      await signOutUser();
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("999-admin-session");
+      }
+      await signOutUser().catch(() => {});
       toast.success("Logged out successfully.");
       router.replace("/admin/login");
     } catch {

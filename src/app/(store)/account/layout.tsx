@@ -19,32 +19,54 @@ export default function AccountLayout({
   const [sessionUser, setSessionUser] = React.useState<any | null>(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
 
-  // Hydrate mock session or set default
+  // Check user authentication session
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      let session = JSON.parse(localStorage.getItem("999-store-session") || "null");
-      if (!session) {
-        session = DEFAULT_DEMO_SESSION;
-        localStorage.setItem("999-store-session", JSON.stringify(DEFAULT_DEMO_SESSION));
-      }
-      setSessionUser(session);
-      setIsLoaded(true);
+      // Check Supabase auth
+      import("@/lib/auth/supabase-auth").then(({ getCurrentUser }) => {
+        getCurrentUser()
+          .then((user) => {
+            if (user) {
+              const name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Customer";
+              const userObj = {
+                id: user.id,
+                email: user.email,
+                name: name.charAt(0).toUpperCase() + name.slice(1),
+                isGoogle: user.app_metadata?.provider === "google",
+              };
+              setSessionUser(userObj);
+              localStorage.setItem("999-user-session", JSON.stringify(userObj));
+              setIsLoaded(true);
+            } else {
+              // Check local user session
+              const localUser = localStorage.getItem("999-user-session");
+              if (localUser) {
+                try {
+                  setSessionUser(JSON.parse(localUser));
+                  setIsLoaded(true);
+                  return;
+                } catch (e) {}
+              }
+              // Redirect to login if not authenticated
+              router.replace("/login");
+            }
+          })
+          .catch(() => {
+            router.replace("/login");
+          });
+      });
     }
-  }, []);
+  }, [router]);
 
-  const restoreSession = () => {
+  const handleLogout = async () => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("999-store-session", JSON.stringify(DEFAULT_DEMO_SESSION));
-      setSessionUser(DEFAULT_DEMO_SESSION);
-      toast.success("Demo session restored!");
-    }
-  };
-
-  const handleLogout = () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("999-store-session");
+      localStorage.removeItem("999-user-session");
+      import("@/lib/auth/supabase-auth").then(({ signOutUser }) => {
+        signOutUser().catch(() => {});
+      });
       setSessionUser(null);
-      toast.info("Demo session cleared");
+      toast.info("Signed out successfully");
+      router.push("/login");
     }
   };
 
@@ -66,21 +88,21 @@ export default function AccountLayout({
   if (!sessionUser) {
     return (
       <div className="mx-auto max-w-md text-center py-16 px-6 font-body min-h-[60vh] flex flex-col items-center justify-center space-y-5 bg-white border border-border-medium/40 rounded-[var(--radius-card)] shadow-sm my-10">
-        <div className="h-14 w-14 rounded-full bg-brand-primary-soft text-brand-primary flex items-center justify-center">
+        <div className="h-14 w-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200">
           <UserCheck className="h-7 w-7" />
         </div>
         <div className="space-y-1.5">
-          <h2 className="text-lg font-black font-heading text-text-primary uppercase tracking-tight">Demo Session Cleared</h2>
+          <h2 className="text-lg font-black font-heading text-text-primary uppercase tracking-tight">Sign In Required</h2>
           <p className="text-xs text-text-secondary leading-relaxed">
-            Your demo account session was removed. Click below to restore the demo session and access your account.
+            Please sign in with Google or Email to access your account orders, saved items, and profile.
           </p>
         </div>
-        <button
-          onClick={restoreSession}
-          className="w-full py-3.5 px-6 bg-brand-primary text-white font-bold font-ui text-xs uppercase tracking-wider rounded-[var(--radius-control)] shadow-md hover:bg-brand-primary-dark transition-all active:scale-[0.99] cursor-pointer"
+        <Link
+          href="/login"
+          className="w-full py-3.5 px-6 bg-[#1D1D1F] text-white font-bold font-ui text-xs uppercase tracking-wider rounded-[var(--radius-control)] shadow-md hover:bg-[#2C2C2E] transition-all active:scale-[0.99] cursor-pointer block text-center"
         >
-          Restore Demo Session
-        </button>
+          Sign In / Create Account
+        </Link>
       </div>
     );
   }
@@ -95,9 +117,10 @@ export default function AccountLayout({
           <div className="border-b border-border-medium/40 pb-5 px-1 space-y-2">
             <span className="text-[10px] text-text-muted font-bold font-ui uppercase tracking-widest block">Welcome Back</span>
             <h3 className="font-heading font-black text-xl text-text-primary truncate tracking-tight">{sessionUser.name}</h3>
-            <span className="inline-flex items-center gap-1.5 text-[9px] font-bold font-ui bg-brand-primary-soft text-brand-primary px-3 py-1 rounded-full uppercase tracking-widest border border-brand-primary/10 shadow-sm relative overflow-hidden">
-              <span className="absolute inset-0 bg-brand-primary/10 animate-pulse" />
-              <span className="relative z-10">Demo Client</span>
+            <p className="text-xs text-text-muted font-ui truncate">{sessionUser.email}</p>
+            <span className="inline-flex items-center gap-1.5 text-[9px] font-bold font-ui bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-200 shadow-sm relative overflow-hidden w-fit mt-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="relative z-10">{sessionUser.isGoogle ? "Google Account" : "Verified Member"}</span>
             </span>
           </div>
 
