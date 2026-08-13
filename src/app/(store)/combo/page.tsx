@@ -23,7 +23,7 @@ export default function ComboSelectionPage() {
           Build Your Own Combo
         </h1>
         <p className="text-sm text-text-secondary leading-relaxed">
-          Select your combo size from the tiers below. You can mix and match Men's and Women's fashion items inside the same combo! Base price is flat **₹999** for all sizes.
+          Select your combo tier below. Mix and match Men's and Women's fashion items freely inside the same mixed combo package! Base price is a flat **₹999** for all sizes.
         </p>
       </div>
 
@@ -48,29 +48,17 @@ export default function ComboSelectionPage() {
               <p className="text-sm text-text-secondary leading-relaxed">{config.description}</p>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="mt-8">
               <Button
                 size="sm"
-                className="w-full font-bold uppercase text-[11px] tracking-wider cursor-pointer"
+                className="w-full font-bold uppercase text-[12px] tracking-wider cursor-pointer bg-[#1D1D1F] text-white hover:bg-[#2C2C2E] rounded-full shadow-sm py-2.5 h-10"
                 onClick={() => {
-                  startCombo(config, "men");
-                  toast.success(`Started ${config.name} for Men!`);
-                  router.push("/products?gender=men");
+                  startCombo(config);
+                  toast.success(`Started Mixed ${config.name}! Pick your dresses.`);
+                  router.push(`/combo/${config.slug}`);
                 }}
               >
-                Men's
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="w-full font-bold uppercase text-[11px] tracking-wider border-brand-accent text-brand-accent hover:bg-brand-accent/10 cursor-pointer"
-                onClick={() => {
-                  startCombo(config, "women");
-                  toast.success(`Started ${config.name} for Women!`);
-                  router.push("/products?gender=women");
-                }}
-              >
-                Women's
+                Pick Dresses
               </Button>
             </div>
           </div>
