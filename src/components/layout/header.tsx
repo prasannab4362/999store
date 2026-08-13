@@ -183,7 +183,7 @@ export function SiteHeader() {
             {activeCombo && (
               <Link
                 href={`/combo/${activeCombo.comboSlug}`}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-bg-secondary border border-border-medium/50 text-xs font-ui font-medium text-text-primary hover:bg-border-light transition-premium mr-1"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-bg-secondary border border-border-medium/50 text-xs font-ui font-medium text-text-primary hover:bg-border-light transition-premium mr-1"
               >
                 <span className={cn("h-1.5 w-1.5 rounded-full", isComplete ? "bg-emerald-500" : "bg-brand-accent animate-pulse")} />
                 <span>Combo: {selectedCount}/{activeCombo.itemLimit}</span>

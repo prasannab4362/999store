@@ -306,8 +306,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Pricing / Action */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 mt-3 border-t border-border-medium/40 gap-3 shrink-0">
           <div className="flex flex-col">
-            <span className="text-base sm:text-lg font-semibold font-heading text-text-primary tabular-nums tracking-[-0.02em] leading-none antialiased">
-              ₹999
+            <span className="text-xs font-semibold font-ui text-[#D4AF37] bg-[#FAF7F0] px-2 py-0.5 rounded-md border border-[#D4AF37]/30 w-fit">
+              Combo Item
             </span>
             <span className="text-[10px] text-text-muted mt-1 leading-none font-normal">
               Tier {product.comboTierIds?.map(t => t.replace("combo-", "")).join(", ") || "All"}
@@ -499,8 +499,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
               <div className="space-y-3">
                 <div className="flex flex-col">
-                  <span className="text-xs text-text-muted font-normal">Combo Price</span>
-                  <span className="text-2xl font-semibold font-heading text-[#D4AF37]">₹999</span>
+                  <span className="text-xs text-text-muted font-normal">Pricing</span>
+                  <span className="text-sm font-semibold font-ui text-[#D4AF37]">Included in Combo Package</span>
                 </div>
                 <div className="flex gap-2">
                   <Button

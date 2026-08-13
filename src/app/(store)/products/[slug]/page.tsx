@@ -311,14 +311,13 @@ export default function ProductDetailPage() {
 
             <div className="flex items-center gap-4 py-4 border-y border-border-medium/30">
               <div className="flex flex-col">
-                <span className="text-[12px] font-semibold font-ui text-text-muted tracking-wide">Combo Base Price</span>
-                <span className="text-[32px] font-semibold font-heading text-text-primary tracking-tight">₹999</span>
+                <span className="text-[12px] font-semibold font-ui text-text-muted tracking-wide">Package Price</span>
+                <span className="text-xl font-bold font-heading text-[#D4AF37] tracking-tight">Included in Flat ₹999 Combo</span>
               </div>
               <div className="h-10 w-[1px] bg-border-medium/30 mx-2"></div>
               <div className="flex flex-col justify-center">
-                <span className="text-sm text-text-muted line-through font-ui font-medium">MRP: ₹2,499</span>
                 <span className="text-[13px] text-brand-accent font-semibold font-ui">
-                  Save 60% with Combo
+                  No individual dress charge
                 </span>
               </div>
             </div>
