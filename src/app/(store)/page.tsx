@@ -5,8 +5,7 @@ import * as React from "react";
 import Image from "next/image";
 import { CheckCircle2, Shield, Truck, RotateCcw } from "lucide-react";
 import { mockHomeReviews } from "@/data/mock/reviews";
-import { featuredProducts } from "@/data/mock/products";
-import { ProductCard } from "@/components/commerce/product-card";
+import { FeaturedProductsSection } from "@/components/home/featured-products-island";
 import { PolicyNotice } from "@/components/commerce/policy-notice";
 
 // Client islands
@@ -255,13 +254,7 @@ export default function HomePage() {
             <ViewAllButton href="/products" label="View All" />
           </div>
 
-          <React.Suspense fallback={<div className="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-[300px]" />}>
-            <div className="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </React.Suspense>
+          <FeaturedProductsSection />
         </SectionWrapper>
       </section>
 

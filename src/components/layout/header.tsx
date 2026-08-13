@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Heart, ShoppingBag, User, Menu, ShieldCheck } from "lucide-react";
+import { Search, Heart, ShoppingBag, User, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { BrandLogo } from "../commerce/brand-logo";
@@ -236,14 +236,7 @@ export function SiteHeader() {
               <User className="h-[18px] w-[18px] transition-transform duration-300" />
             </Link>
 
-            <Link
-              href="/admin"
-              className="hidden lg:inline-flex p-2 text-[#D4AF37] hover:text-amber-500 rounded-full active:scale-95 transition-premium group"
-              title="Admin Portal"
-              aria-label="Admin Portal"
-            >
-              <ShieldCheck className="h-[18px] w-[18px] transition-transform duration-300" />
-            </Link>
+
 
             <Link
               href="/cart"

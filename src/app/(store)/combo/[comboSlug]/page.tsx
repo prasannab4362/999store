@@ -4,7 +4,7 @@ import * as React from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useComboStore, useActiveComboDetails } from "@/stores/combo-store";
-import { products } from "@/data/mock/products";
+import { Product } from "@/types/product";
 import { categories } from "@/data/mock/categories";
 import { ProductCard } from "@/components/commerce/product-card";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,19 @@ export default function ComboBuilderPage() {
   const [selectedCategory, setSelectedCategory] = React.useState<string>("all");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [mobileSummaryOpen, setMobileSummaryOpen] = React.useState(false);
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const [productsLoading, setProductsLoading] = React.useState(true);
+
+  // Fetch products from DB
+  React.useEffect(() => {
+    fetch("/api/products?limit=200")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) setProducts(data.products ?? []);
+      })
+      .catch(() => {})
+      .finally(() => setProductsLoading(false));
+  }, []);
 
   React.useEffect(() => {
     if (activeCombo?.selectedCategory && genderFilter === "all") {
@@ -331,7 +344,13 @@ export default function ComboBuilderPage() {
               </div>
             </div>
 
-            {filteredProducts.length > 0 ? (
+            {productsLoading ? (
+              <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="rounded-2xl bg-[#F5F5F7] animate-pulse" style={{ height: 300 }} />
+                ))}
+              </div>
+            ) : filteredProducts.length > 0 ? (
               <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
