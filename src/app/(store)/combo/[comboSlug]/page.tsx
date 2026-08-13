@@ -33,14 +33,20 @@ export default function ComboBuilderPage() {
   const [products, setProducts] = React.useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = React.useState(true);
 
-  // Fetch products from DB
+  // Fetch products from DB with mock fallback
   React.useEffect(() => {
     fetch("/api/products?limit=200")
       .then((r) => r.json())
       .then((data) => {
-        if (data.success) setProducts(data.products ?? []);
+        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+          setProducts(data.products);
+        } else {
+          import("@/data/mock/products").then((m) => setProducts(m.products || []));
+        }
       })
-      .catch(() => {})
+      .catch(() => {
+        import("@/data/mock/products").then((m) => setProducts(m.products || []));
+      })
       .finally(() => setProductsLoading(false));
   }, []);
 
@@ -52,27 +58,70 @@ export default function ComboBuilderPage() {
 
   React.useEffect(() => {
     if (!activeCombo) {
-      const config = comboConfigs.find((c) => c.slug === comboSlug);
+      const config = comboConfigs.find(
+        (c) =>
+          c.slug === comboSlug ||
+          c.id === comboSlug ||
+          c.id === `combo-${comboSlug.replace("-items", "")}`
+      );
       if (config) {
         startCombo(config);
       }
-    } else if (activeCombo.comboSlug !== comboSlug) {
-      router.replace(`/combo/${activeCombo.comboSlug}`);
+    } else if (
+      activeCombo.comboSlug !== comboSlug &&
+      activeCombo.comboId !== comboSlug &&
+      activeCombo.comboId !== `combo-${comboSlug.replace("-items", "")}`
+    ) {
+      const config = comboConfigs.find(
+        (c) =>
+          c.slug === comboSlug ||
+          c.id === comboSlug ||
+          c.id === `combo-${comboSlug.replace("-items", "")}`
+      );
+      if (config) {
+        startCombo(config);
+      }
     }
-  }, [comboSlug, activeCombo, router, startCombo]);
+  }, [comboSlug, activeCombo, startCombo]);
 
   const filteredProducts = React.useMemo(() => {
     return products.filter((p) => {
-      if (activeCombo && p.comboTierIds && !p.comboTierIds.includes(activeCombo.comboId as any)) return false;
+      // 1. Combo tier matching (flexible normalized matching)
+      if (activeCombo) {
+        const activeNum = (activeCombo.comboId || activeCombo.comboSlug)
+          .replace("combo-", "")
+          .replace("-items", "");
+        if (p.comboTierIds && p.comboTierIds.length > 0) {
+          const matchesTier = p.comboTierIds.some((tid) => {
+            const tNum = tid.replace("combo-", "").replace("-items", "");
+            return tNum === activeNum || tid === activeCombo.comboId || tid === activeCombo.comboSlug;
+          });
+          if (!matchesTier) return false;
+        }
+      }
+
+      // 2. Gender matching
       if (genderFilter !== "all" && p.gender !== genderFilter && p.gender !== "unisex") return false;
-      if (selectedCategory !== "all" && p.categoryId !== selectedCategory) return false;
+
+      // 3. Category matching
+      if (selectedCategory !== "all") {
+        const catLower = selectedCategory.toLowerCase();
+        const pCatLower = (p.categoryId || (p as any).category || "").toLowerCase();
+        const pSubLower = (p.subcategory || "").toLowerCase();
+        if (pCatLower !== catLower && !pSubLower.includes(catLower) && !catLower.includes(pSubLower)) {
+          return false;
+        }
+      }
+
+      // 4. Search query
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        if (!p.name.toLowerCase().includes(query) && !p.productCode.toLowerCase().includes(query)) return false;
+        if (!p.name.toLowerCase().includes(query) && !(p.productCode || "").toLowerCase().includes(query)) return false;
       }
+
       return true;
     });
-  }, [activeCombo, genderFilter, selectedCategory, searchQuery]);
+  }, [activeCombo, genderFilter, selectedCategory, searchQuery, products]);
 
   if (!activeCombo) {
     return (
