@@ -43,6 +43,7 @@ model Product {
   fit             String
   pattern         String
   description     String
+  comboTierIds    String[]         @default(["combo-10", "combo-8", "combo-5", "combo-3", "combo-2"])
   rating          Float            @default(4.5)
   reviewCount     Int              @default(12)
   newArrival      Boolean          @default(false)

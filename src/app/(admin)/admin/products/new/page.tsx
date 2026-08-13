@@ -18,6 +18,14 @@ export default function AdminNewProductPage() {
   const [description, setDescription] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
+  const [selectedComboTiers, setSelectedComboTiers] = React.useState<string[]>([
+    "combo-10",
+    "combo-8",
+    "combo-5",
+    "combo-3",
+    "combo-2",
+  ]);
+
   // Default size variants
   const [variants, setVariants] = React.useState([
     { size: "S", colorName: "Black", colorHex: "#000000", stock: 50 },
@@ -25,6 +33,18 @@ export default function AdminNewProductPage() {
     { size: "L", colorName: "Black", colorHex: "#000000", stock: 50 },
     { size: "XL", colorName: "Black", colorHex: "#000000", stock: 50 },
   ]);
+
+  const handleToggleComboTier = (tierId: string) => {
+    if (selectedComboTiers.includes(tierId)) {
+      if (selectedComboTiers.length === 1) {
+        toast.error("Product must be assigned to at least one combo package.");
+        return;
+      }
+      setSelectedComboTiers(selectedComboTiers.filter((t) => t !== tierId));
+    } else {
+      setSelectedComboTiers([...selectedComboTiers, tierId]);
+    }
+  };
 
   const handleAddVariant = () => {
     setVariants([...variants, { size: "L", colorName: "Navy", colorHex: "#1E3A8A", stock: 50 }]);
@@ -55,6 +75,7 @@ export default function AdminNewProductPage() {
           fabric,
           fit,
           description,
+          comboTierIds: selectedComboTiers,
           variants,
         }),
       });
@@ -146,6 +167,37 @@ export default function AdminNewProductPage() {
                 >
                   Women's
                 </button>
+              </div>
+            </div>
+
+            {/* Eligible Combo Package Tiers */}
+            <div className="space-y-1.5 sm:col-span-2">
+              <label className="text-xs font-bold text-white uppercase tracking-wider block">Assigned Combo Package Tiers</label>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                {[
+                  { id: "combo-10", label: "10 Picks" },
+                  { id: "combo-8", label: "8 Picks" },
+                  { id: "combo-5", label: "5 Picks" },
+                  { id: "combo-3", label: "3 Picks" },
+                  { id: "combo-2", label: "2 Picks" },
+                ].map((tier) => {
+                  const isSelected = selectedComboTiers.includes(tier.id);
+                  return (
+                    <button
+                      key={tier.id}
+                      type="button"
+                      onClick={() => handleToggleComboTier(tier.id)}
+                      className={`h-11 rounded-2xl font-bold text-xs cursor-pointer border transition-all flex items-center justify-center gap-1.5 ${
+                        isSelected
+                          ? "bg-amber-400/20 text-amber-300 border-amber-400"
+                          : "bg-white/5 text-white/40 border-white/10 hover:text-white"
+                      }`}
+                    >
+                      <span className={`h-2 w-2 rounded-full ${isSelected ? "bg-amber-400" : "bg-white/20"}`} />
+                      <span>{tier.label}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
