@@ -22,7 +22,13 @@ export default function AccountOverviewPage() {
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      setSessionUser(JSON.parse(localStorage.getItem("999-store-session") || "null"));
+      const user =
+        JSON.parse(localStorage.getItem("999-user-session") || "null") ||
+        JSON.parse(localStorage.getItem("999-store-session") || "null") || {
+          name: "Valued Customer",
+          email: "customer@999store.com",
+        };
+      setSessionUser(user);
       const orders = JSON.parse(localStorage.getItem("999-store-orders") || "[]");
       if (orders.length > 0) setRecentOrder(orders[0]);
       const claims = JSON.parse(localStorage.getItem("999-store-claims") || "[]");
@@ -37,7 +43,7 @@ export default function AccountOverviewPage() {
       .slice(0, 4);
   }, [recentlyViewedSlugs]);
 
-  if (!sessionUser) return null;
+  const userName = sessionUser?.name || "Customer";
 
   const statCards = [
     {

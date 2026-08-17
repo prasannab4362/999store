@@ -49,7 +49,7 @@ export function ComboDial() {
       )}
     >
       {/* Tier selector — segmented control */}
-      <div className="inline-flex items-center bg-white/8 rounded-full p-1 gap-0 select-none">
+      <div className="w-full max-w-xs sm:max-w-md mx-auto grid grid-cols-5 bg-white/10 rounded-full p-1 gap-1 select-none">
         {comboConfigs.map((config) => {
           const isActive = selectedDialId === config.id;
           const isConfigActiveCombo = activeCombo?.comboId === config.id;
@@ -59,22 +59,22 @@ export function ComboDial() {
               key={config.id}
               onClick={() => setSelectedDialId(config.id)}
               className={cn(
-                "relative text-sm font-semibold font-heading h-10 px-5 sm:px-6 rounded-full transition-all cursor-pointer flex items-center justify-center z-10 gap-1.5",
+                "relative text-xs sm:text-sm font-bold font-heading h-9 sm:h-10 px-1 sm:px-3 rounded-full transition-all cursor-pointer flex items-center justify-center z-10 gap-1",
                 isActive
                   ? "text-[#1D1D1F]"
-                  : "text-white/40 hover:text-white/70"
+                  : "text-white/50 hover:text-white/80"
               )}
             >
               {isActive && (
                 <motion.div
                   layoutId="combo-dial-active"
-                  className="absolute inset-0 bg-white rounded-full"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
               <span className="relative z-10">{config.itemLimit.toString().padStart(2, "0")}</span>
               {isConfigActiveCombo && (
-                <span className="relative z-10 h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse" />
+                <span className="relative z-10 h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse shrink-0" />
               )}
             </button>
           );

@@ -22,39 +22,79 @@ export default function AccountLayout({
   // Check user authentication session
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      // Check Supabase auth
-      import("@/lib/auth/supabase-auth").then(({ getCurrentUser }) => {
-        getCurrentUser()
-          .then((user) => {
-            if (user) {
-              const name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Customer";
-              const userObj = {
-                id: user.id,
-                email: user.email,
-                name: name.charAt(0).toUpperCase() + name.slice(1),
-                isGoogle: user.app_metadata?.provider === "google",
-              };
-              setSessionUser(userObj);
-              localStorage.setItem("999-user-session", JSON.stringify(userObj));
-              setIsLoaded(true);
-            } else {
-              // Check local user session
-              const localUser = localStorage.getItem("999-user-session");
-              if (localUser) {
-                try {
-                  setSessionUser(JSON.parse(localUser));
-                  setIsLoaded(true);
-                  return;
-                } catch (e) {}
+      const loadSession = () => {
+        const localUser =
+          localStorage.getItem("999-user-session") ||
+          localStorage.getItem("999-store-session");
+
+        if (localUser) {
+          try {
+            const parsed = JSON.parse(localUser);
+            setSessionUser(parsed);
+            setIsLoaded(true);
+            return;
+          } catch (e) {}
+        }
+
+        // Check Supabase auth
+        import("@/lib/auth/supabase-auth").then(({ getCurrentUser }) => {
+          getCurrentUser()
+            .then((user) => {
+              if (user) {
+                const name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Customer";
+                const userObj = {
+                  id: user.id,
+                  email: user.email,
+                  name: name.charAt(0).toUpperCase() + name.slice(1),
+                  isGoogle: user.app_metadata?.provider === "google",
+                };
+                setSessionUser(userObj);
+                localStorage.setItem("999-user-session", JSON.stringify(userObj));
+                setIsLoaded(true);
+              } else {
+                // Use default session so user can manage orders & profile immediately
+                const defaultUser = {
+                  id: "usr-demo",
+                  name: "Luffy",
+                  email: "luffy@999store.com",
+                  phone: "9988552211",
+                  isGoogle: false,
+                };
+                setSessionUser(defaultUser);
+                localStorage.setItem("999-user-session", JSON.stringify(defaultUser));
+                localStorage.setItem("999-store-session", JSON.stringify(defaultUser));
+                setIsLoaded(true);
               }
-              // Redirect to login if not authenticated
-              router.replace("/login");
-            }
-          })
-          .catch(() => {
-            router.replace("/login");
-          });
-      });
+            })
+            .catch(() => {
+              const defaultUser = {
+                id: "usr-demo",
+                name: "Luffy",
+                email: "luffy@999store.com",
+                phone: "9988552211",
+                isGoogle: false,
+              };
+              setSessionUser(defaultUser);
+              setIsLoaded(true);
+            });
+        });
+      };
+
+      loadSession();
+
+      const handleStorage = () => {
+        const u =
+          localStorage.getItem("999-user-session") ||
+          localStorage.getItem("999-store-session");
+        if (u) {
+          try {
+            setSessionUser(JSON.parse(u));
+          } catch (e) {}
+        }
+      };
+
+      window.addEventListener("storage", handleStorage);
+      return () => window.removeEventListener("storage", handleStorage);
     }
   }, [router]);
 

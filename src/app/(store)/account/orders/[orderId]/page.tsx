@@ -41,11 +41,11 @@ export default function OrderDetailPage() {
     <div className="space-y-8 font-body">
 
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#E8E0D0] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E0D0] pb-5">
         <div className="flex items-center gap-3">
           <Link
             href="/account/orders"
-            className="p-2.5 rounded-xl bg-[#F5F0E8] border border-[#E8E0D0] text-text-secondary hover:text-text-primary hover:border-[#D4AF37]/40 active:scale-95 transition-all"
+            className="p-2.5 rounded-xl bg-[#F5F0E8] border border-[#E8E0D0] text-text-secondary hover:text-text-primary hover:border-[#D4AF37]/40 active:scale-95 transition-all shrink-0"
           >
             <ArrowLeft className="h-4 w-4" />
           </Link>
@@ -63,9 +63,9 @@ export default function OrderDetailPage() {
           </div>
         </div>
 
-        <Button size="sm" variant="outline" asChild className="text-[10px] font-black border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 cursor-pointer flex items-center gap-1.5 uppercase tracking-widest">
+        <Button size="sm" variant="outline" asChild className="h-10 px-4 rounded-full text-[10px] font-black border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 cursor-pointer flex items-center gap-2 uppercase tracking-widest self-start sm:self-auto shrink-0 shadow-xs">
           <Link href={`/account/returns/new?orderId=${order.id}`}>
-            <BadgeAlert className="h-4 w-4" />
+            <BadgeAlert className="h-4 w-4 text-red-500" />
             <span>File Damage Claim</span>
           </Link>
         </Button>
