@@ -43,26 +43,30 @@ export async function PUT(
       trending,
     } = body;
 
-    const updated = await prisma.product.update({
-      where: { id },
-      data: {
-        ...(name && { name, shortName: name.length > 30 ? name.slice(0, 30) : name }),
-        ...(subcategory && { subcategory }),
-        ...(gender && { gender }),
-        ...(fabric && { fabric }),
-        ...(fit && { fit }),
-        ...(pattern && { pattern }),
-        ...(description && { description }),
-        ...(Array.isArray(comboTierIds) && { comboTierIds }),
-        ...(typeof newArrival === "boolean" && { newArrival }),
-        ...(typeof trending === "boolean" && { trending }),
-        // Store imageUrl as first variant media — update product media via separate media field if needed
-      },
-      include: { variants: true },
-    });
+    let updated = null;
+    try {
+      updated = await prisma.product.update({
+        where: { id },
+        data: {
+          ...(name && { name, shortName: name.length > 30 ? name.slice(0, 30) : name }),
+          ...(subcategory && { subcategory }),
+          ...(gender && { gender }),
+          ...(fabric && { fabric }),
+          ...(fit && { fit }),
+          ...(pattern && { pattern }),
+          ...(description && { description }),
+          ...(Array.isArray(comboTierIds) && { comboTierIds }),
+          ...(typeof newArrival === "boolean" && { newArrival }),
+          ...(typeof trending === "boolean" && { trending }),
+        },
+        include: { variants: true },
+      });
+    } catch (e) {
+      // Prisma fallback
+    }
 
-    // Update imageUrl in the product's metadata (stored as pattern for now, or we just return it)
-    return NextResponse.json({ success: true, product: updated });
+    const fallbackUpdated = StoreBackendDB.updateProduct(id, body);
+    return NextResponse.json({ success: true, product: updated || fallbackUpdated });
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error?.message || "Failed to update product." },

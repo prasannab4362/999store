@@ -16,6 +16,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import { MediaUploadSection } from "@/components/admin/media-upload-section";
 
 const COMBO_TIERS = [
   { id: "combo-10", label: "10 Picks", color: "bg-violet-500" },
@@ -268,6 +269,8 @@ export default function EditProductPage() {
   const [name, setName] = React.useState("");
   const [subcategory, setSubcategory] = React.useState("");
   const [gender, setGender] = React.useState("unisex");
+  const [imageUrl, setImageUrl] = React.useState("");
+  const [videoUrl, setVideoUrl] = React.useState("");
   const [fabric, setFabric] = React.useState("");
   const [fit, setFit] = React.useState("");
   const [pattern, setPattern] = React.useState("");
@@ -295,6 +298,12 @@ export default function EditProductPage() {
         setComboTierIds(p.comboTierIds ?? []);
         setNewArrival(p.newArrival ?? false);
         setTrending(p.trending ?? false);
+
+        // Find image & video
+        const frontMedia = p.media?.find((m: any) => m.viewType === "front")?.url || p.imageUrl || "";
+        const vidMedia = p.media?.find((m: any) => m.viewType === "video")?.url || p.videoUrl || "";
+        setImageUrl(frontMedia);
+        setVideoUrl(vidMedia);
       } else {
         toast.error("Product not found.");
         router.push("/admin/products");
@@ -322,7 +331,20 @@ export default function EditProductPage() {
       const res = await fetch(`/api/admin/products/${productId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, subcategory, gender, fabric, fit, pattern, description, comboTierIds, newArrival, trending }),
+        body: JSON.stringify({
+          name,
+          subcategory,
+          gender,
+          imageUrl,
+          videoUrl,
+          fabric,
+          fit,
+          pattern,
+          description,
+          comboTierIds,
+          newArrival,
+          trending,
+        }),
       });
       const data = await res.json();
       if (data.success) {
@@ -393,6 +415,16 @@ export default function EditProductPage() {
           {saving ? "Saving..." : "Save Changes"}
         </button>
       </div>
+
+      {/* Media Upload & Sample Picker Section */}
+      <MediaUploadSection
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        videoUrl={videoUrl}
+        setVideoUrl={setVideoUrl}
+        preferredCategory={subcategory}
+        preferredGender={gender as any}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* ── Left Column: Product Details ── */}

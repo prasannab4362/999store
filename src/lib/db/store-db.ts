@@ -227,7 +227,9 @@ export class StoreBackendDB {
         flatRateRule: "INCLUDED_IN_999_COMBO",
       },
       media: [
-        { id: `m-${Date.now()}-1`, url: productData.imageUrl, viewType: "front" as const, alt: productData.name },
+        { id: `m-${Date.now()}-1`, type: "image", url: productData.imageUrl || "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80", viewType: "front" as const, alt: productData.name },
+        ...(productData.videoUrl ? [{ id: `m-${Date.now()}-video`, type: "video", url: productData.videoUrl, viewType: "video" as const, alt: `${productData.name} Showcase Video` }] : []),
+        ...(productData.backImageUrl ? [{ id: `m-${Date.now()}-back`, type: "image", url: productData.backImageUrl, viewType: "back" as const, alt: `${productData.name} Back View` }] : []),
       ],
       variants: (productData.variants || []).map((v: any, idx: number) => ({
         id: `var-${Date.now()}-${idx}`,
@@ -251,6 +253,42 @@ export class StoreBackendDB {
     mockInventory.unshift(formattedProduct as any);
     products.unshift(formattedProduct as any);
     return formattedProduct;
+  }
+
+  static updateProduct(productId: string, data: any) {
+    const pIndex = mockInventory.findIndex((p) => p.id === productId);
+    if (pIndex !== -1) {
+      if (data.name) (mockInventory[pIndex] as any).name = data.name;
+      if (data.subcategory) (mockInventory[pIndex] as any).subcategory = data.subcategory;
+      if (data.gender) (mockInventory[pIndex] as any).gender = data.gender;
+      if (data.fabric) (mockInventory[pIndex] as any).fabric = data.fabric;
+      if (data.fit) (mockInventory[pIndex] as any).fit = data.fit;
+      if (data.pattern) (mockInventory[pIndex] as any).pattern = data.pattern;
+      if (data.description) (mockInventory[pIndex] as any).description = data.description;
+      if (data.comboTierIds) (mockInventory[pIndex] as any).comboTierIds = data.comboTierIds;
+      if (data.imageUrl) {
+        const media = (mockInventory[pIndex] as any).media || [];
+        const frontIdx = media.findIndex((m: any) => m.viewType === "front");
+        if (frontIdx !== -1) {
+          media[frontIdx].url = data.imageUrl;
+        } else {
+          media.unshift({ id: `m-${Date.now()}-1`, type: "image", url: data.imageUrl, viewType: "front" as const, alt: data.name || (mockInventory[pIndex] as any).name });
+        }
+        (mockInventory[pIndex] as any).media = media;
+      }
+      if (data.videoUrl) {
+        const media = (mockInventory[pIndex] as any).media || [];
+        const vidIdx = media.findIndex((m: any) => m.viewType === "video");
+        if (vidIdx !== -1) {
+          media[vidIdx].url = data.videoUrl;
+        } else {
+          media.push({ id: `m-${Date.now()}-video`, type: "video", url: data.videoUrl, viewType: "video" as const, alt: `${(mockInventory[pIndex] as any).name} Showcase Video` });
+        }
+        (mockInventory[pIndex] as any).media = media;
+      }
+      return mockInventory[pIndex];
+    }
+    return null;
   }
 
   static createOrder(newOrderData: Omit<AdminOrder, "id" | "orderNumber" | "createdAt">): AdminOrder {
